@@ -13,7 +13,7 @@ const components = {
 
 const PostMarkdown = ({ body }) => {
   return (
-    <S.MDWrapper id="post-contents">
+    <S.MDWrapper id="post-contents" itemProp="articleBody">
       <MDXProvider components={components}>
         <MDXRenderer>{body}</MDXRenderer>
       </MDXProvider>

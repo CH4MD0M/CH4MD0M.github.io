@@ -27,15 +27,17 @@ const Toc = ({ lists }) => {
         ...document.querySelectorAll(
           "#post-contents > h1, #post-contents > h2, #post-contents > h3"
         ),
-      ].map((element) => getElementOffsetY(element))
+      ].map((element) => element.getBoundingClientRect().top)
     );
   }, []);
 
   // active toc item
   useEffect(() => {
     headingsTop.forEach((heading, idx) => {
-      if (scrollY > heading - 100) setIsActive(idx);
-      return;
+      if (heading - 200 < scrollY) {
+        setIsActive(idx);
+        return;
+      }
     });
   }, [scrollY]);
 
@@ -49,7 +51,7 @@ const Toc = ({ lists }) => {
       {lists.length ? (
         <S.TocWrapper
           ref={measuredRef}
-          isSticky={scrollY > tocWrapperTop - 120}
+          isSticky={scrollY > tocWrapperTop - 100}
         >
           <div>
             {lists.map((item, idx) => (
