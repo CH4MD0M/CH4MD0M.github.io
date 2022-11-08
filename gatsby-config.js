@@ -42,7 +42,7 @@ module.exports = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://ch4md0m.blog",
-        sitemap: "https://ch4md0m.blog/sitemap/sitemap-index.xml",
+        sitemap: "https://ch4md0m.blog/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -86,7 +86,7 @@ module.exports = {
       },
     },
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
+    "gatsby-plugin-advanced-sitemap",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-plugin-styled-components",
