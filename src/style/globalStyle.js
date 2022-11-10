@@ -6,7 +6,6 @@ export default createGlobalStyle`
 ::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 html {
   font-family: 'Noto Sans KR', sans-serif;

@@ -1,5 +1,14 @@
 const blogConfig = require("./blog-config");
 
+const wrapESMPlugin = (name) =>
+  function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
+
 module.exports = {
   siteMetadata: blogConfig,
 
@@ -68,8 +77,9 @@ module.exports = {
           },
           `gatsby-remark-static-images`,
         ],
-        remarkPlugins: [require("remark-math")],
-        rehypePlugins: [require("rehype-katex")],
+
+        remarkPlugins: [wrapESMPlugin(`remark-slug`), require(`remark-math`)],
+        rehypePlugins: [require(`rehype-katex`)],
       },
     },
 

@@ -47,6 +47,7 @@
     "react-scroll": "^1.8.7",
     "rehype-katex": "^5.0.0",
     "remark-math": "^3.0.1",
+    "remark-slug": "^7.0.1",
     "styled-components": "^5.3.5",
     "typewriter-effect": "^2.19.0"
   },
