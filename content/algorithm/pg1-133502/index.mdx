@@ -1,0 +1,60 @@
+---
+title: "[프로그래머스] 햄버거 만들기 (JavaScript)"
+category: algorithm
+date: 2022-11-14
+author: Kihoon
+---
+
+## 문제
+
+[코딩테스트 연습 - 햄버거 만들기](https://school.programmers.co.kr/learn/courses/30/lessons/133502)
+
+## 틀렸던 코드 (시간 초과)
+
+```jsx
+function solution(ingredient) {
+  let answer = 0;
+  const stack = [];
+
+  for (let i of ingredient) {
+    stack.push(i);
+
+    if (stack.slice(-4).toString() == [1, 2, 3, 1]) {
+      stack.splice(-4);
+      answer++;
+    }
+  }
+  return answer;
+}
+```
+
+자동 형변환 되는 것을 이용하여 한쪽만 `toString()`을 사용해 비교했는데 통과는 했지만, <br/>
+연산 시간이 많이 걸리고 (최대 907.75ms) 다시 채점할 때 시간초과가 뜨는 경우가 있었다.
+
+아래코드와 같이 `join()`을 사용했을 때는 최대 201.68ms가 나왔다.
+
+## 코드
+
+```jsx
+function solution(ingredient) {
+  let answer = 0;
+  const stack = [];
+
+  for (let i of ingredient) {
+    stack.push(i);
+
+    if (stack.slice(-4).join("") == "1231") {
+      stack.splice(-4);
+      answer++;
+    }
+  }
+  return answer;
+}
+```
+
+<br />
+
+## 문제 풀이 방법
+
+`stack`을 이용하여 구현하였다.<br/>
+ingredient의 요소들을 하나씩 stack에 push하면서 stack에 있는 값이 '1231'과 일치하면 answer을 증가시키고 stack에서 데이터를 지운다.
