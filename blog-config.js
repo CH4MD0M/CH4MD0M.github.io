@@ -11,7 +11,7 @@ module.exports = {
   author: `Kihoon`,
   name: `노기훈`,
   socials: {
-    email: "d0m__@naver.com",
+    email: "mailto:d0m__@naver.com",
     github: "https://github.com/CH4MD0M/",
     instagram: `https://www.instagram.com/k1h00n_`,
   },
