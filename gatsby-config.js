@@ -23,11 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingIds: [
-          blogConfig.ga, // Google Analytics / GA
-          // Google Ads / Adwords / AW
-          // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
-        ],
+        trackingIds: [blogConfig.ga],
 
         pluginConfig: {
           head: true,
@@ -48,11 +44,71 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-robots-txt",
+      resolve: `gatsby-plugin-robots-txt`,
       options: {
         host: "https://ch4md0m.blog",
         sitemap: "https://ch4md0m.blog/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                });
+              });
+            },
+            query: `
+              {
+                allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields {
+                       slug
+                      }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: `/rss.xml`,
+            title: `RSS Feed of ${blogConfig.title}`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://ch4md0m.blog/`,
+        stripQueryString: true,
       },
     },
     {
@@ -82,7 +138,6 @@ module.exports = {
         rehypePlugins: [require(`rehype-katex`)],
       },
     },
-
     {
       resolve: "gatsby-plugin-google-fonts",
       options: {
