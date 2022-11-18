@@ -24,7 +24,7 @@ const Toc = () => {
     const observer = getIntersectionObserver(setCurrentId);
     setHeading(headingElements);
 
-    headingElements.map((header) => {
+    headingElements.forEach((header) => {
       observer.observe(header);
     });
   }, []);
@@ -33,7 +33,7 @@ const Toc = () => {
     if (node !== null) {
       setTocWrapperTop(getElementOffsetY(node));
     }
-  });
+  }, []);
 
   const handleClickHeading = useCallback((itemId) => {
     const node = document.getElementById(itemId);
