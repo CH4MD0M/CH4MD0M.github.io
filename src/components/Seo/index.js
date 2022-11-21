@@ -12,6 +12,7 @@ const Seo = ({ title, description, url }) => {
       <title>{title}</title>
       <meta property="og:title" content={title} />
       <meta property="og:url" content={metaUrl} />
+      <meta property="description" content={metaDescription} />
       <meta property="og:description" content={metaDescription} />
       <meta
         property="og:image"
@@ -36,6 +37,7 @@ const seoQuery = graphql`
     site {
       siteMetadata {
         siteUrl
+        description
       }
     }
   }
