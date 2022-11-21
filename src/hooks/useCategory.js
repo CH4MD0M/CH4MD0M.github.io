@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import qs from "query-string";
 
 const useCategory = () => {
-  const [category, setCategory] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const selectCategory = useCallback((category) => {
-    setCategory(category);
+  const handleSelectCategory = useCallback((category) => {
+    setSelectedCategory(category);
     window.history.pushState(
       { category },
       "",
@@ -15,8 +15,8 @@ const useCategory = () => {
 
   const changeCategory = useCallback(() => {
     const { category } = qs.parse(window.location.search);
-    const target = category == null ? "all" : category;
-    setCategory(target);
+    const target = !category ? "all" : category;
+    setSelectedCategory(target);
   }, []);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const useCategory = () => {
     changeCategory();
   }, []);
 
-  return [category, selectCategory];
+  return [selectedCategory, handleSelectCategory];
 };
 
 export default useCategory;

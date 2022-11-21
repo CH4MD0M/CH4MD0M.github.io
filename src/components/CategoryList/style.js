@@ -5,7 +5,7 @@ export const FlexWrapper = styled.div`
   justify-content: center;
 `;
 
-export const CategoriesWrapper = styled.div`
+export const CategoryListWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,6 +28,7 @@ export const CategoriesWrapper = styled.div`
 `;
 
 export const Active = styled.li`
+  flex: 0 0 auto;
   padding: 1rem 1.5rem;
   background: transparent;
   color: var(--categoryTextColor);
@@ -36,6 +37,7 @@ export const Active = styled.li`
 `;
 
 export const Disabled = styled.li`
+  flex: 0 0 auto;
   padding: 1rem 1.5rem;
   background: transparent;
   border: 1px solid transparent;

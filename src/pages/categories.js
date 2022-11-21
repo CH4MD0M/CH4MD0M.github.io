@@ -1,36 +1,39 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import _ from "lodash";
+import sortBy from "lodash/sortBy";
 
 import useCategory from "../hooks/useCategory";
 import Layout from "../layout";
 import Seo from "../components/Seo";
 import PageTitle from "../components/PageTitle";
-import Categories from "../components/Categories";
+import CategoryList from "../components/CategoryList";
 import Divider from "../components/Divider";
 import PostList from "../components/PostList";
 
 const CategoryPage = () => {
-  const [category, selectCategory] = useCategory();
   const data = useStaticQuery(pageQuery);
-  const { nodes } = data.allMdx;
+  const { nodes, group } = data.allMdx;
 
-  const categories = useMemo(
-    () => _.uniq(nodes.map((node) => node.frontmatter.category)),
-    []
+  const [selectedCategory, handleSelectCategory] = useCategory();
+  const categories = sortBy(group, ["fieldValue"]);
+
+  const filteredPosts = nodes.filter(
+    (post) =>
+      selectedCategory === "all" ||
+      post.frontmatter.category === selectedCategory
   );
 
   return (
     <Layout>
       <Seo title="Categories" />
       <PageTitle>Categories.</PageTitle>
-      <Categories
-        category={category}
+      <CategoryList
+        selectedCategory={selectedCategory}
         categories={categories}
-        selectCategory={selectCategory}
+        handleSelectCategory={handleSelectCategory}
       />
       <Divider mt="0" />
-      <PostList category={category} postList={nodes} />
+      <PostList motionKey={selectedCategory} postList={filteredPosts} />
     </Layout>
   );
 };
@@ -38,6 +41,10 @@ const CategoryPage = () => {
 const pageQuery = graphql`
   query {
     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
+      group(field: frontmatter___category) {
+        fieldValue
+        totalCount
+      }
       nodes {
         fields {
           slug
@@ -47,6 +54,7 @@ const pageQuery = graphql`
           title
           category
           date(formatString: "YYYY년 M월 D일")
+          tags
         }
         excerpt(pruneLength: 300, truncate: true)
       }

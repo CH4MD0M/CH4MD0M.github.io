@@ -13,26 +13,30 @@ const Category = ({ title, selectedCategory, handleSelectCategory }) => {
   );
 };
 
-const Categories = ({ categories, category, selectCategory }) => {
+const CategoryList = ({
+  selectedCategory,
+  categories,
+  handleSelectCategory,
+}) => {
   return (
     <S.FlexWrapper>
-      <S.CategoriesWrapper>
+      <S.CategoryListWrapper>
         <Category
           title="all"
-          selectedCategory={category}
-          handleSelectCategory={selectCategory}
+          selectedCategory={selectedCategory}
+          handleSelectCategory={handleSelectCategory}
         />
-        {categories.map((title, idx) => (
+        {categories.map((item, idx) => (
           <Category
             key={idx}
-            title={title}
-            selectedCategory={category}
-            handleSelectCategory={selectCategory}
+            title={item.fieldValue}
+            selectedCategory={selectedCategory}
+            handleSelectCategory={handleSelectCategory}
           />
         ))}
-      </S.CategoriesWrapper>
+      </S.CategoryListWrapper>
     </S.FlexWrapper>
   );
 };
 
-export default Categories;
+export default CategoryList;
