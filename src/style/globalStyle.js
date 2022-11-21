@@ -40,6 +40,7 @@ html {
   --inlineCodeBgColor: ${(props) => props.theme.colors.primary4};
   --hrColor: ${(props) => props.theme.colors.primary5};
   --imgBgColor: 'transparent';
+  --tagBgColor: ${(props) => props.theme.colors.primary2};
 }
 
 html[data-theme='dark'] {
@@ -71,6 +72,7 @@ html[data-theme='dark'] {
     --inlineCodeBgColor: ${(props) => props.theme.colors.gray};
     --hrColor: ${(props) => props.theme.colors.primary6};
     --imgBgColor: ${(props) => props.theme.colors.primary1};
+    --tagBgColor: ${(props) => props.theme.colors.primary8};
   }
   
   body {
