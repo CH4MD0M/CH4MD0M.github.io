@@ -5,6 +5,18 @@ export const FlexWrapper = styled.div`
   justify-content: center;
 `;
 
+export const Active = styled.li`
+  color: var(--categoryTextColor);
+  border: 1px solid var(--categoryTextColor);
+  border-radius: 6px;
+`;
+
+export const Disabled = styled.li`
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+`;
+
 export const CategoryListWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -25,22 +37,10 @@ export const CategoryListWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none !important;
   }
-`;
 
-export const Active = styled.li`
-  flex: 0 0 auto;
-  padding: 1rem 1.5rem;
-  background: transparent;
-  color: var(--categoryTextColor);
-  border: 1px solid var(--categoryTextColor);
-  border-radius: 6px;
-`;
-
-export const Disabled = styled.li`
-  flex: 0 0 auto;
-  padding: 1rem 1.5rem;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  cursor: pointer;
+  ${Active}, ${Disabled} {
+    flex: 0 0 auto;
+    padding: 1rem 1.5rem;
+    background: transparent;
+  }
 `;

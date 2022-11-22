@@ -46,17 +46,17 @@ const pageQuery = graphql`
         totalCount
       }
       nodes {
+        id
+        excerpt(pruneLength: 300, truncate: true)
         fields {
           slug
         }
-        id
         frontmatter {
           title
           category
           date(formatString: "YYYY년 M월 D일")
           tags
         }
-        excerpt(pruneLength: 300, truncate: true)
       }
     }
   }
