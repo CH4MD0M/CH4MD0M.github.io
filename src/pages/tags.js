@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import sortBy from "lodash/sortBy";
+import orderBy from "lodash/orderBy";
 import filter from "lodash/filter";
 
 import useTag from "../hooks/useTag";
@@ -17,7 +17,7 @@ const TagsPage = () => {
 
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [selectedTag, handleSelectTag] = useTag();
-  const tags = sortBy(group, ["totalCount"]);
+  const tags = orderBy(group, ["totalCount"], ["desc"]);
 
   useEffect(() => {
     if (!selectedTag) {
@@ -52,17 +52,17 @@ const pageQuery = graphql`
         totalCount
       }
       nodes {
+        id
+        excerpt(pruneLength: 300, truncate: true)
         fields {
           slug
         }
-        id
         frontmatter {
           title
           category
           date(formatString: "YYYY년 M월 D일")
           tags
         }
-        excerpt(pruneLength: 300, truncate: true)
       }
     }
   }

@@ -42,6 +42,7 @@ const pageQquery = graphql`
           title
           category
           date(formatString: "YYYY년 M월 D일")
+          tags
         }
       }
     }

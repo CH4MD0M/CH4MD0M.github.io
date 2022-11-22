@@ -22,7 +22,6 @@ html {
   --hoveredIconColor: ${(props) => props.theme.colors.primary9};
   --pageTitleBgColor: ${(props) => props.theme.colors.blue0};
   --categoryTextColor: ${(props) => props.theme.colors.blue0};
-  --postTitleColor: ${(props) => props.theme.colors.blue0};
   --postDateColor: ${(props) => props.theme.colors.primary6};
   --linkColor: ${(props) => props.theme.colors.blue0};
   --postNavBtnBgColor: ${(props) => props.theme.colors.primary2};
@@ -41,6 +40,7 @@ html {
   --hrColor: ${(props) => props.theme.colors.primary5};
   --imgBgColor: 'transparent';
   --tagBgColor: ${(props) => props.theme.colors.primary2};
+  --hoveredTagBgColor: ${(props) => props.theme.colors.primary1};
 }
 
 html[data-theme='dark'] {
@@ -54,7 +54,6 @@ html[data-theme='dark'] {
     --hoveredIconColor: ${(props) => props.theme.colors.primary0};
     --pageTitleBgColor: ${(props) => props.theme.colors.blue1};
     --categoryTextColor: ${(props) => props.theme.colors.blue1};
-    --postTitleColor: ${(props) => props.theme.colors.blue1};
     --postDateColor: ${(props) => props.theme.colors.primary5};
     --linkColor: ${(props) => props.theme.colors.blue1};
     --postNavBtnBgColor: ${(props) => props.theme.colors.primary7};
@@ -73,6 +72,7 @@ html[data-theme='dark'] {
     --hrColor: ${(props) => props.theme.colors.primary6};
     --imgBgColor: ${(props) => props.theme.colors.primary1};
     --tagBgColor: ${(props) => props.theme.colors.primary8};
+    --hoveredTagBgColor: ${(props) => props.theme.colors.primary7};
   }
   
   body {
@@ -82,7 +82,8 @@ html[data-theme='dark'] {
   
   a {
     text-decoration: none;
-    transition: .2s;
+    transition: .2s; 
+  
     &:focus{
       outline: none;
     }

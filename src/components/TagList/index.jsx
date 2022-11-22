@@ -2,13 +2,17 @@ import React from "react";
 
 // CSS
 import * as S from "./style";
-import { FlexWrapper, Active, Disabled } from "../CategoryList/style";
+import { FlexWrapper } from "../CategoryList/style";
 
-const Tag = ({ title, selectedTag, handleSelectTag }) => {
+const Tag = ({ title, count, selectedTag, handleSelectTag }) => {
   return selectedTag === title ? (
-    <Active onClick={() => handleSelectTag(title)}>{title}</Active>
+    <S.Active onClick={() => handleSelectTag(title)}>
+      {title}({count})
+    </S.Active>
   ) : (
-    <Disabled onClick={() => handleSelectTag(title)}>{title}</Disabled>
+    <S.Disabled onClick={() => handleSelectTag(title)}>
+      {title}({count})
+    </S.Disabled>
   );
 };
 
@@ -20,6 +24,7 @@ const TagList = ({ selectedTag, tags, handleSelectTag }) => {
           <Tag
             key={idx}
             title={item.fieldValue}
+            count={item.totalCount}
             selectedTag={selectedTag}
             handleSelectTag={handleSelectTag}
           />

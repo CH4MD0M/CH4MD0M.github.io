@@ -9,7 +9,8 @@ export const Wrapper = styled.article`
 `;
 
 export const PostTitle = styled.h2`
-  color: var(--postTitleColor);
+  margin-bottom: 0.7rem;
+  color: var(--textColor);
   font-size: 2.5rem;
   font-weight: 500;
   word-break: keep-all;
@@ -20,7 +21,6 @@ export const PostTitle = styled.h2`
 `;
 
 export const PostDescription = styled.p`
-  margin-top: 2rem;
   font-size: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
