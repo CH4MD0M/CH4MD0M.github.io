@@ -13,7 +13,6 @@ const PostTemplate = ({ data, pageContext }) => {
   const { author, category, date, title, tags } = data.mdx.frontmatter;
   const { siteUrl, comments } = data.site.siteMetadata;
   const utterancesRepo = comments?.utterances?.repo;
-
   return (
     <Layout>
       <Seo

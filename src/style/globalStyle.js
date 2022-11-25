@@ -8,7 +8,6 @@ export default createGlobalStyle`
   padding: 0;
 }
 html {
-  font-family: 'Noto Sans KR', sans-serif;
   font-size: 62.5%;
 }
 html {
@@ -78,6 +77,7 @@ html[data-theme='dark'] {
   body {
     background: var(--bgColor) !important;
     color: var(--textColor);
+    font-family: 'Noto Sans KR', sans-serif;
   }
   
   a {

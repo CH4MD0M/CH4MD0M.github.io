@@ -46,8 +46,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-robots-txt`,
       options: {
-        host: "https://ch4md0m.blog",
-        sitemap: "https://ch4md0m.blog/sitemap.xml",
+        host: "https://chamdom.blog",
+        sitemap: "https://chamdom.blog/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
@@ -107,7 +107,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `https://ch4md0m.blog/`,
+        siteUrl: `https://chamdom.blog/`,
         stripQueryString: true,
       },
     },

@@ -18,14 +18,6 @@ const Seo = ({ title, description, url }) => {
         property="og:image"
         content={`${site.siteMetadata.siteUrl}/og-image.png`}
       />
-      <meta
-        name="google-site-verification"
-        content="Td2FVAr2l6Zwnul0s2sHek3QuYryO1uejM59c8zFcNk"
-      />
-      <meta
-        name="naver-site-verification"
-        content="7572a32ecf306d2bf923a1352adb83e6608e2ae7"
-      />
     </Helmet>
   );
 };
