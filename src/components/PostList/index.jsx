@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
 import PostPreview from "../PostPreview";
-import { variants } from "../../utils/framer";
 
-const PostList = ({ motionKey, postList }) => {
+const PostList = ({ postList }) => {
   const [count, setCount] = useState(10);
   const [setTarget] = useInfiniteScroll(loadPosts);
 
@@ -21,21 +19,12 @@ const PostList = ({ motionKey, postList }) => {
   }, [postList]);
 
   return (
-    <AnimatePresence exitBeforeEnter initial={false}>
-      <motion.div
-        key={motionKey}
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        variants={variants}
-        transition={{ duration: 0.3 }}
-      >
-        {postList.slice(0, count).map((post) => {
-          return <PostPreview key={post.id} post={post} />;
-        })}
-        <div ref={setTarget} />
-      </motion.div>
-    </AnimatePresence>
+    <>
+      {postList.slice(0, count).map((post) => {
+        return <PostPreview key={post.id} post={post} />;
+      })}
+      <div ref={setTarget} />
+    </>
   );
 };
 

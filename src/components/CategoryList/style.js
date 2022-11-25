@@ -12,6 +12,7 @@ export const Active = styled.li`
 `;
 
 export const Disabled = styled.li`
+  color: var(--textColor);
   border: 1px solid transparent;
   border-radius: 6px;
   cursor: pointer;
@@ -22,7 +23,7 @@ export const CategoryListWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 0.3rem;
-  padding: 2rem 0;
+  padding: 2rem 0 1.5rem;
   list-style: none;
   font-size: 1.5rem;
   font-weight: 500;
@@ -40,7 +41,7 @@ export const CategoryListWrapper = styled.div`
 
   ${Active}, ${Disabled} {
     flex: 0 0 auto;
-    padding: 1rem 1.5rem;
+    padding: 0.7rem 1.2rem;
     background: transparent;
   }
 `;

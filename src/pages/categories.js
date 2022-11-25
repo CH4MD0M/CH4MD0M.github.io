@@ -1,8 +1,8 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import sortBy from "lodash/sortBy";
+import { graphql } from "gatsby";
+import orderBy from "lodash/orderBy";
 
-import useCategory from "../hooks/useCategory";
+import useQuery from "../hooks/useQuery";
 import Layout from "../layout";
 import Seo from "../components/Seo";
 import PageTitle from "../components/PageTitle";
@@ -10,36 +10,29 @@ import CategoryList from "../components/CategoryList";
 import Divider from "../components/Divider";
 import PostList from "../components/PostList";
 
-const CategoryPage = () => {
-  const data = useStaticQuery(pageQuery);
+const CategoryPage = ({ data }) => {
   const { nodes, group } = data.allMdx;
+  const [selectedQuery] = useQuery();
 
-  const [selectedCategory, handleSelectCategory] = useCategory();
-  const categories = sortBy(group, ["fieldValue"]);
-
+  const categories = orderBy(group, ["fieldValue"], ["desc"]);
   const filteredPosts = nodes.filter(
     (post) =>
-      selectedCategory === "all" ||
-      post.frontmatter.category === selectedCategory
+      selectedQuery === "all" || post.frontmatter.category === selectedQuery
   );
 
   return (
     <Layout>
       <Seo title="Categories" />
       <PageTitle>Categories.</PageTitle>
-      <CategoryList
-        selectedCategory={selectedCategory}
-        categories={categories}
-        handleSelectCategory={handleSelectCategory}
-      />
+      <CategoryList selectedCategory={selectedQuery} categories={categories} />
       <Divider mt="0" />
-      <PostList motionKey={selectedCategory} postList={filteredPosts} />
+      <PostList postList={filteredPosts} />
     </Layout>
   );
 };
 
-const pageQuery = graphql`
-  query {
+export const pageQuery = graphql`
+  {
     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       group(field: frontmatter___category) {
         fieldValue
@@ -47,7 +40,7 @@ const pageQuery = graphql`
       }
       nodes {
         id
-        excerpt(pruneLength: 300, truncate: true)
+        excerpt(pruneLength: 200, truncate: true)
         fields {
           slug
         }

@@ -4,7 +4,6 @@ export const TagListWrapper = styled.div`
   display: flex;
   gap: 1rem;
   font-size: 1.5rem;
-  margin: 2rem 0;
 `;
 
 export const TagItem = styled.li`

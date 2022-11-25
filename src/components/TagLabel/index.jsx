@@ -7,9 +7,9 @@ import * as S from "./style";
 const TagLabel = ({ tagList }) => {
   return (
     <S.TagListWrapper>
-      {tagList.map((tag) => (
-        <S.TagItem>
-          <Link to={`/tags?tag=${tag}`}>{tag}</Link>
+      {tagList.map((tag, idx) => (
+        <S.TagItem key={idx}>
+          <Link to={`/tags?q=${tag}`}>{tag}</Link>
         </S.TagItem>
       ))}
     </S.TagListWrapper>

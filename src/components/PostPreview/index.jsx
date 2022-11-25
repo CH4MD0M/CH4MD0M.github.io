@@ -18,11 +18,11 @@ const PostPreview = ({ post }) => {
         <Link to={`${slug}`}>
           <S.PostTitle>{title}</S.PostTitle>
         </Link>
-        <S.Date>{date}</S.Date>
-        <TagLabel tagList={tags} />
         <S.PostDescription>{excerpt}</S.PostDescription>
+        <TagLabel tagList={tags} />
+        <S.Date>{date}</S.Date>
       </S.Wrapper>
-      <Divider mt="0" mb="2rem" />
+      <Divider mt="0" mb="0" />
     </>
   );
 };

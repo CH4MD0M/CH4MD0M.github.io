@@ -1,37 +1,29 @@
 import React from "react";
+import { Link } from "gatsby";
 
 // CSS
 import * as S from "./style";
 
-const Category = ({ title, selectedCategory, handleSelectCategory }) => {
+const Category = ({ title, selectedCategory }) => {
   return selectedCategory === title ? (
-    <S.Active onClick={() => handleSelectCategory(title)}>#{title}</S.Active>
+    <S.Active>#{title}</S.Active>
   ) : (
-    <S.Disabled onClick={() => handleSelectCategory(title)}>
-      #{title}
-    </S.Disabled>
+    <Link to={`/categories?q=${title}`}>
+      <S.Disabled>#{title}</S.Disabled>
+    </Link>
   );
 };
 
-const CategoryList = ({
-  selectedCategory,
-  categories,
-  handleSelectCategory,
-}) => {
+const CategoryList = ({ selectedCategory, categories }) => {
   return (
     <S.FlexWrapper>
       <S.CategoryListWrapper>
-        <Category
-          title="all"
-          selectedCategory={selectedCategory}
-          handleSelectCategory={handleSelectCategory}
-        />
+        <Category title="all" selectedCategory={selectedCategory} />
         {categories.map((item, idx) => (
           <Category
             key={idx}
             title={item.fieldValue}
             selectedCategory={selectedCategory}
-            handleSelectCategory={handleSelectCategory}
           />
         ))}
       </S.CategoryListWrapper>

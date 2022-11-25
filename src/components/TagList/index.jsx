@@ -1,22 +1,27 @@
 import React from "react";
+import { Link } from "gatsby";
 
 // CSS
 import * as S from "./style";
 import { FlexWrapper } from "../CategoryList/style";
 
-const Tag = ({ title, count, selectedTag, handleSelectTag }) => {
+const Tag = ({ title, count, selectedTag }) => {
   return selectedTag === title ? (
-    <S.Active onClick={() => handleSelectTag(title)}>
-      {title}({count})
-    </S.Active>
+    <Link to="/tags">
+      <S.Active>
+        {title}({count})
+      </S.Active>
+    </Link>
   ) : (
-    <S.Disabled onClick={() => handleSelectTag(title)}>
-      {title}({count})
-    </S.Disabled>
+    <Link to={`/tags?q=${title}`}>
+      <S.Disabled>
+        {title}({count})
+      </S.Disabled>
+    </Link>
   );
 };
 
-const TagList = ({ selectedTag, tags, handleSelectTag }) => {
+const TagList = ({ selectedTag, tags }) => {
   return (
     <FlexWrapper>
       <S.TagListWrapper>
@@ -26,7 +31,6 @@ const TagList = ({ selectedTag, tags, handleSelectTag }) => {
             title={item.fieldValue}
             count={item.totalCount}
             selectedTag={selectedTag}
-            handleSelectTag={handleSelectTag}
           />
         ))}
       </S.TagListWrapper>

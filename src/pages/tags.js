@@ -1,50 +1,38 @@
-import React, { useState, useEffect } from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
+import { graphql } from "gatsby";
 import orderBy from "lodash/orderBy";
-import filter from "lodash/filter";
 
-import useTag from "../hooks/useTag";
+import useQuery from "../hooks/useQuery";
 import Layout from "../layout";
 import Seo from "../components/Seo";
 import PageTitle from "../components/PageTitle";
+import TagList from "../components/TagList";
 import Divider from "../components/Divider";
 import PostList from "../components/PostList";
-import TagList from "../components/TagList";
 
-const TagsPage = () => {
-  const data = useStaticQuery(pageQuery);
+const TagsPage = ({ data }) => {
   const { nodes, group } = data.allMdx;
+  const [selectedQuery] = useQuery();
 
-  const [filteredPosts, setFilteredPosts] = useState([]);
-  const [selectedTag, handleSelectTag] = useTag();
   const tags = orderBy(group, ["totalCount"], ["desc"]);
-
-  useEffect(() => {
-    if (!selectedTag) {
-      setFilteredPosts(nodes);
-      return;
-    }
-    setFilteredPosts(
-      filter(nodes, (post) => post.frontmatter.tags.indexOf(selectedTag) !== -1)
-    );
-  }, [selectedTag]);
+  const filteredPosts = nodes.filter(
+    (post) =>
+      selectedQuery === "all" ||
+      post.frontmatter.tags.indexOf(selectedQuery) !== -1
+  );
 
   return (
     <Layout>
       <Seo title="Tags" />
       <PageTitle>Tags.</PageTitle>
-      <TagList
-        selectedTag={selectedTag}
-        tags={tags}
-        handleSelectTag={handleSelectTag}
-      />
+      <TagList selectedTag={selectedQuery} tags={tags} />
       <Divider mt="0" />
-      <PostList motionKey={selectedTag} postList={filteredPosts} />
+      <PostList postList={filteredPosts} />
     </Layout>
   );
 };
 
-const pageQuery = graphql`
+export const pageQuery = graphql`
   {
     allMdx(sort: { fields: frontmatter___date, order: DESC }) {
       group(field: frontmatter___tags) {
@@ -53,7 +41,7 @@ const pageQuery = graphql`
       }
       nodes {
         id
-        excerpt(pruneLength: 300, truncate: true)
+        excerpt(pruneLength: 200, truncate: true)
         fields {
           slug
         }
