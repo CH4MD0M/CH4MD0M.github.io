@@ -28,7 +28,7 @@ export const TocWrapper = styled.div`
       props.isSticky &&
       css`
         position: fixed;
-        top: 10rem;
+        top: 110px;
       `}
 
     @media screen and (max-width: ${({ theme }) => theme.responsive.lg}) {

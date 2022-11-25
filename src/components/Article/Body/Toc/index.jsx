@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import { animateScroll } from "react-scroll";
 
 import getElementOffsetY from "../../../../utils/getOffset";
-import getIntersectionObserver from "../../../../utils/observer";
+import useIntersectionObserver from "../../../../hooks/useIntersectionObserver";
 import useScroll from "../../../../hooks/useScroll";
 
 // CSS
@@ -13,6 +13,7 @@ const Toc = () => {
   const [currentId, setCurrentId] = useState();
   const [headings, setHeading] = useState([]);
   const scrollY = useScroll();
+  useIntersectionObserver(setCurrentId);
 
   useEffect(() => {
     const headingElements = Array.from(
@@ -21,12 +22,7 @@ const Toc = () => {
       )
     );
 
-    const observer = getIntersectionObserver(setCurrentId);
     setHeading(headingElements);
-
-    headingElements.forEach((header) => {
-      observer.observe(header);
-    });
   }, []);
 
   const measuredRef = useCallback((node) => {
@@ -41,7 +37,7 @@ const Toc = () => {
   }, []);
 
   return (
-    <S.TocWrapper ref={measuredRef} isSticky={scrollY > tocWrapperTop - 100}>
+    <S.TocWrapper ref={measuredRef} isSticky={scrollY > tocWrapperTop - 110}>
       <div>
         {headings.map((item, idx) => (
           <S.TocItem
