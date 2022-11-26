@@ -11,7 +11,7 @@ const Header = ({ category, title, author, date, tags }) => {
   return (
     <S.HeaderWrapper>
       <S.CategoryLabel>
-        <Link to={`/categories?category=${category}`}>{category}</Link>
+        <Link to={`/categories?q=${category}`}>{category}</Link>
       </S.CategoryLabel>
       <S.Title>{title}</S.Title>
       <S.Information>
