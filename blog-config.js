@@ -7,7 +7,7 @@ module.exports = {
       repo: `CH4MD0M/ch4md0m.blog`,
     },
   },
-  ga: "G-2QPXMQNDX9", // Google Analytics Tracking ID
+  ga: "G-W5959S7ZBM", // Google Analytics Tracking ID
   author: `Kihoon`,
   name: `노기훈`,
   socials: {
