@@ -1,18 +1,30 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Active = styled.li`
-  color: var(--categoryTextColor);
-  border: 1px solid var(--categoryTextColor);
-`;
-
-export const Disabled = styled.li`
+export const TagItem = styled.div`
+  display: inline-block;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+  margin-bottom: 1.2rem;
+  padding: 0.5rem 1rem;
   color: var(--textColor);
-  border: 1px solid transparent;
-  cursor: pointer;
   background: var(--tagBgColor);
+  transition: background 0.25s;
+  cursor: pointer;
+
   &:hover {
     background: var(--hoveredTagBgColor);
   }
+
+  ${(props) =>
+    props.active &&
+    css`
+      color: var(--bgColor);
+      background: var(--activeTagBgColor);
+
+      &:hover {
+        background: var(--hoveredActiveTagBgColor);
+      }
+    `}
 `;
 
 export const TagListWrapper = styled.div`
@@ -21,13 +33,4 @@ export const TagListWrapper = styled.div`
   font-size: 1.3rem;
   letter-spacing: 0.1rem;
   z-index: 200;
-  transition: top 0.5s;
-
-  ${Active}, ${Disabled} {
-    display: inline-block;
-    border-radius: 10px;
-    margin: 0 0.5rem;
-    margin-bottom: 1.2rem;
-    padding: 0.5rem 1rem;
-  }
 `;

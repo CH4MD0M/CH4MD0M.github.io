@@ -37,9 +37,11 @@ html {
   --blockQuoteBgColor: ${(props) => props.theme.colors.primary3};
   --inlineCodeBgColor: ${(props) => props.theme.colors.primary4};
   --hrColor: ${(props) => props.theme.colors.primary5};
-  --imgBgColor: 'transparent';
-  --tagBgColor: ${(props) => props.theme.colors.primary2};
-  --hoveredTagBgColor: ${(props) => props.theme.colors.primary1};
+  --imgBgColor: transparent;
+  --tagBgColor: ${(props) => props.theme.colors.primary3};
+  --hoveredTagBgColor: ${(props) => props.theme.colors.primary4};
+  --activeTagBgColor: ${(props) => props.theme.colors.blue0};
+  --hoveredActiveTagBgColor: hsl(187, 92%, 30%);
 }
 
 html[data-theme='dark'] {
@@ -72,6 +74,8 @@ html[data-theme='dark'] {
     --imgBgColor: ${(props) => props.theme.colors.primary1};
     --tagBgColor: ${(props) => props.theme.colors.primary8};
     --hoveredTagBgColor: ${(props) => props.theme.colors.primary7};
+    --activeTagBgColor: ${(props) => props.theme.colors.blue1};
+    --hoveredActiveTagBgColor: hsl(187, 56%, 77%);
   }
   
   body {
