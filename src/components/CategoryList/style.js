@@ -33,7 +33,7 @@ export const CategoryListWrapper = styled.div`
   scrollbar-width: none;
   z-index: 200;
   transition: top 0.5s;
-  text-transform: capitalize;
+  text-transform: uppercase;
 
   &::-webkit-scrollbar {
     display: none !important;

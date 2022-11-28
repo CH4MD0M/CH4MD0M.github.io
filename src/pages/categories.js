@@ -14,7 +14,7 @@ const CategoryPage = ({ data }) => {
   const { nodes, group } = data.allMdx;
   const [selectedQuery] = useQuery();
 
-  const categories = orderBy(group, ["fieldValue"], ["desc"]);
+  const categories = orderBy(group, ["fieldValue"], ["asc"]);
   const filteredPosts = nodes.filter(
     (post) =>
       selectedQuery === "all" || post.frontmatter.category === selectedQuery
