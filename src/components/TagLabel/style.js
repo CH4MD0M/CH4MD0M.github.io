@@ -6,7 +6,7 @@ export const TagListWrapper = styled.div`
   font-size: 1.5rem;
 `;
 
-export const TagItem = styled.li`
+export const TagItem = styled.div`
   padding: 0.5rem 1.2rem;
   background: var(--tagBgColor);
   font-weight: 500;
