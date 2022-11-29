@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const MDWrapper = styled.div`
   & {
-    font-size: 1.7rem;
-    color: var(--textColor);
+    font-weight: 400;
+    font-size: 1.75rem;
     line-height: 1.7;
+    color: var(--textColor);
   }
 
   & > p,
@@ -14,7 +15,7 @@ export const MDWrapper = styled.div`
   & blockquote,
   & pre {
     margin-top: 0;
-    margin-bottom: 1.8rem;
+    margin-bottom: 2rem;
   }
 
   & p {
@@ -112,7 +113,7 @@ export const MDWrapper = styled.div`
   & ol {
     padding-left: 3rem;
     & ul {
-      margin: 1rem 0;
+      margin: 0.4rem 0 1rem;
       padding-left: 2rem;
       list-style: circle;
 
@@ -122,12 +123,6 @@ export const MDWrapper = styled.div`
     }
     & li:last-child {
       margin-bottom: 0;
-    }
-  }
-  & li {
-    margin-bottom: 1.2rem;
-    p {
-      margin-top: 0.8rem;
     }
   }
 

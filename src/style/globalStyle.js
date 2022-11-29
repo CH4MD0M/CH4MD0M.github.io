@@ -35,7 +35,7 @@ html {
   --tableBdColor: ${(props) => props.theme.colors.primary4};
   --blockQuoteBorder: ${(props) => props.theme.colors.primary5};
   --blockQuoteBgColor: ${(props) => props.theme.colors.primary3};
-  --inlineCodeBgColor: ${(props) => props.theme.colors.primary4};
+  --inlineCodeBgColor: ${(props) => props.theme.colors.primary3};
   --hrColor: ${(props) => props.theme.colors.primary5};
   --imgBgColor: transparent;
   --tagBgColor: ${(props) => props.theme.colors.primary3};
@@ -81,7 +81,6 @@ html[data-theme='dark'] {
   body {
     background: var(--bgColor) !important;
     color: var(--textColor);
-    font-family: 'Noto Sans KR', sans-serif;
   }
   
   a {
