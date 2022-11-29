@@ -1,0 +1,267 @@
+---
+title: "[알고리즘] JavaScript로 구현하는 DFS"
+category: algorithm
+date: 2022-03-29
+author: Kihoon
+tags:
+  - 알고리즘
+  - dfs
+---
+
+# 그래프의 탐색
+
+그래프 탐색은 하나의 노드로부터 시작하여 차례대로 모든 노드들을 한 번씩 방문하는 것이다. 많은 문제들이 단순히 그래프의 노드를 탐색하는 것으로 해결된다. 대표적으로 특정한 노드에서 다른 노드로 갈 수 있는지 없는 지를 탐색을 통하여 알 수 있다.
+
+그래프의 탐색 방법은 깊이 우선 탐색과 너비 우선 탐색의 두 가지가 있다.
+
+- 깊이 우선 탐색(depth first search)
+- 너비 우선 탐색(breath first search)
+
+이 글에서는 깊이 우선 탐색(DFS)에 대해 다룰 것이다.
+
+# 그래프의 표현 방식
+
+프로그래밍에서 그래프는 크게 2가지 방식으로 표현할 수 있는데 `인접 행렬(adjacency matrix)`과 `인접 리스트(adjacency list)`이다.
+
+**인접 행렬**은 2차원 배열로 각 노드의 연결 관계를 표현하는 방식이다. 연결이 되어 있지 않은 노드끼리는 무한(Infinity)의 비용이라고 작성한다. 노드에 대해 가중치가 있을 때는 아래와 같이 가중치를 입력해주고 가중치가 없는 경우에는 `1`과 `0`으로 표기한다. 인접행렬 방식을 사용하면 노드의 연결관계를 담은 배열이 중앙 대각선을 기준으로 대칭을 이루게 된다.
+
+```jsx
+const INF = Number.MAX_SAFE_INTEGER;
+
+const graph = [
+  [0, 4, 7],
+  [4, 0, INF],
+  [7, INF, 0],
+];
+
+console.log(graph);
+/*
+[
+  [0, 4, 7],
+  [4, 0, 9007199254740991],
+  [7, 9007199254740991, 0],
+];
+*/
+```
+
+**인접 리스트**는 리스트로 그래프의 연결 관계를 표현하는 방식으로 모든 노드에 연결 정보를 차례대로 연결하여 저장한다. 노드에 대해 가중치가 있을 때는 아래와 같이 가중치를 입력해주고 가중치가 없는 경우에는 2차원 배열로 표기한다.
+
+```jsx
+const graph = Array.from({ length: 3 }, () => Array());
+
+// 노드 0에 연결된 정보 저장(노드, 거리)
+graph[0].push([1, 7]);
+graph[0].push([2, 5]);
+
+// 노드 1에 연결된 정보 저장(노드, 거리)
+graph[1].push([0, 7]);
+
+// 노드 2에 연결된 정보 저장(노드, 거리)
+graph[2].push([0, 5]);
+
+console.log(graph);
+
+/*
+[
+  [
+    [1, 7],
+    [2, 5],
+  ],
+  [[0, 7]],
+  [[0, 5]],
+];
+*/
+```
+
+### 인접 행렬 방식과 인접 리스트 방식의 차이점
+
+이 두 방식에는 어떤 차이점이 있을까? 메모리 측면에서 보자면 **인접 행렬 방식**은 노드의 모든 관계를 저장하므로 메모리를 불필요하게 많이 사용하게 된다. 반면 **인접 리스트 방식**은 연결된 정보만을 저장하기 때문에 메모리를 효율적으로 사용하게 된다. 하지만 인접 리스트 방식은 연결된 데이터를 하나씩 확인해야 하기 때문에 인접 행렬 방식에 비해 특정한 두 노드의 연결에 대한 정보를 얻는 속도가 느리다.
+
+# DFS란?
+
+**DFS(Depth-First-Search)**는 **깊이 우선 탐색**이라고 하며 그래프에서 깊은 부분을 우선적으로 탐색하는 알고리즘이다. DFS는 트리에서 생각하면 이해하기 쉽다(트리도 그래프의 일종이다). 트리를 탐색할 때 시작 노드에서 한 방향으로 계속 탐색하다가 더 이상 갈 수 없을 때 다시 가장 가까운 노드로 되돌아와 다시 탐색을 진행하는 방법과 유사하다.
+
+DFS를 구현하는 데는 2가지의 방법이 있다. 첫 번째는 재귀를 이용하는 것이고 두 번째는 스택(반복문)을 이용하는 것이다.
+
+### 재귀를 이용한 DFS(Recursive DFS)
+
+1. 방문 여부를 기록하기 위해 배열 visited를 사용하며, 배열 visited의 값을 `false`로 초기화한다.
+2. 노드를 방문할 때마다 해당 노드의 visited 배열값을 `true`로 변경한다.
+3. 해당 노드(`v`)와 연결된 노드 중에 방문하지 않은 노드(`node`)이 있다면 방문하지 않은 노드(`node`)를 시작점으로하여 DFS를 다시 시작한다.
+
+```jsx
+function dfs(graph, v, visited) {
+  // 현재 노드를 방문 처리
+  visited[v] = true;
+  console.log(v);
+
+  // 현재 노드와 연결된 다른 노드를 재귀적으로 방문
+  for (let node of graph[v]) {
+    if (!visited[node]) {
+      dfs(graph, node, visited);
+    }
+  }
+}
+
+const graph = [[1, 2, 3], [0, 6], [0], [0, 4, 5], [3], [3], [1]];
+const visited = Array(6).fill(false);
+
+dfs(graph, 0, visited);
+// 0 1 6 2 3 4 5
+```
+
+### 스택을 이용한 DFS(Iterative DFS)
+
+1. 스택에 시작 노드를 push한다.
+2. 스택에서 노드를 pop하고 해당 노드(`v`)가 방문하지 않은 노드라면 방문처리를 한다.
+3. 노드(`v`)와 연결된 노드 중에서 방문하지 않은 노드(`node`)이 있다면 stack에 push한다.
+4. stack의 길이가 0이 될때까지 2, 3번 과정을 반복한다.
+
+```jsx
+function dfs(graph, start, visited) {
+  const stack = [];
+  stack.push(start);
+
+  while (stack.length) {
+    let v = stack.pop();
+    if (!visited[v]) {
+      console.log(v);
+      visited[v] = true;
+
+      for (let node of graph[v]) {
+        if (!visited[node]) {
+          stack.push(node);
+        }
+      }
+    }
+  }
+}
+const graph = [[1, 2, 3], [0, 6], [], [0, 4, 5], [3, 5], [3, 4], [1]];
+const visited = Array(7).fill(false);
+
+dfs(graph, 0, visited);
+// 0 3 5 4 2 1 6
+```
+
+### 재귀를 사용한 DFS와 스택을 사용한 DFS의 차이점
+
+출력된 결과를 보면 재귀를 사용한 DFS와 스택을 사용한 DFS가 다른 것을 볼 수 있다. 이는 재귀를 사용하면 작은 값을 기준으로 노드를 탐색하고 스택을 사용하면 큰 값을 기준으로 노드를 탐색하기 때문이다. DFS는 방문 순서가 크게 의미를 가지지 않는데, 두 경우 모두 DFS 알고리즘에 따라 정상적으로 방문을 모두 마쳤기 때문이다.
+
+> DFS의 기능을 생각하면 순서와 상관없이 처리해도 되지만, 코딩 테스트에서는 번호가 낮은 순서부터 처리하도록 명시하는 경우가 종종 있다. 따라서 관행적으로 번호가 낮은 순서부터 처리하도록 구현하는 편이다.
+
+### 스택을 사용한 DFS의 문제점
+
+자바스크립트로 재귀를 사용한 DFS(이하 Recursive DFS)로 알고리즘 문제를 풀다보면 시간초과가 나는 상황이 발생한다.
+파이썬은 `sys.setrecursionlimit`를 사용하여 재귀의 최대 깊이를 설정할 수 있기 때문에 Recursive DFS로 문제를 풀더라도 대부분 해결된다.🥲 자바스크립트로 문제를 해결하기 위해서는 스택을 이용한 DFS(이하 Iteractive DFS)를 이용해야 한다.
+
+알고리즘 문제 중에 리프노드에서 어떤 연산을 시작하여 부모 노드로 결과 값을 전달하는 경우가 있는데 Recursive DFS는 해당 연산을 모든 탐색이 끝나는 지점에서 수행이 가능하다. Iteractive DFS의 문제점이 여기서 발생하는데, 바로 `더 이상 탐색할 수 없는 노드`의 탐색이 끝나면 Recursive DFS는 부모로 돌아오는 로직이 존재하지만, Iteractive DFS는 존재하지 않는 것이다. 현재 노드가 stack에서 pop되기 때문에 부모로 돌아오는 것이 아니라 제일 상위에 있는 부모의 자식 노드로 넘어가게 된다.
+
+따라서 Iteractive DFS를 **Recursive DFS와 같이 만들어주는 작업**이 필요하다.
+
+```jsx
+function dfs(graph, visited) {
+  // 루트 노드는 부모가 없으므로 -1, null, undefined 등 존재할 수 없는 수를 넣어준다.
+  const stack = [[0, -1]];
+
+  while (stack.length) {
+    // 구조 분해를 통해 현재 노드와 부모 노드를 선언
+    let [cur, parent] = stack.pop();
+
+    ...
+
+    // stack 다시 push해준다.
+    stack.push([cur, parent]);
+
+    ...
+
+  }
+}
+```
+
+부모 노드를 추적하고 부모 노드로 되돌아가는 로직을 수행하기 위해 stack에서 pop하고 다시 push를 해주는 작업을 하게된다. 이때 유의할 점이 이미 방문한 노드를 바로 push하면 무한루프에 빠질 수 있기 때문에 pop과 push 사이에 조건을 넣어준다. 이 부분이 **기존의 Iteractive DFS에서 빠져 있던 부분이고 Recursive DFS와 같게 만들어 주기 위해 필요한 로직**이다.
+
+```jsx
+function dfs(graph, visited) {
+  const stack = [[0, -1]];
+
+  while (stack.length) {
+    let [cur, parent] = stack.pop();
+
+    // 기존 DFS에서 빠져있던 로직이다!
+    // 이미 방문한 노드라면 다른 노드의 부모 노드이거나 리프노드인 경우이다.
+    if (visited[cur]) {
+      continue;
+    }
+
+    stack.push([cur, parent]);
+    visited[cur] = true;
+
+    ...
+
+  }
+}
+```
+
+방문하지 않았던 노드라면 `cur`은 부모 노드가 되어 다음 노드를 계속 탐색하게 된다.
+
+```jsx
+function dfs(graph, visited) {
+  const stack = [[0, -1]];
+
+  while (stack.length) {
+    let [cur, parent] = stack.pop();
+
+    if (visited[cur]) {
+      continue;
+    }
+
+    stack.push([cur, parent]);
+    visited[cur] = true;
+
+    // 현재 노드 cur는 다음 node의 부모 노드가 된다.
+    for (const node of graph[cur]) {
+      // 방문하지 않았다면 stack에 push한다.
+      if (!visited[node]) stack.push([node, cur]);
+    }
+  }
+}
+```
+
+### 기존 DFS와 개선한 DFS의 차이
+
+**기존 DFS**
+
+```shell
+stack []
+stack [ 1, 2 ]
+stack [ 1, 2, 4 ]
+stack [ 1, 2, 4 ]
+stack [ 1 ]
+stack []
+stack []
+
+```
+
+**개선한 DFS**
+
+```shell
+stack [ [ 0, -1 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ], [ 4, 3 ], [ 5, 3 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ], [ 4, 3 ], [ 5, 3 ], [ 4, 5 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ], [ 2, 0 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ] ]
+stack [ [ 0, -1 ], [ 1, 0 ], [ 6, 1 ] ]
+
+```
+
+`stack`에 출력되는 결과에서 볼 수 있듯이 Iteractive DFS는 이제 부모 노드를 추적할 수 있게 되었다. 알고리즘 문제 풀이에서 무조건적으로 개선한 Iteractive DFS를 사용해야 하는 것은 아니지만, 부모 노드의 값으로 연산해야 하면서 재귀로는 해결할 수 없는 경우에는 좋은 해결 방법이 될 것이다.
+
+# DFS의 시간 복잡도
+
+노드의 수가 **$N$**이고 간선의 수가 **$E$**인 그래프에서 그래프가 **인접 리스트**로 표현되어 있다면 **$O(N+E)$**이고, **인접 행렬**로 표시되어 있다면 **$O(N^2)$**이다. 이는 희소 그래프인 경우 DFS는 인접 리스트의 사용이 인접 행렬보다 시간적으로 유리함을 의미한다.
+
+# 참조
+
+- [https://velog.io/@longroadhome/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Stack%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-Iterative-DFS-%EA%B5%AC%ED%98%84#iterative-dfs-%EB%B0%A9%EB%AC%B8-%EA%B5%AC%ED%98%84](https://velog.io/@longroadhome/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Stack%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-Iterative-DFS-%EA%B5%AC%ED%98%84#iterative-dfs-%EB%B0%A9%EB%AC%B8-%EA%B5%AC%ED%98%84)
+- [이것이 취업을 위한 코딩테스트다](http://www.yes24.com/Product/Goods/91433923)
