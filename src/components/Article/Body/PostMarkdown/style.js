@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 export const MDWrapper = styled.div`
-  & {
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1.7;
-    color: var(--textColor);
-  }
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.7;
+  color: var(--textColor);
 
   & > p,
   & > ul,
@@ -18,24 +16,15 @@ export const MDWrapper = styled.div`
     margin-bottom: 2rem;
   }
 
-  & p {
-    overflow-x: scroll;
-    word-break: break-all;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
   /* headings */
-  & h1,
-  & h2,
-  & h3,
-  & h4 {
-    margin: 1.1rem 0 2rem 0;
-    font-weight: 700;
+  h1,
+  h2,
+  h3 {
+    margin-top: 4rem;
+    margin-bottom: 2.4rem;
   }
 
-  & h1 {
+  h1 {
     margin-top: 8rem;
     font-size: 3.2rem;
     &::before {
@@ -44,30 +33,23 @@ export const MDWrapper = styled.div`
       margin-right: 1rem;
     }
   }
-  & h2 {
-    margin-top: 6.4rem;
-    margin-bottom: 2.4rem;
-    font-size: 2.8rem;
+  h2 {
+    margin-top: 5.5rem;
+    font-size: 2.7rem;
   }
-  & h3 {
-    margin-top: 4.8rem;
-    margin-bottom: 2.4rem;
+  h3 {
     font-size: 2.2rem;
-  }
-  & h4 {
-    margin-top: 3.2rem;
-    margin-bottom: 2.4rem;
-    font-size: 1.76rem;
   }
 
   /* link */
-  & a {
+  a {
     color: var(--textColor);
     text-decoration: underline;
+    word-break: break-all;
   }
 
   /* bold */
-  & b,
+  b,
   strong {
     font-weight: bold;
     .kaatex {
@@ -85,26 +67,25 @@ export const MDWrapper = styled.div`
   }
 
   /* table */
-  & table {
-    font-weight: 400;
+  table {
     border-collapse: collapse;
     text-align: left;
   }
-  & th {
+  th {
     padding: 1rem 2rem;
     background-color: var(--tableBgColor);
     border: 0.5px solid var(--tableBdColor);
   }
-  & td {
+  td {
     padding: 1rem 2rem;
     border: 0.5px solid var(--tableBdColor);
   }
-  & th:first-child,
+  th:first-child,
   td:first-child {
     border-left: none;
   }
-  & th:last-child,
-  & td:last-child {
+  th:last-child,
+  td:last-child {
     border-right: none;
   }
 
@@ -127,21 +108,24 @@ export const MDWrapper = styled.div`
   }
 
   /* paragraph */
-  & p {
+  p {
+    overflow-x: scroll;
     word-break: break-all;
-
+    ::-webkit-scrollbar {
+      display: none;
+    }
     a {
       color: var(--linkColor);
     }
   }
 
   /* code */
-  & code,
-  & pre {
+  code,
+  pre {
     font-family: "Fira Code", monospace;
   }
 
-  & pre {
+  pre {
     ::-webkit-scrollbar {
       height: 0.4rem;
     }
@@ -162,8 +146,8 @@ export const MDWrapper = styled.div`
   }
 
   /* blockquote */
-  & blockquote {
-    margin: 4rem 0;
+  blockquote {
+    margin-bottom: 3rem;
     padding: 1rem 2rem;
     color: var(--textColor);
     background: var(--blockQuoteBgColor);
@@ -171,7 +155,7 @@ export const MDWrapper = styled.div`
   }
 
   /* italic */
-  & em {
+  em {
     background-color: ${(props) => props.theme.colors.lightOrange};
     padding: 0.16rem 0.48rem;
     border-radius: 4px;
@@ -181,7 +165,7 @@ export const MDWrapper = styled.div`
   }
 
   /* image */
-  & img {
+  img {
     display: block;
     margin: 0 auto;
     max-width: 100%;
@@ -195,5 +179,38 @@ export const MDWrapper = styled.div`
   /* etc */
   .katex {
     font-size: inherit;
+  }
+
+  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+    font-size: 1.5rem;
+
+    /* headings */
+    h1,
+    h2,
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin-top: 6rem;
+
+      font-size: 2.8rem;
+    }
+    h2 {
+      font-size: 2.4rem;
+    }
+    h3 {
+      font-size: 2rem;
+    }
+    /* table */
+    table {
+      margin: 0 auto 2rem;
+    }
+    th {
+      padding: 0.4rem 1.2rem;
+    }
+    td {
+      padding: 0.4rem 1.2rem;
+    }
   }
 `;

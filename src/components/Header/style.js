@@ -7,7 +7,6 @@ export const FixedWrapper = styled.nav`
   left: 0;
   right: 0;
   padding: 1rem;
-  height: 6rem;
   background: var(--headerBackground);
   backdrop-filter: blur(10px);
   transition: opacity 0.35s;
