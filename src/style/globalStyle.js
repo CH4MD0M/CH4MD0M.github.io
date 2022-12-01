@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components";
+import { lightTheme } from "../assets/prism-light-theme";
+import { darkTheme } from "../assets/prism-dark-theme";
 
 export default createGlobalStyle` 
 *,
@@ -11,6 +13,7 @@ html {
   font-size: 62.5%;
 }
 html {
+  
   --bgColor: ${(props) => props.theme.colors.primary0};
   --textColor: ${(props) => props.theme.colors.primary9};
   --divider: ${(props) => props.theme.colors.primary3};
@@ -42,6 +45,7 @@ html {
   --hoveredTagBgColor: ${(props) => props.theme.colors.primary4};
   --activeTagBgColor: ${(props) => props.theme.colors.blue0};
   --hoveredActiveTagBgColor: hsl(187, 92%, 30%);
+  ${lightTheme}
 }
 
 html[data-theme='dark'] {
@@ -76,6 +80,7 @@ html[data-theme='dark'] {
     --hoveredTagBgColor: ${(props) => props.theme.colors.primary7};
     --activeTagBgColor: ${(props) => props.theme.colors.blue1};
     --hoveredActiveTagBgColor: hsl(187, 56%, 77%);
+    ${darkTheme}
   }
   
   body {
