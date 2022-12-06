@@ -37,7 +37,7 @@ html {
   --tableBgColor: ${(props) => props.theme.colors.primary2};
   --tableBdColor: ${(props) => props.theme.colors.primary4};
   --blockQuoteBorder: ${(props) => props.theme.colors.primary5};
-  --blockQuoteBgColor: ${(props) => props.theme.colors.primary3};
+  --blockQuoteBgColor: ${(props) => props.theme.colors.primary2};
   --inlineCodeBgColor: ${(props) => props.theme.colors.primary3};
   --hrColor: ${(props) => props.theme.colors.primary5};
   --imgBgColor: transparent;
