@@ -68,8 +68,12 @@ export const MDWrapper = styled.div`
 
   /* table */
   table {
+    width: ${({ theme }) => theme.sizes.maxWidth};
     border-collapse: collapse;
     text-align: left;
+    table-layout: fixed;
+    word-break: break-all;
+    height: auto;
   }
   th {
     padding: 1rem 2rem;
@@ -204,6 +208,7 @@ export const MDWrapper = styled.div`
     }
     /* table */
     table {
+      width: 100%;
       margin: 0 auto 2rem;
     }
     th {
