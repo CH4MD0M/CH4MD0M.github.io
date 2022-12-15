@@ -1,5 +1,5 @@
 ---
-title: "[자료구조] JavaScript로 구현하는 큐"
+title: JavaScript로 구현하는 큐
 category: cs
 date: 2022-02-17
 author: Kihoon
@@ -121,13 +121,15 @@ class Queue {
       delete this.store[this.front];
       this.front = 0;
       this.rear = 0;
+      return temp;
     // 그 외의 경우
     } else {
       temp = this.store[this.front];
       delete this.store[this.front];
       this.front += 1;
+      return temp;
     }
-    return temp;
+
   }
 }
 ```
