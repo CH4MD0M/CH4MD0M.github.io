@@ -68,7 +68,7 @@ export const MDWrapper = styled.div`
 
   /* table */
   table {
-    width: ${({ theme }) => theme.sizes.maxWidth};
+    max-width: ${({ theme }) => theme.sizes.maxWidth};
     border-collapse: collapse;
     text-align: left;
     table-layout: fixed;
@@ -160,12 +160,10 @@ export const MDWrapper = styled.div`
 
   /* italic */
   em {
-    background-color: ${(props) => props.theme.colors.lightOrange};
+    background-color: var(--italicBgColor);
     padding: 0.16rem 0.48rem;
     border-radius: 4px;
-    font-size: 1.6rem;
     font-style: italic;
-    color: ${(props) => props.theme.colors.darkOrange};
   }
 
   /* image */

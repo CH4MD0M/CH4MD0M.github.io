@@ -38,6 +38,7 @@ html {
   --tableBdColor: ${(props) => props.theme.colors.primary4};
   --blockQuoteBorder: ${(props) => props.theme.colors.primary5};
   --blockQuoteBgColor: ${(props) => props.theme.colors.primary2};
+  --italicBgColor: hsl(187, 40%, 88%);
   --inlineCodeBgColor: ${(props) => props.theme.colors.primary3};
   --hrColor: ${(props) => props.theme.colors.primary5};
   --imgBgColor: transparent;
@@ -73,6 +74,7 @@ html[data-theme='dark'] {
     --tableBdColor: ${(props) => props.theme.colors.primary6};
     --blockQuoteBorder: ${(props) => props.theme.colors.primary6};
     --blockQuoteBgColor: ${(props) => props.theme.colors.primary8};
+    --italicBgColor: hsl(187, 45%, 25%);
     --inlineCodeBgColor: ${(props) => props.theme.colors.gray};
     --hrColor: ${(props) => props.theme.colors.primary6};
     --imgBgColor: ${(props) => props.theme.colors.primary1};
