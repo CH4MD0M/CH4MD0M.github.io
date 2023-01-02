@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MDWrapper = styled.div`
   font-weight: 400;
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   line-height: 1.7;
   color: var(--textColor);
 

@@ -9,7 +9,6 @@ export const TagListWrapper = styled.div`
 export const TagItem = styled.div`
   padding: 0.5rem 1.2rem;
   background: var(--tagBgColor);
-  font-weight: 500;
   border-radius: 15px;
   list-style: none;
   color: var(--linkColor);

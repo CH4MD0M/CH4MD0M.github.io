@@ -11,7 +11,7 @@ export const Wrapper = styled.article`
 export const PostTitle = styled.h2`
   color: var(--textColor);
   font-size: 3rem;
-  font-weight: 500;
+  font-weight: 600;
   word-break: keep-all;
 
   &:hover {

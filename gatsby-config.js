@@ -141,7 +141,11 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-fonts",
       options: {
-        fonts: [`Damion`, `Fira+Code\:300,400,500,600,700`],
+        fonts: [
+          `Damion`,
+          `Fira+Code\:300,400,500,600,700`,
+          `Nanum+Gothic\:400,700,800`,
+        ],
         display: "swap",
       },
     },

@@ -88,6 +88,7 @@ html[data-theme='dark'] {
   body {
     background: var(--bgColor) !important;
     color: var(--textColor);
+    font-family: 'Nanum Gothic', sans-serif;
   }
   
   a {
