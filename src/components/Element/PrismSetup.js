@@ -9,22 +9,19 @@ export const PrismWrapper = ({ children, className }) => {
     <Container>
       <Highlight
         {...defaultProps}
-        code={children}
+        code={children.trim()}
         language={language}
         theme={undefined}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={{ ...style }}>
-            {tokens.map((line, index) => {
-              const lineProps = getLineProps({ line, key: index });
-              return (
-                <div key={index} {...lineProps}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              );
-            })}
+            {tokens.map((line, index) => (
+              <div {...getLineProps({ line, key: index })}>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
           </pre>
         )}
       </Highlight>
@@ -38,7 +35,6 @@ const Container = styled.article`
 
   pre {
     padding: 1rem 1.5rem;
-    border-radius: 5px;
     overflow-x: auto;
     box-shadow: ${(props) => props.theme.effect.shadow};
   }
