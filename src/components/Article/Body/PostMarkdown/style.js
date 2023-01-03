@@ -13,19 +13,18 @@ export const MDWrapper = styled.div`
   & blockquote,
   & pre {
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 2.3rem;
   }
 
   /* headings */
   h1,
   h2,
   h3 {
-    margin-top: 4rem;
     margin-bottom: 2.4rem;
   }
 
   h1 {
-    margin-top: 8rem;
+    margin-top: 7rem;
     font-size: 3.2rem;
     &::before {
       content: "";
@@ -34,10 +33,11 @@ export const MDWrapper = styled.div`
     }
   }
   h2 {
-    margin-top: 5.5rem;
+    margin-top: 5.2rem;
     font-size: 2.7rem;
   }
   h3 {
+    margin-top: 4rem;
     font-size: 2.2rem;
   }
 
@@ -79,6 +79,7 @@ export const MDWrapper = styled.div`
     padding: 1rem 2rem;
     background-color: var(--tableBgColor);
     border: 0.5px solid var(--tableBdColor);
+    word-break: keep-all;
   }
   td {
     padding: 1rem 2rem;
@@ -151,11 +152,17 @@ export const MDWrapper = styled.div`
 
   /* blockquote */
   blockquote {
-    margin-bottom: 3rem;
-    padding: 1rem 2rem;
+    margin: 4rem 0;
+    padding: 1.2rem 2rem;
     color: var(--textColor);
     background: var(--blockQuoteBgColor);
     border-left: 4px solid var(--blockQuoteBorder);
+    p {
+      margin-bottom: 2rem;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   /* italic */
@@ -184,7 +191,7 @@ export const MDWrapper = styled.div`
   }
 
   @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 
     /* headings */
     h1,
@@ -214,6 +221,10 @@ export const MDWrapper = styled.div`
     }
     td {
       padding: 0.4rem 1.2rem;
+    }
+
+    blockquote {
+      margin: 3rem 0;
     }
   }
 `;
