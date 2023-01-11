@@ -146,6 +146,7 @@ export const MDWrapper = styled.div`
     margin: 0 0.1rem;
     padding: 0.16rem 0.48rem;
     background-color: var(--inlineCodeBgColor);
+    color: #ff7777;
     font-size: 1.5rem;
     border-radius: 4px;
   }
