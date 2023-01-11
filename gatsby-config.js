@@ -131,6 +131,12 @@ module.exports = {
               scrollOffset: 0,
             },
           },
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+            },
+          },
           `gatsby-remark-static-images`,
         ],
 
