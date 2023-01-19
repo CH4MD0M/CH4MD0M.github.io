@@ -1,7 +1,7 @@
 ---
 title: "[프로그래머스] 소수 만들기 (JavaScript)"
 category: ps
-date: 2022-07-04
+date: 2022-04-07
 author: Kihoon
 tags:
   - 프로그래머스
@@ -28,46 +28,35 @@ tags:
 |  [1,2,3,4]  |   1    |
 | [1,2,7,6,4] |   4    |
 
-### 입출력 예 설명
-
-> **입출력 예 #1**
->
-> [1,2,4]를 이용해서 7을 만들 수 있습니다.
-
-> **입출력 예 #2**
->
-> [1,2,4]를 이용해서 7을 만들 수 있습니다.
->
-> [1,4,6]을 이용해서 11을 만들 수 있습니다.
->
-> [2,4,7]을 이용해서 13을 만들 수 있습니다.
->
-> [4,6,7]을 이용해서 17을 만들 수 있습니다.
-
 # 코드
 
 ```jsx
-function isPrime(n) {
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i == 0) return false;
-  }
-  return true;
-}
-
 function solution(nums) {
   let answer = 0;
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      for (let k = j + 1; k < nums.length; k++) {
-        if (isPrime(nums[i] + nums[j] + nums[k])) answer++;
+  const arr = Array.from({ length: 3000 }, () => true).fill(false, 0, 2);
+
+  for (let i = 2; i * i <= 3000; i++) {
+    if (arr[i]) {
+      for (let j = i * i; j <= 3000; j += i) {
+        arr[j] = false;
       }
     }
   }
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        if (arr[nums[i] + nums[j] + nums[k]]) answer++;
+      }
+    }
+  }
+
   return answer;
 }
 ```
 
 # 문제 풀이 방법
 
-주어진 숫자 중에서 3개의 수를 골라 더했을 때 소수가 되는 경우를 구하는 문제이다.
-중복을 허용하지 않기 때문에 조합(combinations)를 사용했다.
+주어진 숫자 중에서 3개의 수를 골라 더했을 때 소수가 되는 경우를 구하는 문제이다. 이는 **조합(combionation)**으로 구현한다.
+
+소수 판별을 위해 에라토스테네스의 체를 사용해서 `arr`을 초기화한다. 이때 `nums`의 원소는 최대 1000이기 때문에 `arr`의 크기는 3000으로 초기화하였다.
