@@ -24,7 +24,6 @@ const Header = ({ title }) => {
             <S.LinksWrapper>
               <Link to="/categories">categories</Link>
               <Link to="/tags">tags</Link>
-              <Link to="/about">about</Link>
             </S.LinksWrapper>
             <ThemeToggleButton />
             <S.MenuIcon onClick={toggleOpen}>
