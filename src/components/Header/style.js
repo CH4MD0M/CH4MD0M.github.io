@@ -6,11 +6,12 @@ export const FixedWrapper = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem;
+  padding: 1.3rem;
   background: var(--headerBackground);
   backdrop-filter: blur(10px);
   transition: opacity 0.35s;
   z-index: 400;
+  box-shadow: var(--headerBoxShadow);
 
   a {
     color: var(--textColor);
@@ -18,7 +19,7 @@ export const FixedWrapper = styled.nav`
 `;
 
 export const HeaderWrapper = styled.div`
-  max-width: ${(props) => props.theme.sizes.maxWidth};
+  max-width: 1300px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;

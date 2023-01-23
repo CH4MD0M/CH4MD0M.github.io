@@ -13,11 +13,11 @@ html {
   font-size: 62.5%;
 }
 html {
-  
   --bgColor: ${(props) => props.theme.colors.primary0};
   --textColor: ${(props) => props.theme.colors.primary9};
   --divider: ${(props) => props.theme.colors.primary3};
   --headerBgColor: hsla(0, 0%, 100%, 0.8);
+  --headerBoxShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
   --toggleBdColor: ${(props) => props.theme.colors.blue0};
   --iconBgColor: ${(props) => props.theme.colors.primary3};
   --iconColor: ${(props) => props.theme.colors.primary4};
@@ -54,6 +54,7 @@ html[data-theme='dark'] {
     --textColor: ${(props) => props.theme.colors.primary0};
     --divider: ${(props) => props.theme.colors.primary8};
     --headerBgColor: hsla(210, 20%, 15%, 0.8);
+    --headerBoxShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
     --toggleBdColor: ${(props) => props.theme.colors.blue1};
     --iconBgColor: ${(props) => props.theme.colors.primary7};
     --iconColor: ${(props) => props.theme.colors.primary5};
