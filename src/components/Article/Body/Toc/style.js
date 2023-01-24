@@ -3,12 +3,11 @@ import styled, { css } from "styled-components";
 export const TocWrapper = styled.div`
   position: sticky;
   top: 100px;
-  right: 0;
   min-width: 24rem;
   height: fit-content;
-  padding: 0.3rem 1.6rem;
   max-height: 70rem;
   margin-left: 10rem;
+  padding: 0.3rem 1.6rem;
   font-size: 1.4rem;
   line-height: 1.5;
   border-left: 1.5px solid var(--scrollBdColor);
