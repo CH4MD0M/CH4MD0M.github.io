@@ -15,9 +15,10 @@ html {
 html {
   --bgColor: ${(props) => props.theme.colors.primary0};
   --textColor: ${(props) => props.theme.colors.primary9};
+  --titleColor: ${(props) => props.theme.colors.blue0};
   --divider: ${(props) => props.theme.colors.primary3};
   --headerBgColor: hsla(0, 0%, 100%, 0.8);
-  --headerBoxShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
+  --headerShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
   --toggleBdColor: ${(props) => props.theme.colors.blue0};
   --iconBgColor: ${(props) => props.theme.colors.primary3};
   --iconColor: ${(props) => props.theme.colors.primary4};
@@ -46,15 +47,18 @@ html {
   --hoveredTagBgColor: ${(props) => props.theme.colors.primary4};
   --activeTagBgColor: ${(props) => props.theme.colors.blue0};
   --hoveredActiveTagBgColor: hsl(187, 92%, 30%);
+  --themeToggleBtnBgColor: ${(props) => props.theme.colors.primary0};
+  --themeToggleBtnShadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
   ${lightTheme}
 }
 
 html[data-theme='dark'] {
     --bgColor: ${(props) => props.theme.colors.primary9};
     --textColor: ${(props) => props.theme.colors.primary0};
+    --titleColor: ${(props) => props.theme.colors.blue1};
     --divider: ${(props) => props.theme.colors.primary8};
     --headerBgColor: hsla(210, 20%, 15%, 0.8);
-    --headerBoxShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
+    --headerShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
     --toggleBdColor: ${(props) => props.theme.colors.blue1};
     --iconBgColor: ${(props) => props.theme.colors.primary7};
     --iconColor: ${(props) => props.theme.colors.primary5};
@@ -83,6 +87,8 @@ html[data-theme='dark'] {
     --hoveredTagBgColor: ${(props) => props.theme.colors.primary7};
     --activeTagBgColor: ${(props) => props.theme.colors.blue1};
     --hoveredActiveTagBgColor: hsl(187, 56%, 77%);
+    --themeToggleBtnBgColor: ${(props) => props.theme.colors.primary7};
+    --themeToggleBtnShadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.45);
     ${darkTheme}
   }
   

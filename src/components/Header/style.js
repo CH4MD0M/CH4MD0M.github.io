@@ -6,12 +6,12 @@ export const FixedWrapper = styled.nav`
   top: 0;
   left: 0;
   right: 0;
-  padding: 1.3rem;
+  padding: 1rem;
   background: var(--headerBackground);
   backdrop-filter: blur(10px);
   transition: opacity 0.35s;
   z-index: 400;
-  box-shadow: var(--headerBoxShadow);
+  box-shadow: var(--headerShadow);
 
   a {
     color: var(--textColor);
@@ -36,6 +36,9 @@ export const NavTitle = styled.div`
   font-weight: 600;
   letter-spacing: ${(props) => props.theme.text.spacing};
   animation: var(--animation) 1.5s infinite;
+  span {
+    color: var(--titleColor);
+  }
 `;
 
 export const Menu = styled.div`
@@ -77,7 +80,9 @@ export const MenuIcon = styled.div`
   }
 
   @media screen and (min-width: ${(props) => props.theme.responsive.sm}) {
-    display: none;
+    &:last-child {
+      display: none;
+    }
   }
 `;
 

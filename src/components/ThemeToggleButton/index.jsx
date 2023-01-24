@@ -22,7 +22,7 @@ const ThemeToggleButton = () => {
   }, [theme]);
 
   return (
-    <S.ToggleWrapper>
+    <S.ToggleWrapper onClick={toggleTheme}>
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.div
           key={theme}
@@ -30,11 +30,11 @@ const ThemeToggleButton = () => {
           animate={{ rotate: 0, opacity: 1 }}
           exit={{ rotate: 180, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          onClick={toggleTheme}
         >
           {darkMode ? <FaSun /> : <FaMoon />}
         </motion.div>
       </AnimatePresence>
+      <span>{darkMode ? "라이트 모드로 보기" : "다크 모드로 보기"}</span>
     </S.ToggleWrapper>
   );
 };

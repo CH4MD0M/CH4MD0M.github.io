@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import { AnimatePresence, useCycle } from "framer-motion";
 
-import ThemeToggleButton from "../ThemeToggleButton";
 import ToggleMenu from "../ToggleMenu";
 
 // CSS
@@ -10,6 +9,7 @@ import * as S from "./style";
 import { FaBars } from "react-icons/fa";
 
 const Header = ({ title }) => {
+  const [frontTitle, backTitle] = title.split(".");
   const [isOpen, toggleOpen] = useCycle(false, true);
 
   return (
@@ -17,7 +17,9 @@ const Header = ({ title }) => {
       <S.FixedWrapper>
         <S.HeaderWrapper>
           <S.NavTitle>
-            <Link to="/">{title}</Link>
+            <Link to="/">
+              {frontTitle}.<span>{backTitle}</span>
+            </Link>
           </S.NavTitle>
 
           <S.Menu>
@@ -25,14 +27,12 @@ const Header = ({ title }) => {
               <Link to="/categories">categories</Link>
               <Link to="/tags">tags</Link>
             </S.LinksWrapper>
-            <ThemeToggleButton />
             <S.MenuIcon onClick={toggleOpen}>
               <FaBars />
             </S.MenuIcon>
           </S.Menu>
         </S.HeaderWrapper>
       </S.FixedWrapper>
-
       <AnimatePresence>{isOpen && <ToggleMenu />}</AnimatePresence>
       {isOpen && <S.Background onClick={toggleOpen} />}
     </>
