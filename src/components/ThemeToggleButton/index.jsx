@@ -34,7 +34,6 @@ const ThemeToggleButton = () => {
           {darkMode ? <FaSun /> : <FaMoon />}
         </motion.div>
       </AnimatePresence>
-      <span>{darkMode ? "라이트 모드로 보기" : "다크 모드로 보기"}</span>
     </S.ToggleWrapper>
   );
 };

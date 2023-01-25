@@ -44,19 +44,19 @@ export const Description = styled.div`
 `;
 
 export const LinksWrapper = styled.div`
-  & a {
+  a {
     margin-right: 1rem;
   }
-  & svg {
-    width: 25.6px;
-    height: 25.6px;
-    cursor: pointer;
-  }
-  & svg path {
+
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
     fill: var(--iconColor);
+    cursor: pointer;
     transition: fill 0.2s;
   }
-  a:hover svg path {
+
+  a:hover svg {
     fill: var(--hoveredIconColor);
   }
 `;
