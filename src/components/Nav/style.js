@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const FixedWrapper = styled.nav`
   display: block;
   position: fixed;
-  top: 0;
+  top: ${(props) => (props.isHidden ? "-100px" : "0px")};
   left: 0;
   right: 0;
   padding: 1rem;
-  background: var(--headerBackground);
+  background: var(--headerBgColor);
   backdrop-filter: blur(10px);
-  transition: opacity 0.35s;
+  transition: top 0.5s ease-in-out;
   z-index: 400;
   box-shadow: var(--headerShadow);
 
@@ -18,7 +18,7 @@ export const FixedWrapper = styled.nav`
   }
 `;
 
-export const HeaderWrapper = styled.div`
+export const NavWrapper = styled.div`
   max-width: 1300px;
   display: flex;
   justify-content: space-between;
@@ -36,9 +36,6 @@ export const NavTitle = styled.div`
   font-weight: 600;
   letter-spacing: ${(props) => props.theme.text.spacing};
   animation: var(--animation) 1.5s infinite;
-  span {
-    color: var(--titleColor);
-  }
 `;
 
 export const Menu = styled.div`

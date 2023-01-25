@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
 import { AnimatePresence, useCycle } from "framer-motion";
 
@@ -8,18 +8,34 @@ import ToggleMenu from "../ToggleMenu";
 import * as S from "./style";
 import { FaBars } from "react-icons/fa";
 
-const Header = ({ title }) => {
-  const [frontTitle, backTitle] = title.split(".");
+const Nav = ({ title }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const [hidden, setHidden] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  const detectScroll = () => {
+    if (window.scrollY <= scrollY) {
+      setHidden(false);
+    } else if (scrollY < window.scrollY && 400 <= window.scrollY) {
+      setHidden(true);
+    }
+
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", detectScroll);
+    return () => {
+      window.removeEventListener("scroll", detectScroll);
+    };
+  }, [scrollY]);
 
   return (
     <>
-      <S.FixedWrapper>
-        <S.HeaderWrapper>
+      <S.FixedWrapper isHidden={hidden}>
+        <S.NavWrapper>
           <S.NavTitle>
-            <Link to="/">
-              {frontTitle}.<span>{backTitle}</span>
-            </Link>
+            <Link to="/">{title}</Link>
           </S.NavTitle>
 
           <S.Menu>
@@ -32,7 +48,7 @@ const Header = ({ title }) => {
               <FaBars />
             </S.MenuIcon>
           </S.Menu>
-        </S.HeaderWrapper>
+        </S.NavWrapper>
       </S.FixedWrapper>
       <AnimatePresence>{isOpen && <ToggleMenu />}</AnimatePresence>
       {isOpen && <S.Background onClick={toggleOpen} />}
@@ -40,4 +56,4 @@ const Header = ({ title }) => {
   );
 };
 
-export default Header;
+export default Nav;
