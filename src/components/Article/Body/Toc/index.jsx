@@ -3,7 +3,6 @@ import { animateScroll } from "react-scroll";
 
 import getElementOffsetY from "../../../../utils/getOffset";
 import useIntersectionObserver from "../../../../hooks/useIntersectionObserver";
-import useScroll from "../../../../hooks/useScroll";
 
 // CSS
 import * as S from "./style";
@@ -11,8 +10,13 @@ import * as S from "./style";
 const Toc = () => {
   const [currentId, setCurrentId] = useState();
   const [headings, setHeading] = useState([]);
-
   useIntersectionObserver(setCurrentId);
+
+  // TOC-Item Click Handler
+  const handleClickHeading = useCallback((itemId) => {
+    const node = document.getElementById(itemId);
+    animateScroll.scrollTo(getElementOffsetY(node) - 60);
+  }, []);
 
   useEffect(() => {
     const headingElements = Array.from(
@@ -20,13 +24,7 @@ const Toc = () => {
         "#post-contents > h1, #post-contents > h2, #post-contents > h3"
       )
     );
-
     setHeading(headingElements);
-  }, []);
-
-  const handleClickHeading = useCallback((itemId) => {
-    const node = document.getElementById(itemId);
-    animateScroll.scrollTo(getElementOffsetY(node) - 100);
   }, []);
 
   return (
@@ -37,7 +35,7 @@ const Toc = () => {
           active={item.id === currentId}
           ml={
             item.tagName === "H1"
-              ? "0"
+              ? "0.5rem"
               : item.tagName === "H2"
               ? "1.2rem"
               : "2.2rem"
