@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
 import { graphql } from "gatsby";
-import styled from "styled-components";
 
 import Seo from "../components/Seo";
 import Divider from "../components/Divider";
 import PostList from "../components/PostList";
 import Layout from "../layout";
 import PageTitle from "../components/PageTitle";
+import SearchBar from "../components/SearchBar";
 
 const SearchPage = ({ data }) => {
   const posts = data.allMdx.nodes;
@@ -27,27 +27,20 @@ const SearchPage = ({ data }) => {
     [query]
   );
 
-  const handleInputChange = (e) => setQuery(e.target.value);
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <Layout>
       <Seo title="Search" />
       <PageTitle>Search.</PageTitle>
-      <Input onChange={handleInputChange} placeholder="search" />
+      <SearchBar query={query} onChangeHandler={handleInputChange} />
       <Divider mt="6rem" mb="3rem" />
       <PostList postList={filteredPosts} />
     </Layout>
   );
 };
-
-const Input = styled.input.attrs({ type: "text" })`
-  width: 100%;
-  padding: 1rem 1.6rem;
-  border-radius: 9px;
-  font-size: 16px;
-  box-sizing: border-box;
-  outline: none;
-`;
 
 export const pageQuery = graphql`
   {
