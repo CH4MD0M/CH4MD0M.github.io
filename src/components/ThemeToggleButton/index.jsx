@@ -2,27 +2,37 @@ import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 
-import { toggleMode } from "../../state/modules/uiSlice";
+import { setTheme } from "../../store/modules/uiSlice";
 
 // CSS
 import * as S from "./style";
 import { FaSun, FaMoon } from "react-icons/fa";
+import { getValueFromLocalStorage } from "../../utils/localStorage";
 
 const ThemeToggleButton = () => {
-  const { darkMode } = useSelector((state) => state.ui);
-  const theme = darkMode ? "dark" : "light";
+  const { theme } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
-  const toggleTheme = () => {
-    dispatch(toggleMode());
+  const themeToggleHandler = () => {
+    dispatch(theme === "light" ? setTheme("dark") : setTheme("light"));
   };
+
+  useEffect(() => {
+    const prefersColorScheme = window.matchMedia("prefers-color-scheme: dark")
+      .matches
+      ? "dark"
+      : "light";
+    const localTheme = getValueFromLocalStorage("theme");
+    const initialTheme = localTheme || prefersColorScheme;
+    dispatch(setTheme(initialTheme));
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   return (
-    <S.ToggleWrapper onClick={toggleTheme}>
+    <S.ToggleWrapper onClick={themeToggleHandler}>
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.div
           key={theme}
@@ -31,7 +41,7 @@ const ThemeToggleButton = () => {
           exit={{ rotate: 180, opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {darkMode ? <FaSun /> : <FaMoon />}
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
         </motion.div>
       </AnimatePresence>
     </S.ToggleWrapper>

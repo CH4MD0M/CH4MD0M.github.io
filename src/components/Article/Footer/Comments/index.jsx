@@ -9,8 +9,8 @@ const LIGHT_THEME = "github-light";
 const DARK_THEME = "dark-blue";
 
 const Comments = ({ repo }) => {
-  const { darkMode } = useSelector((state) => state.ui);
-  const themeMode = darkMode ? DARK_THEME : LIGHT_THEME;
+  const { theme } = useSelector((state) => state.ui);
+  const themeMode = theme === "dark" ? DARK_THEME : LIGHT_THEME;
 
   const rootElm = useRef(null);
 
