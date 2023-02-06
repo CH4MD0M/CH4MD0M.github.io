@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "gatsby";
-import { AnimatePresence, useCycle } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
+import { AnimatePresence, useCycle } from 'framer-motion';
 
-import ToggleMenu from "../ToggleMenu";
+import ToggleMenu from '../ToggleMenu';
 
 // CSS
-import * as S from "./style";
-import { FaBars } from "react-icons/fa";
+import * as S from './style';
+import { FaBars } from 'react-icons/fa';
 
-const Nav = ({ title }) => {
+const Navbar = ({ title }) => {
   const [isOpen, toggleOpen] = useCycle(false, true);
   const [hidden, setHidden] = useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -24,9 +24,9 @@ const Nav = ({ title }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", detectScroll);
+    window.addEventListener('scroll', detectScroll);
     return () => {
-      window.removeEventListener("scroll", detectScroll);
+      window.removeEventListener('scroll', detectScroll);
     };
   }, [scrollY]);
 
@@ -56,4 +56,4 @@ const Nav = ({ title }) => {
   );
 };
 
-export default Nav;
+export default Navbar;

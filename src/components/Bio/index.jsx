@@ -1,9 +1,10 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import React from 'react';
+
+import { useSiteMetaData } from '../../hooks/useSiteMetaData';
 
 // CSS
-import * as S from "./style";
-import { FaGithub, FaInstagram, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import * as S from './style';
+import { FaGithub, FaInstagram, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Link = ({ link, children }) => {
   if (!link) return null;
@@ -15,13 +16,13 @@ const Link = ({ link, children }) => {
 };
 
 const Bio = () => {
-  const data = useStaticQuery(bioQuery);
+  const data = useSiteMetaData();
   const { siteUrl, description, author, socials } = data.site.siteMetadata;
   const { email, github, instagram, linkedIn } = socials;
 
   const profileImageRoot =
-    typeof window !== "undefined" && window.location.host === "localhost:8000"
-      ? "http://localhost:8000"
+    typeof window !== 'undefined' && window.location.host === 'localhost:8000'
+      ? 'http://localhost:8000'
       : siteUrl;
 
   return (
@@ -48,22 +49,5 @@ const Bio = () => {
     </S.BioWrapper>
   );
 };
-
-const bioQuery = graphql`
-  query BioQuery {
-    site {
-      siteMetadata {
-        siteUrl
-        author
-        description
-        socials {
-          email
-          github
-          instagram
-        }
-      }
-    }
-  }
-`;
 
 export default Bio;

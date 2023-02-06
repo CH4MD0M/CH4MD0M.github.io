@@ -15,7 +15,6 @@ html {
 html {
   --bgColor: ${(props) => props.theme.colors.primary0};
   --textColor: ${(props) => props.theme.colors.primary9};
-  --titleColor: ${(props) => props.theme.colors.blue0};
   --divider: ${(props) => props.theme.colors.primary3};
   --headerBgColor: hsla(0, 0%, 100%, 0.8);
   --headerShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
@@ -60,7 +59,6 @@ html {
 html[data-theme='dark'] {
     --bgColor: ${(props) => props.theme.colors.primary9};
     --textColor: ${(props) => props.theme.colors.primary0};
-    --titleColor: ${(props) => props.theme.colors.blue1};
     --divider: ${(props) => props.theme.colors.primary8};
     --headerBgColor: hsla(210, 20%, 15%, 0.8);
     --headerShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);

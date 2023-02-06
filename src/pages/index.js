@@ -1,11 +1,11 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Layout from "../layout";
-import Seo from "../components/Seo";
-import PostList from "../components/PostList";
-import Hero from "../components/Hero";
-import PageTitle from "../components/PageTitle";
+import Layout from '../layout';
+import Seo from '../components/Seo';
+import PostList from '../components/PostList';
+import Hero from '../components/Hero';
+import PageTitle from '../components/PageTitle';
 
 const IndexPage = ({ data }) => {
   const { name } = data.site.siteMetadata;

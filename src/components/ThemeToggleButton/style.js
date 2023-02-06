@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const ToggleWrapper = styled(motion.div)`
   position: fixed;
@@ -30,7 +30,7 @@ export const ToggleWrapper = styled(motion.div)`
     background: var(--hoveredThemeToggleBtnBgColor);
   }
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     right: 20px;
     bottom: 20px;
   }

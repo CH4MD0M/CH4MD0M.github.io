@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BioWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin: 5rem 0;
+  margin: 5rem 0 2rem;
   padding: 1.2rem;
   color: var(--textColor);
 `;
@@ -12,12 +12,12 @@ export const Profile = styled.div`
   margin-right: 3rem;
   width: 120px;
   height: 120px;
-  background-image: url(${(props) => props.profileImageRoot}/profile.png);
+  background-image: url(${props => props.profileImageRoot}/profile.png);
   background-position: center;
   background-size: cover;
   border-radius: 999px;
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     width: 90px;
     height: 90px;
   }
@@ -28,7 +28,7 @@ export const Author = styled.div`
   font-size: 2.5rem;
   font-weight: 700;
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.lg}) {
+  @media screen and (max-width: ${props => props.theme.responsive.lg}) {
     font-size: 2rem;
   }
 `;
@@ -38,7 +38,7 @@ export const Description = styled.div`
   font-size: 1.6rem;
   line-height: 1.5;
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.lg}) {
+  @media screen and (max-width: ${props => props.theme.responsive.lg}) {
     font-size: 1.2rem;
   }
 `;

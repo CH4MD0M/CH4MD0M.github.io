@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from "react";
-import { graphql } from "gatsby";
+import React, { useCallback, useState } from 'react';
+import { graphql } from 'gatsby';
 
-import Seo from "../components/Seo";
-import Divider from "../components/Divider";
-import PostList from "../components/PostList";
-import Layout from "../layout";
-import PageTitle from "../components/PageTitle";
-import SearchBar from "../components/SearchBar";
+import Seo from '../components/Seo';
+import Divider from '../components/Divider';
+import PostList from '../components/PostList';
+import Layout from '../layout';
+import PageTitle from '../components/PageTitle';
+import SearchBar from '../components/SearchBar';
 
 const SearchPage = ({ data }) => {
   const posts = data.allMdx.nodes;
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const filteredPosts = useCallback(
-    posts.filter((post) => {
+    posts.filter(post => {
       const { excerpt, frontmatter } = post;
       const { title, tags } = frontmatter;
       const lowerQuery = query.toLocaleLowerCase();
@@ -24,10 +24,10 @@ const SearchPage = ({ data }) => {
         tags?.includes(lowerQuery)
       );
     }),
-    [query]
+    [query],
   );
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     setQuery(e.target.value);
   };
 
@@ -35,7 +35,7 @@ const SearchPage = ({ data }) => {
     <Layout>
       <Seo title="Search" />
       <PageTitle>Search.</PageTitle>
-      <SearchBar query={query} onChangeHandler={handleInputChange} />
+      <SearchBar onChangeHandler={handleInputChange} />
       <Divider mt="6rem" mb="3rem" />
       <PostList postList={filteredPosts} />
     </Layout>
@@ -46,6 +46,7 @@ export const pageQuery = graphql`
   {
     allMdx(sort: { order: DESC, fields: frontmatter___date }) {
       nodes {
+        id
         excerpt(pruneLength: 200, truncate: true)
         fields {
           slug

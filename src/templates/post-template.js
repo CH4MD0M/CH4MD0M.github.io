@@ -1,18 +1,18 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
-import Layout from "../layout";
-import Seo from "../components/Seo";
-import Article from "../components/Article";
+import Layout from '../layout';
+import Seo from '../components/Seo';
+import Post from '../components/Post';
 
 // CSS
-import "katex/dist/katex.min.css";
+import 'katex/dist/katex.min.css';
 
 const PostTemplate = ({ data, pageContext }) => {
   const { body, excerpt, fields } = data.mdx;
-  const { author, category, date, title, tags } = data.mdx.frontmatter;
-  const { siteUrl, comments } = data.site.siteMetadata;
-  const utterancesRepo = comments?.utterances?.repo;
+  const { category, date, title, tags } = data.mdx.frontmatter;
+  const { siteUrl } = data.site.siteMetadata;
+
   return (
     <Layout>
       <Seo
@@ -20,20 +20,16 @@ const PostTemplate = ({ data, pageContext }) => {
         description={excerpt}
         url={`${siteUrl}${fields.slug}`}
       />
-      <Article>
-        <Article.Header
+      <Post>
+        <Post.Header
           category={category}
           title={title}
-          author={author}
           date={date}
           tags={tags}
         />
-        <Article.Body body={body} />
-        <Article.Footer
-          utterancesRepo={utterancesRepo}
-          pageContext={pageContext}
-        />
-      </Article>
+        <Post.Body body={body} />
+        <Post.Footer pageContext={pageContext} />
+      </Post>
     </Layout>
   );
 };
@@ -43,11 +39,6 @@ export const query = graphql`
     site {
       siteMetadata {
         siteUrl
-        comments {
-          utterances {
-            repo
-          }
-        }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {
@@ -57,7 +48,6 @@ export const query = graphql`
         slug
       }
       frontmatter {
-        author
         title
         category
         date(formatString: "YYYY년 M월 D일")

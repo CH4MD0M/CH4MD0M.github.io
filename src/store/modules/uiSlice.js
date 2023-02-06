@@ -1,18 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-import { setValueToLocalStorage } from "../../utils/localStorage";
+import {
+  setValueToLocalStorage,
+  getValueFromLocalStorage,
+} from '../../utils/localStorage';
 
 const initialState = {
-  theme: "light",
+  themeMode: getValueFromLocalStorage('themeMode') || 'light',
 };
 
 const uiSlice = createSlice({
-  name: "ui",
+  name: 'ui',
   initialState,
   reducers: {
     setTheme(state, action) {
-      state.theme = action.payload;
-      setValueToLocalStorage("theme", action.payload);
+      state.themeMode = action.payload;
+      setValueToLocalStorage('themeMode', action.payload);
     },
   },
 });

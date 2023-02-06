@@ -1,23 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useCallback, useEffect } from 'react';
 
 // CSS
-import * as S from "./style";
+import * as S from './style';
 
 const SearchBar = ({ onChangeHandler }) => {
   const searchInput = useRef(null);
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = useCallback(event => {
     const { keyCode } = event;
     if (keyCode === 191) {
       event.preventDefault();
       searchInput.current.focus();
+      return;
     }
-  };
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, false);
     return () => {
-      window.addEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown, false);
     };
   }, [handleKeyDown]);
 

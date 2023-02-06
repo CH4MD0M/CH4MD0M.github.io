@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 export const TocWrapper = styled.div`
   position: sticky;
@@ -32,7 +32,7 @@ export const TocItem = styled.div`
   display: block;
   margin-top: 0.4rem;
   padding: 0.2rem 0;
-  padding-left: ${(props) => props.ml};
+  padding-left: ${props => props.ml};
   font-weight: 300;
   color: var(--tocTextColor);
   border-left: 3px solid transparent;
@@ -42,7 +42,7 @@ export const TocItem = styled.div`
   transition: all 0.125s ease-in;
   cursor: pointer;
 
-  ${(props) =>
+  ${props =>
     props.active &&
     css`
       background: var(--activeTocBgColor);

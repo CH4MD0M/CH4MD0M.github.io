@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavigatorWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     flex-direction: column;
 
     & > div:first-child {
@@ -18,7 +18,7 @@ export const FlexWrapper = styled.div`
   display: flex;
   align-items: center;
   white-space: nowrap;
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     flex-direction: column-reverse;
   }
 `;
@@ -27,6 +27,7 @@ export const ButtonTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  font-size: inherit;
 `;
 
 export const Icon = styled.div`
@@ -42,7 +43,7 @@ export const Icon = styled.div`
 
 export const PostCardWrapper = styled.div`
   display: flex;
-  align-items: ${(props) => (props.right ? "flex-end" : "flex-start")};
+  align-items: ${props => (props.right ? 'flex-end' : 'flex-start')};
   padding: 1rem 2rem;
   max-width: 30rem;
   flex-basis: 30rem;
@@ -58,23 +59,23 @@ export const PostCardWrapper = styled.div`
   }
 
   ${FlexWrapper} {
-    flex-direction: ${(props) => (props.right ? "row-reverse" : "row")};
+    flex-direction: ${props => (props.right ? 'row-reverse' : 'row')};
   }
 
   ${ButtonTextWrapper} {
-    align-items: ${(props) => (props.right ? "flex-end" : "flex-start")};
+    align-items: ${props => (props.right ? 'flex-end' : 'flex-start')};
   }
 
   ${Icon} {
-    ${(props) => (props.right ? "margin-left: 2rem" : "margin-right: 2rem")};
+    ${props => (props.right ? 'margin-left: 2rem' : 'margin-right: 2rem')};
   }
 
   &:hover ${Icon} {
-    transform: ${(props) =>
-      props.right ? "translateX(3px)" : "translateX(-3px)"};
+    transform: ${props =>
+      props.right ? 'translateX(3px)' : 'translateX(-3px)'};
   }
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     max-width: inherit;
     flex-basis: inherit;
     padding: 1rem;
@@ -83,7 +84,7 @@ export const PostCardWrapper = styled.div`
 
 export const ButtonLabel = styled.div`
   font-size: 1.2rem;
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     font-size: 1rem;
   }
 `;
@@ -93,8 +94,9 @@ export const ButtonTitle = styled.div`
   width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-size: 1.7rem;
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     font-size: 1.4rem;
   }
 `;
