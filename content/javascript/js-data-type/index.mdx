@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 데이터 타입(Data type)"
+title: 'JavaScript: 데이터 타입(Data type)'
 category: javascript
 date: 2022-03-02
-author: Kihoon
 tags:
   - 데이터타입
 ---
@@ -75,7 +74,7 @@ console.log(octal === hex); // true
 ```jsx
 console.log(10 / 0); // Infinity
 console.log(10 / -0); // -Infinity
-console.log(1 * "String"); // NaN
+console.log(1 * 'String'); // NaN
 ```
 
 # 문자열 타입
@@ -118,13 +117,13 @@ null 타입의 값은 `null`이 유일하다. 프로그래밍 언어에서 `null
 
 ```jsx
 // 심벌 값 생성
-var key = Symbol("key");
+var key = Symbol('key');
 console.log(typeof key); // symbol
 
 var obj = {};
 
 // 이름이 충돌할 위험이 없는 유일무이한 값인 심벌을 프로퍼티 키로 사용한다.
-obj[key] = "value";
+obj[key] = 'value';
 console.log(obj[key]); // value
 ```
 

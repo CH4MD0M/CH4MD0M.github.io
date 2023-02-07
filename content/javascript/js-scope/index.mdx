@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 스코프(Scope)란?"
+title: 'JavaScript: 스코프(Scope)란?'
 category: javascript
 date: 2022-03-19
-author: Kihoon
 tags:
   - 스코프
 ---
@@ -14,10 +13,10 @@ tags:
 모든 식별자(변수 이름, 함수 이름, 클래스 이름 등)는 자신이 선언된 위치에 의해 다른 코드가 식별자 자신을 참조할 수 있는 유효 범위가 결정된다. 이를 스코프라고 한다. 즉, _스코프는 식별자가 유효한 범위를 말한다._
 
 ```jsx
-var x = "global";
+var x = 'global';
 
 function foo() {
-  var x = "local";
+  var x = 'local';
   consol.log(x); // local
 }
 foo();
@@ -59,14 +58,14 @@ _변수는 자신이 선언된 위치에 의해 자신이 유효한 범위인 �
 # 스코프 체인
 
 ```jsx
-var x = "global x";
-var y = "global y";
+var x = 'global x';
+var y = 'global y';
 
 function outer() {
-  var z = "local z";
+  var z = 'local z';
 
   function inner() {
-    var x = "local x";
+    var x = 'local x';
   }
   inner();
 }
@@ -94,13 +93,13 @@ outer();
 ```jsx
 // 전역 함수
 function foo() {
-  console.log("global function foo");
+  console.log('global function foo');
 }
 
 function bar() {
   // 중첩 함수
   function foo() {
-    console.log("local function foo");
+    console.log('local function foo');
   }
   foo(); // local function foo
 }
@@ -198,11 +197,11 @@ bar(); // 1
 <br />
 
 ```jsx
-var x = "global";
+var x = 'global';
 
 function foo() {
   console.log(x); // ①
-  var x = "local";
+  var x = 'local';
 }
 
 foo();

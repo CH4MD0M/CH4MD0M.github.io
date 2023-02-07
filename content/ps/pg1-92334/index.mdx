@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 신고 결과 받기 (JavaScript)"
+title: '[프로그래머스] 신고 결과 받기 (JavaScript)'
 category: ps
 date: 2022-07-04
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -94,8 +93,8 @@ tags:
 
 ```jsx
 function solution(id_list, report, k) {
-  const reports = [...new Set(report)].map((r) => {
-    return r.split(" ");
+  const reports = [...new Set(report)].map(r => {
+    return r.split(' ');
   });
 
   const answer = [];
@@ -124,7 +123,7 @@ function solution(id_list, report, k) {
 
 ```jsx
 function solution(id_list, report, k) {
-  const reports = [...new Set(report)].map((r) => r.split(" "));
+  const reports = [...new Set(report)].map(r => r.split(' '));
   const map_report = new Map();
   const map_check = new Map();
 
@@ -138,7 +137,7 @@ function solution(id_list, report, k) {
     }
   }
 
-  return id_list.map((id) => map_report.get(id) || 0);
+  return id_list.map(id => map_report.get(id) || 0);
 }
 ```
 

@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 프로미스(Promise)란?"
+title: 'JavaScript: 프로미스(Promise)란?'
 category: javascript
 date: 2022-07-09
-author: Kihoon
 tags:
   - 프로미스
   - 비동기
@@ -20,7 +19,7 @@ tags:
 // GET 요청을 위한 비동기 함수
 const get = (url, successCallback, failureCallback) => {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
+  xhr.open('GET', url);
   xhr.send();
 
   xhr.onload = () => {
@@ -35,7 +34,7 @@ const get = (url, successCallback, failureCallback) => {
 };
 
 // 서버의 응답에 대한 후속 처리를 위한 콜백 함수를 비동기 함수인 get에 전달해야 한다.
-get("https://jsonplaceholder.typicode.com/posts/1", console.log, console.error);
+get('https://jsonplaceholder.typicode.com/posts/1', console.log, console.error);
 ```
 
 비동기 함수는 비동기 처리 결과를 외부에 반환활 수 없고, 상위 스코프의 변수에 할당할 수도 없다. 따라서 비동기 함수의 처리 결과(서버의 응답 등)에 대한 _후속 처리는 비동기 함수 내부에서 수행해야 한다._ 이때 비동기 함수를 범용적으로 사용하기 위해 비동기 함수에 비동기 처리 결과에 대한 후속 처리를 수행하는 콜백 함수를 전달하는 것이 일반적이다.
@@ -43,10 +42,10 @@ get("https://jsonplaceholder.typicode.com/posts/1", console.log, console.error);
 콜백 함수를 통해 비동기 처리 결과에 대한 후속 처리를 수행하는 비동기 함수가 비동기 처리 결과를 가지고 또 다시 비동기 함수를 호출해야 한다면 콜백 함수가 중첩되어 복잡도가 높아지는 현상이 발생한다. 이를 **콜백 헬(Callback Hell)**이라 한다.
 
 ```jsx
-get("/step1", (a) => {
-  get(`/step2/${a}`, (b) => {
-    get(`/step3/${b}`, (c) => {
-      get(`/step4/${c}`, (d) => {
+get('/step1', a => {
+  get(`/step2/${a}`, b => {
+    get(`/step3/${b}`, c => {
+      get(`/step4/${c}`, d => {
         console.log(d);
       });
     });
@@ -59,11 +58,11 @@ get("/step1", (a) => {
 ```jsx
 try {
   setTimeout(() => {
-    throw new Error("Error!");
+    throw new Error('Error!');
   }, 1000);
 } catch (e) {
   // 에러를 캐치하지 못한다
-  console.error("캐치한 에러", e);
+  console.error('캐치한 에러', e);
 }
 ```
 
@@ -112,15 +111,15 @@ fulfilled 또는 rejected 상태를 `settled` 상태라고 한다. settled 상�
 
 ```jsx
 // fulfilled
-new Promise((resolve) => resolve("fulfilled")).then(
-  (v) => console.log(v),
-  (e) => console.error(e)
+new Promise(resolve => resolve('fulfilled')).then(
+  v => console.log(v),
+  e => console.error(e),
 ); // fulfilled
 
 // rejected
-new Promise((_, reject) => reject(new Error("rejected"))).then(
-  (v) => console.log(v),
-  (e) => console.error(e)
+new Promise((_, reject) => reject(new Error('rejected'))).then(
+  v => console.log(v),
+  e => console.error(e),
 ); // Error: rejected
 ```
 
@@ -132,8 +131,8 @@ then 메서드의 콜백 함수가 프로미스를 반환하면 프로미스를 
 
 ```jsx
 // rejected
-new Promise((_, reject) => reject(new Error("rejected"))).catch((e) =>
-  console.log(e)
+new Promise((_, reject) => reject(new Error('rejected'))).catch(e =>
+  console.log(e),
 ); // Error: rejected
 ```
 
@@ -142,7 +141,7 @@ new Promise((_, reject) => reject(new Error("rejected"))).catch((e) =>
 `finally` 메서드는 한 개의 콜백 함수를 인수로 전달받는다. `finally` 메서드의 콜백 함수는 프로미스의 성공 또는 실패와 상관없이 무조건 한 번 호출된다. `finally` 메서드는 프로미스의 상태와 상관없이 공통적으로 수행해야 할 처리 내용이 있을 때 유용하다. _finally 메서드도 then / catch 메서드와 마찬가지로 언제나 프로미스를 반환한다._
 
 ```jsx
-new Promise(() => {}).finally(() => console.log("finally")); // finally
+new Promise(() => {}).finally(() => console.log('finally')); // finally
 ```
 
 # 프로미스의 에러 처리
@@ -150,42 +149,42 @@ new Promise(() => {}).finally(() => console.log("finally")); // finally
 비동기 처리에서 발생한 에러는 `then` 메서드의 두 번째 콜백 함수로 처리할 수 있다. 단, `then` 메서드의 첫 번째 콜백 함수에서 발생한 에러를 캐치하지 못하고 코드의 가독성이 좋지 않다.
 
 ```jsx
-const wrongUrl = "https://jsonplaceholder.typicode.com/XXX/1";
+const wrongUrl = 'https://jsonplaceholder.typicode.com/XXX/1';
 
 promiseGet(wrongUrl).then(
-  (res) => console.log(res),
-  (err) => console.error(err)
+  res => console.log(res),
+  err => console.error(err),
 ); // Error: 404
 ```
 
 비동기 처리에서 발생한 에러는 프로미스의 `catch` 메서드를 사용해 처리할 수 있다. `catch` 메서드를 호출하면 내부적으로 `then(undefined, onRejected)`을 호출한다.
 
 ```jsx
-const wrongUrl = "https://jsonplaceholder.typicode.com/XXX/1";
+const wrongUrl = 'https://jsonplaceholder.typicode.com/XXX/1';
 
 promiseGet(wrongUrl)
-  .then((res) => console.log(res))
-  .catch((err) => console.error(err)); // Error: 404
+  .then(res => console.log(res))
+  .catch(err => console.error(err)); // Error: 404
 ```
 
 `catch` 메서드를 모든 `then` 메서드를 호출한 이후에 호출하면 비동기 처리에서 발생한 에러뿐만 아니라 `then` 메서드 내부에서 발생한 에러까지 모두 캐치할 수 있다.
 
 ```jsx
-promiseGet("https://jsonplaceholder.typicode.com/todos/1")
-  .then((res) => console.xxx(res))
-  .catch((err) => console.error(err));
+promiseGet('https://jsonplaceholder.typicode.com/todos/1')
+  .then(res => console.xxx(res))
+  .catch(err => console.error(err));
 // TypeError: console.xxx is not a function
 ```
 
 # 프로미스 체이닝
 
 ```jsx
-const url = "https://jsonplaceholder.typicode.com";
+const url = 'https://jsonplaceholder.typicode.com';
 
 promiseGet(`${url}/posts/1`)
   .then(({ userId }) => promiseGet(`${url}/users/${userId}`))
-  .then((userInfo) => console.log(userInfo))
-  .catch((err) => console.error(err));
+  .then(userInfo => console.log(userInfo))
+  .catch(err => console.error(err));
 ```
 
 `then`, `catch`, `finall` 메서드는 언제나 프로미스를 반환하므로 연속적으로 호출할 수 있다. 이를 **프로미스 체이닝(promise chaining)**이라 한다. 프로미스는 프로미스 체이닝을 통해 비동기 처리 결과를 전달받아 후속 처리를 하므로 비동기 처리를 위한 콜백 패턴에서 발생하던 콜백 헬이 발생하지 않는다. 다만 프로미스도 콜백 패턴을 사용하므로 콜백 함수를 사용하지 않는 것은 아니다. ES8에서 도입된 `aysnc/await`을 사용하면 프로미스의 후속 처리 메서드 없이 마치 동기 처리처럼 프로미스가 처리 결과를 반환하도록 구현할 수 있다.
@@ -215,7 +214,7 @@ resolvedPromise.then(console.log); // [1, 2, 3]
 
 ```jsx
 // 에러 객체를 reject하는 프로미스를 생성
-const rejectedPromise = Promise.reject(new Error("Error!"));
+const rejectedPromise = Promise.reject(new Error('Error!'));
 
 // 아래 코드는 위와 동일하게 동작한다.
 // const rejectedPromise = new Promise((_, reject) => reject(new Error("Error!")));
@@ -229,11 +228,11 @@ rejectedPromise.catch(console.log); // Error: Error!
 
 ```jsx
 const requestData1 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(1), 3000));
+  new Promise(resolve => setTimeout(() => resolve(1), 3000));
 const requestData2 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(2), 2000));
+  new Promise(resolve => setTimeout(() => resolve(2), 2000));
 const requestData3 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(3), 1000));
+  new Promise(resolve => setTimeout(() => resolve(3), 1000));
 
 Promise.all([requestData1(), requestData2(), requestData3()])
   .then(console.log) // [ 1, 2, 3 ] ⇒ 약 3초 소요
@@ -247,13 +246,13 @@ Promise.all([requestData1(), requestData2(), requestData3()])
 ```jsx
 Promise.all([
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 1")), 3000)
+    setTimeout(() => reject(new Error('Error 1')), 3000),
   ),
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 2")), 2000)
+    setTimeout(() => reject(new Error('Error 2')), 2000),
   ),
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 3")), 1000)
+    setTimeout(() => reject(new Error('Error 3')), 1000),
   ),
 ])
   .then(console.log)
@@ -278,11 +277,11 @@ Promise.all([
 
 ```jsx
 const requestData1 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(1), 3000));
+  new Promise(resolve => setTimeout(() => resolve(1), 3000));
 const requestData2 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(2), 2000));
+  new Promise(resolve => setTimeout(() => resolve(2), 2000));
 const requestData3 = () =>
-  new Promise((resolve) => setTimeout(() => resolve(3), 1000));
+  new Promise(resolve => setTimeout(() => resolve(3), 1000));
 
 Promise.race([requestData1(), requestData2(), requestData3()])
   .then(console.log) // 3
@@ -294,13 +293,13 @@ Promise.race([requestData1(), requestData2(), requestData3()])
 ```jsx
 Promise.race([
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 1")), 3000)
+    setTimeout(() => reject(new Error('Error 1')), 3000),
   ),
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 2")), 2000)
+    setTimeout(() => reject(new Error('Error 2')), 2000),
   ),
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error 3")), 1000)
+    setTimeout(() => reject(new Error('Error 3')), 1000),
   ),
 ])
   .then(console.log)
@@ -313,9 +312,9 @@ Promise.race([
 
 ```jsx
 Promise.allSettled([
-  new Promise((resolve) => setTimeout(() => resolve(1), 2000)),
+  new Promise(resolve => setTimeout(() => resolve(1), 2000)),
   new Promise((_, reject) =>
-    setTimeout(() => reject(new Error("Error!")), 1000)
+    setTimeout(() => reject(new Error('Error!')), 1000),
   ),
 ]).then(console.log);
 /*

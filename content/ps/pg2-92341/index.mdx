@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 주차 요금 계산 (JavaScript)"
+title: '[프로그래머스] 주차 요금 계산 (JavaScript)'
 category: ps
 date: 2022-08-24
-author: Kihoon
 tags:
   - 프로그래머스
   - lv2
@@ -99,16 +98,16 @@ function solution(fees, records) {
   const parked = new Map();
 
   for (let record of records) {
-    let [time, num, status] = record.split(" ");
-    let [hour, minute] = time.split(":");
+    let [time, num, status] = record.split(' ');
+    let [hour, minute] = time.split(':');
     time = 60 * Number(hour) + Number(minute);
 
-    if (status === "IN") {
+    if (status === 'IN') {
       parked.set(num, time);
-    } else if (status === "OUT") {
+    } else if (status === 'OUT') {
       total_price.set(
         num,
-        (total_price.get(num) || 0) + (time - parked.get(num))
+        (total_price.get(num) || 0) + (time - parked.get(num)),
       );
       parked.delete(num);
     }
@@ -120,10 +119,10 @@ function solution(fees, records) {
 
   return [...total_price]
     .sort((a, b) => a[0] - b[0])
-    .map((e) =>
+    .map(e =>
       e[1] < fees[0]
         ? fees[1]
-        : fees[1] + Math.ceil((e[1] - fees[0]) / fees[2]) * fees[3]
+        : fees[1] + Math.ceil((e[1] - fees[0]) / fees[2]) * fees[3],
     );
 }
 ```

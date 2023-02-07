@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 메뉴 리뉴얼 (JavaScript)"
+title: '[프로그래머스] 메뉴 리뉴얼 (JavaScript)'
 category: ps
 date: 2022-07-08
-author: Kihoon
 tags:
   - 프로그래머스
   - lv2
@@ -73,10 +72,10 @@ function solution(orders, course) {
   for (let c of course) {
     const map = new Map();
     for (let o of orders) {
-      let combination = getCombinations(o.split("").sort(), c);
+      let combination = getCombinations(o.split('').sort(), c);
 
       for (let combi of combination) {
-        const comb = combi.join("");
+        const comb = combi.join('');
         map.set(comb, (map.get(comb) || 0) + 1);
       }
     }
@@ -91,12 +90,12 @@ function solution(orders, course) {
 
 const getCombinations = function (arr, selectNumber) {
   const results = [];
-  if (selectNumber === 1) return arr.map((el) => [el]);
+  if (selectNumber === 1) return arr.map(el => [el]);
 
   arr.forEach((fixed, index, origin) => {
     const rest = origin.slice(index + 1);
     const combinations = getCombinations(rest, selectNumber - 1);
-    const attached = combinations.map((el) => [fixed, ...el]);
+    const attached = combinations.map(el => [fixed, ...el]);
     results.push(...attached);
   });
   return results;

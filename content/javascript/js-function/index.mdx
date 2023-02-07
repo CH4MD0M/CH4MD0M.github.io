@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 함수 선언 방법과 함수 호이스팅"
+title: 'JavaScript: 함수 선언 방법과 함수 호이스팅'
 category: javascript
 date: 2022-03-15
-author: Kihoon
 tags:
   - 함수선언문
   - 함수표현식
@@ -75,13 +74,13 @@ console.log(add(2, 5)); // 7
 ```jsx
 // 기명 함수 리터럴을 단독으로 사용하면 함수 선언문으로 해석된다.
 function foo() {
-  console.log("foo");
+  console.log('foo');
 }
 foo(); // foo
 
 // 함수 리터럴을 피연산자로 사용하면 함수 리터럴 표현식으로 해석된다.
 (function bar() {
-  console.log("bar");
+  console.log('bar');
 });
 bar(); // ReferenceError: bar is not defined
 ```

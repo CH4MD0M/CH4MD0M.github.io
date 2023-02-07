@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 이터러블(iterable)과 이터레이터"
+title: 'JavaScript: 이터러블(iterable)과 이터레이터'
 category: javascript
 date: 2022-06-04
-author: Kihoon
 tags:
   - 이터러블
   - 이터레이터
@@ -26,12 +25,11 @@ ES6에서 도입된 이터레이션 프로토콜(iteration protocol)은 데이�
 이터러블 프로토콜을 준수한 객체를 **이터러블(iterable)**이라 한다. 즉, 이터러블은 `Symbol.iterator`를 프로퍼티 키로 사용한 메서드를 직접 구현하거나 프로토타입 체인을 통해 상속받은 객체를 말한다.
 
 ```jsx
-const isIterable = (v) =>
-  v !== null && typeof v[Symbol.iterator] === "function";
+const isIterable = v => v !== null && typeof v[Symbol.iterator] === 'function';
 
 // 배열, 문자열, Map, Set 등은 이터러블이다.
 isIterable([]); // -> true
-isIterable(""); // -> true
+isIterable(''); // -> true
 isIterable(new Map()); // -> true
 isIterable(new Set()); // -> true
 isIterable({}); // -> false
@@ -89,7 +87,7 @@ const array = [1, 2, 3];
 const iterator = array[Symbol.iterator]();
 
 // Symbol.iterator 메서드가 반환한 이터레이터는 next 메서드를 갖는다.
-console.log("next" in iterator); // true
+console.log('next' in iterator); // true
 ```
 
 이터레이터는 `next` 메서드를 소유하며 `next` 메서드는 이터러블의 각 요소를 순회하기 위한 포인터의 역할을 한다. 이터레이터의 `next` 메서드가 반환하는 **이터레이터 리절트 객체**의 `value` 프로퍼티는 현재 순회 중인 이터러블의 값을 나타내며 `done` 프로퍼티는 이터러블의 순회 완료 여부를 나타낸다.

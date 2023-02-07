@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 숫자 문자열과 영단어 (JavaScript)"
+title: '[프로그래머스] 숫자 문자열과 영단어 (JavaScript)'
 category: ps
 date: 2022-04-15
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -62,21 +61,21 @@ tags:
 
 ```jsx
 const table = {
-  zero: "0",
-  one: "1",
-  two: "2",
-  three: "3",
-  four: "4",
-  five: "5",
-  six: "6",
-  seven: "7",
-  eight: "8",
-  nine: "9",
+  zero: '0',
+  one: '1',
+  two: '2',
+  three: '3',
+  four: '4',
+  five: '5',
+  six: '6',
+  seven: '7',
+  eight: '8',
+  nine: '9',
 };
 
 function solution(s) {
   for (let [key, value] of Object.entries(table)) {
-    const regex = new RegExp(key, "g");
+    const regex = new RegExp(key, 'g');
     s = s.replace(regex, value);
   }
   return +s;
@@ -88,16 +87,16 @@ function solution(s) {
 ```jsx
 function solution(s) {
   const numbers = [
-    "zero",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
   ];
   let answer = s;
 
@@ -124,8 +123,8 @@ table을 만들어서 문제를 접근했다. key, value 쌍으로 table을 순�
 
 ```jsx
 /ab+c/i;
-new RegExp(/ab+c/, "i"); // 리터럴
-new RegExp("ab+c", "i"); // 생성자
+new RegExp(/ab+c/, 'i'); // 리터럴
+new RegExp('ab+c', 'i'); // 생성자
 ```
 
 # 출처

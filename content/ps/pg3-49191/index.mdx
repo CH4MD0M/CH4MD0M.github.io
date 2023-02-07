@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 순위 (JavaScript)"
+title: '[프로그래머스] 순위 (JavaScript)'
 category: ps
 date: 2022-07-08
-author: Kihoon
 tags:
   - 프로그래머스
   - lv3
@@ -61,8 +60,8 @@ function solution(n, results) {
     }
   }
 
-  return [...matrix.map((m) => m.filter((v) => v === INF).length)].filter(
-    (v) => v === 2
+  return [...matrix.map(m => m.filter(v => v === INF).length)].filter(
+    v => v === 2,
   ).length;
 }
 ```

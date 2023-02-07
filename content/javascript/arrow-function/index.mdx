@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 화살표 함수(Arrow Function)"
+title: 'JavaScript: 화살표 함수(Arrow Function)'
 category: javascript
 date: 2022-05-19
-author: Kihoon
 tags:
   - 화살표함수
   - 콜백함수
@@ -15,11 +14,11 @@ tags:
 함수 몸체가 하나의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 `{}`를 생략할 수 있다. 이때 함수 **몸체 내부의 문이 값으로 평가될 수 있는 표현식인 문이라면 암묵적으로 반환된다.** 만약 함수 몸체 내부의 문이 표현식이 아닌 문이라면 에러가 발생하므로 중괄호를 생략할 수 없다.
 
 ```jsx
-const pow = (x) => x ** 2;
+const pow = x => x ** 2;
 pow(2); // 4
 
 // 위 함수는 아래와 동일하다.
-const pow = (x) => {
+const pow = x => {
   return x ** 2;
 };
 ```
@@ -28,7 +27,7 @@ const pow = (x) => {
 
 ```jsx
 const info = (id, name) => ({ id, name });
-info(1, "Roh"); // {id: 1, name: "Roh"}
+info(1, 'Roh'); // {id: 1, name: "Roh"}
 ```
 
 함수 몸체가 여러 개의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 `{}`를 생략할 수 없다.
@@ -50,7 +49,7 @@ const add = (a, b) => {
 const Foo = () => {};
 
 new Foo(); // TypeError: Foo is not a constructor
-Foo.hasOwnProperty("prototype"); // -> false
+Foo.hasOwnProperty('prototype'); // -> false
 ```
 
 **2. 중복된 매개변수 이름을 사용할 수 없다.**
@@ -59,7 +58,7 @@ Foo.hasOwnProperty("prototype"); // -> false
 
 ```jsx
 // strict mode에서는 일반 함수도 중복된 매개변수 이름을 사용할 수 없다.
-"use strict";
+'use strict';
 function normal(a, a) {
   return a + a;
 }
@@ -100,8 +99,8 @@ class Prefixer {
     });
   }
 }
-const prefixer = new Prefixer("-webkit-");
-console.log(prefixer.add(["transition", "user-select"]));
+const prefixer = new Prefixer('-webkit-');
+console.log(prefixer.add(['transition', 'user-select']));
 ```
 
 위 코드의 기대하는 결과는 `["-webkit-transition", "-webkit-user-select"]`이지만, 결과는 `TypeError`가 발생한다. 그 이유에 대해 알아보자.
@@ -158,12 +157,12 @@ class Prefixer {
   }
 
   add(arr) {
-    return arr.map((item) => this.prefix + item);
+    return arr.map(item => this.prefix + item);
   }
 }
 
-const prefixer = new Prefixer("-webkit-");
-console.log(prefixer.add(["transition", "user-select"]));
+const prefixer = new Prefixer('-webkit-');
+console.log(prefixer.add(['transition', 'user-select']));
 // ["-webkit-transition", "-webkit-user-select"]
 ```
 
@@ -191,7 +190,7 @@ class Child extends Parent {
   askAge = () => `${super.sayHi()}. how old are you?`;
 }
 
-const child = new Child("Roh");
+const child = new Child('Roh');
 console.log(child.askAge()); // Hi! Roh. how old are you?
 ```
 

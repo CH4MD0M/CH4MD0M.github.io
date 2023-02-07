@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 합승 택시 요금 (JavaScript)"
+title: '[프로그래머스] 합승 택시 요금 (JavaScript)'
 category: ps
 date: 2023-01-20
-author: Kihoon
 tags:
   - 프로그래머스
   - lv3
@@ -52,7 +51,7 @@ tags:
 ```jsx
 function solution(n, s, a, b, fares) {
   const graph = Array.from({ length: n + 1 }, () =>
-    Array(n + 1).fill(Infinity)
+    Array(n + 1).fill(Infinity),
   );
 
   for (let i = 1; i <= n; i++) graph[i][i] = 0;

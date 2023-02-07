@@ -1,8 +1,7 @@
 ---
-title: "[알고리즘] 병합 정렬 알고리즘(Merge sort)"
+title: '[알고리즘] 병합 정렬 알고리즘(Merge sort)'
 category: algorithm
 date: 2022-03-02
-author: Kihoon
 tags:
   - 정렬
   - 병합 정렬
@@ -39,7 +38,7 @@ const merge = (left, right) => {
   return [...sorted, ...left, ...right];
 };
 
-const mergeSort = (data) => {
+const mergeSort = data => {
   if (data.length < 2) return data;
 
   let mid = Math.floor(data.length / 2);

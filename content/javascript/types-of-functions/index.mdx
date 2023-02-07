@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 함수의 종류와 특징"
+title: 'JavaScript: 함수의 종류와 특징'
 category: javascript
 date: 2022-03-16
-author: Kihoon
 tags:
   - IIFE
   - 콜백함수
@@ -117,14 +116,14 @@ repeat(5, logOdds); // 1 3
 
 ```jsx
 // 이벤트 처리
-const button = document.querySelector("myButton");
-button.addEventListener("click", function () {
-  console.log("button clicked!");
+const button = document.querySelector('myButton');
+button.addEventListener('click', function () {
+  console.log('button clicked!');
 });
 
 // 비동기 처리
 setTimeout(function () {
-  console.log("1초 경과");
+  console.log('1초 경과');
 }, 1000);
 
 // 배열의 고차 함수
@@ -140,7 +139,7 @@ ES6 이전에는 메서드는 객체에 바인딩된 함수를 일컫는 의미�
 
 ```jsx
 const man = {
-  name: "Roh",
+  name: 'Roh',
 
   // displayName1는 메서드다.
   displayName1() {
@@ -160,15 +159,15 @@ ES6 메서드는 인스턴스를 생성할 수 없는 `non-constructor`다. 따�
 new man.displayName1(); // -> TypeError: man.displayName1 is not a constructor
 new man.displayName2(); // -> displayName2 {}
 
-man.displayName1.hasOwnProperty("prototype"); // -> false
-man.displayName2.hasOwnProperty("prototype"); // -> true
+man.displayName1.hasOwnProperty('prototype'); // -> false
+man.displayName2.hasOwnProperty('prototype'); // -> true
 ```
 
 _ES6 메서드는 자신을 바인딩한 객체를 가리키는 내부 슬롯 `[[HomeObject]]`를 갖는다._ 따라서 ES6 메서드는 `super` 키워드를 사용할 수 있다.
 
 ```jsx
 const parent = {
-  name: "Roh",
+  name: 'Roh',
   sayHi() {
     return `Hi! ${this.name}`;
   },

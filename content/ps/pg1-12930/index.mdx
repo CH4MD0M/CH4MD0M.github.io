@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 이상한 문자 만들기 (JavaScript)"
+title: '[프로그래머스] 이상한 문자 만들기 (JavaScript)'
 category: ps
 date: 2022-04-16
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -33,14 +32,14 @@ tags:
 function solution(s) {
   return s
     .toLowerCase()
-    .split(" ")
-    .map((word) => {
+    .split(' ')
+    .map(word => {
       return [...word]
         .map((w, idx) => {
           return idx % 2 === 0 ? w.toUpperCase() : w;
         })
-        .join("");
+        .join('');
     })
-    .join(" ");
+    .join(' ');
 }
 ```

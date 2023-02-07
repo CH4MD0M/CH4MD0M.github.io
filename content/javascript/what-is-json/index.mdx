@@ -1,8 +1,7 @@
 ---
-title: "JSON(JavaScript Object Notation)이란?"
+title: 'JSON(JavaScript Object Notation)이란?'
 category: javascript
 date: 2022-07-16
-author: Kihoon
 tags:
   - 비동기
   - JSON
@@ -47,10 +46,10 @@ JSON.stringfy(value[, replacer[, space]])
 
 ```jsx
 const obj = {
-  name: "Roh",
+  name: 'Roh',
   age: 20,
-  address: "incheon",
-  hobby: ["cycling", "basketball"],
+  address: 'incheon',
+  hobby: ['cycling', 'basketball'],
 };
 
 const json = JSON.stringify(obj);
@@ -63,14 +62,14 @@ console.log(json); // {"name":"Roh","age":20,"address":"incheon","hobby":["cycli
 
 ```jsx
 const obj = {
-  name: "Roh",
+  name: 'Roh',
   age: 20,
-  address: "incheon",
-  hobby: ["cycling", "basketball"],
+  address: 'incheon',
+  hobby: ['cycling', 'basketball'],
 };
 
 function filter(key, value) {
-  return typeof value === "number" ? undefined : value;
+  return typeof value === 'number' ? undefined : value;
 }
 
 // JSON.stringify 메서드에 두 번째 인수로 replacer 함수를 전달한다.
@@ -94,10 +93,10 @@ console.log(strFilteredObject);
 
 ```jsx
 const obj = {
-  name: "Roh",
+  name: 'Roh',
   age: 20,
-  address: "incheon",
-  hobby: ["cycling", "basketball"],
+  address: 'incheon',
+  hobby: ['cycling', 'basketball'],
 };
 
 // 객체를 JSON 포맷의 문자열로 변환한다.

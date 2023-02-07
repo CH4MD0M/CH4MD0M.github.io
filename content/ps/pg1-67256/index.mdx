@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 키패드 누르기 (JavaScript)"
+title: '[프로그래머스] 키패드 누르기 (JavaScript)'
 category: ps
 date: 2022-07-04
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -49,7 +48,7 @@ tags:
 
 ```jsx
 function solution(numbers, hand) {
-  let answer = "";
+  let answer = '';
   const keypad = {
     1: [0, 0],
     2: [0, 1],
@@ -60,13 +59,13 @@ function solution(numbers, hand) {
     7: [2, 0],
     8: [2, 1],
     9: [2, 2],
-    "*": [3, 0],
+    '*': [3, 0],
     0: [3, 1],
-    "#": [3, 2],
+    '#': [3, 2],
   };
 
-  let left_Hand = "*";
-  let right_Hand = "#";
+  let left_Hand = '*';
+  let right_Hand = '#';
 
   for (let num of numbers) {
     let cur = keypad[num];
@@ -74,10 +73,10 @@ function solution(numbers, hand) {
     let right_Position = keypad[right_Hand];
 
     if ([1, 4, 7].includes(num)) {
-      answer += "L";
+      answer += 'L';
       left_Hand = num;
     } else if ([3, 6, 9].includes(num)) {
-      answer += "R";
+      answer += 'R';
       right_Hand = num;
     } else {
       left_Dist =
@@ -89,17 +88,17 @@ function solution(numbers, hand) {
 
       if (left_Dist < right_Dist) {
         left_Hand = num;
-        answer += "L";
+        answer += 'L';
       } else if (left_Dist > right_Dist) {
         right_Hand = num;
-        answer += "R";
+        answer += 'R';
       } else {
-        if (hand == "right") {
+        if (hand == 'right') {
           right_Hand = num;
-          answer += "R";
+          answer += 'R';
         } else {
           left_Hand = num;
-          answer += "L";
+          answer += 'L';
         }
       }
     }

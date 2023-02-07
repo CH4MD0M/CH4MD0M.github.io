@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 이모티콘 할인행사 (JavaScript)"
+title: '[프로그래머스] 이모티콘 할인행사 (JavaScript)'
 category: ps
 date: 2023-01-13
-author: Kihoon
 tags:
   - 프로그래머스
   - lv2
@@ -99,15 +98,15 @@ function solution(users, emoticons) {
 
   emoticons.forEach(() => {
     const temp = [];
-    cases.forEach((c) => {
-      [10, 20, 30, 40].forEach((percent) => {
+    cases.forEach(c => {
+      [10, 20, 30, 40].forEach(percent => {
         temp.push([...c, percent]);
       });
     });
     cases = temp;
   });
 
-  cases.forEach((c) => {
+  cases.forEach(c => {
     let totalPay = 0,
       member = 0;
     users.forEach(([rate, price]) => {

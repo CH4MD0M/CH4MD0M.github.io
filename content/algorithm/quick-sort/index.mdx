@@ -1,8 +1,7 @@
 ---
-title: "[알고리즘] 퀵 정렬 알고리즘(Quick sort)"
+title: '[알고리즘] 퀵 정렬 알고리즘(Quick sort)'
 category: algorithm
 date: 2022-03-02
-author: Kihoon
 tags:
   - 정렬
   - 퀵정렬
@@ -87,7 +86,7 @@ console.log(dataList); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 아래 코드는 퀵 정렬을 짧게 작성한 코드이다. 피벗과 데이터를 비교하는 연산 횟수가 증가하므로 시간 면에서 비효율적이긴 하지만 코드가 직관적이고 기억하기 쉽다.
 
 ```jsx
-const quickSort = (dataList) => {
+const quickSort = dataList => {
   if (dataList.length <= 1) return dataList;
 
   const pivot = dataList[0];

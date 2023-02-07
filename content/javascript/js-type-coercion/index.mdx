@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 타입 변환(type coercion)"
+title: 'JavaScript: 타입 변환(type coercion)'
 category: javascript
 date: 2022-03-07
-author: Kihoon
 tags:
   - 데이터타입
   - 타입변환
@@ -28,21 +27,21 @@ tags:
 
 ```jsx
 // null 타입
-null + ""; // -> "null"
+null + ''; // -> "null"
 
 // undefined 타입
-undefined + ""; // -> "undefined"
+undefined + ''; // -> "undefined"
 
 // 심벌 타입
-Symbol() + ""; // -> TypeError: Cannot convert a Symbol value to a string
+Symbol() + ''; // -> TypeError: Cannot convert a Symbol value to a string
 
 // 객체 타입
-({} + ""); // -> "[object Object]"
-Math + ""; // -> "[object Math]"
-[] + ""; // -> ""
-[10, 20] + ""; // -> "10,20"
-(function () {} + ""); // -> "function(){}"
-Array + ""; // -> "function Array() { [native code] }"
+({} + ''); // -> "[object Object]"
+Math + ''; // -> "[object Math]"
+[] + ''; // -> ""
+[10, 20] + ''; // -> "10,20"
+(function () {} + ''); // -> "function(){}"
+Array + ''; // -> "function Array() { [native code] }"
 ```
 
 <br />
@@ -52,17 +51,17 @@ Array + ""; // -> "function Array() { [native code] }"
 자바스크립트 엔진은 비교 연산자 표현식을 평가하기 위해 비교 연산자의 피연산자 중에서 숫자 타입이 아닌 피연산자를 숫자 타입으로 암묵적 타입 변환한다.
 
 ```jsx
-"1" > 0; // -> true
+'1' > 0; // -> true
 ```
 
 자바스크립트 엔진은 산술 연산자 표현식을 평가하기 위해 산술 연산자의 피연산자 중에서 숫자 타입이 아닌 피연산자를 숫자 타입으로 암묵적 타입 변환한다. 이때 피연산자를 숫자 타입으로 변환할 수 없는 경우는 산술 연산을 수행할 수 없으므로 표현식의 평가 결과는 `NaN`이 된다.
 
 ```jsx
 // 문자열 타입
-+""; // -> 0
-+"0"; // -> 0
-+"1"; // -> 1
-+"string"; // -> NaN
++''; // -> 0
++'0'; // -> 0
++'1'; // -> 1
++'string'; // -> NaN
 
 // 불리언 타입
 +true; // -> 1
@@ -137,13 +136,13 @@ false.toString(); // -> "false"
 
 ```jsx
 // 숫자 타입 => 문자열 타입
-1 + " "; // -> "1"
-NaN + ""; // -> "NaN"
-Infinity + ""; // -> "Infinity"
+1 + ' '; // -> "1"
+NaN + ''; // -> "NaN"
+Infinity + ''; // -> "Infinity"
 
 // 불리언 타입 => 문자열 타입
-true + ""; // -> "true"
-false + ""; // -> "false"
+true + ''; // -> "true"
+false + ''; // -> "false"
 ```
 
 <br />
@@ -154,9 +153,9 @@ false + ""; // -> "false"
 
 ```jsx
 // 문자열 타입 => 숫자 타입
-Number("0"); // -> 0
-Number("-1"); // -> -1
-Number("10.53"); // -> 10.53
+Number('0'); // -> 0
+Number('-1'); // -> -1
+Number('10.53'); // -> 10.53
 
 // 불리언 타입 => 숫자 타입
 Number(true); // -> 1
@@ -167,9 +166,9 @@ Number(false); // -> 0
 
 ```jsx
 // 문자열 타입 => 숫자 타입
-parseint("0"); // -> 0
-parseint("-1"); // -> -1
-parseFloat("10.53"); // -> 10.53
+parseint('0'); // -> 0
+parseint('-1'); // -> -1
+parseFloat('10.53'); // -> 10.53
 ```
 
 **3. \+ 단항 산술 연산자를 이용하는 방법**
@@ -177,8 +176,8 @@ parseFloat("10.53"); // -> 10.53
 ```jsx
 // 문자열 타입 => 숫자 타입
 +101; // -> 0
-+"-1"; // -> 1
-+"10.53"; // -> 10.53
++'-1'; // -> 1
++'10.53'; // -> 10.53
 
 // 불리언 타입 => 숫자 타입
 +true; // -> 1
@@ -189,9 +188,9 @@ parseFloat("10.53"); // -> 10.53
 
 ```jsx
 // 문자열 타입 => 숫자 타입
-"0" * 1; // -> 0
-"-1" * 1; // -> 1
-"10.53" * 1; // 10.53
+'0' * 1; // -> 0
+'-1' * 1; // -> 1
+'10.53' * 1; // 10.53
 
 // 불리언 타입 => 숫자 타입
 true * 1; // -> 1
@@ -206,9 +205,9 @@ false * 1; // -> 0
 
 ```jsx
 // 문자열 타입 => 불리언 타입
-Boolean("x"); // -> true
-Boolean(""); // -> false
-Boolean("false"); // -> true
+Boolean('x'); // -> true
+Boolean(''); // -> false
+Boolean('false'); // -> true
 
 // 숫자 타입 => 불리언 타입
 Boolean(0); // -> false
@@ -231,9 +230,9 @@ Boolean([]); // -> true
 
 ```jsx
 // 문자열 타입 => 불리언 타입
-!!"x"; // -> true
-!!""; // -> false
-!!"false"; // -> true
+!!'x'; // -> true
+!!''; // -> false
+!!'false'; // -> true
 
 // 숫자 타입 => 불리언 타입
 !!0; // -> false

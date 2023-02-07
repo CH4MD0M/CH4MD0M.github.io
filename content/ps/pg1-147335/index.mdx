@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 크기가 작은 부분문자열 (JavaScript)"
+title: '[프로그래머스] 크기가 작은 부분문자열 (JavaScript)'
 category: ps
 date: 2023-01-04
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -41,6 +40,6 @@ function solution(t, p) {
     strings.push(t.substr(i, p.length));
   }
 
-  return strings.filter((v) => +v < +p).length;
+  return strings.filter(v => +v < +p).length;
 }
 ```

@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 마법의 엘리베이터 (JavaScript)"
+title: '[프로그래머스] 마법의 엘리베이터 (JavaScript)'
 category: ps
 date: 2023-01-09
-author: Kihoon
 tags:
   - 프로그래머스
   - lv2
@@ -36,7 +35,7 @@ tags:
 ```jsx
 function solution(storey) {
   let answer = 0;
-  storey = ("0" + String(storey)).split("").map(Number).reverse();
+  storey = ('0' + String(storey)).split('').map(Number).reverse();
 
   storey.forEach((val, idx) => {
     if (val > 5) {

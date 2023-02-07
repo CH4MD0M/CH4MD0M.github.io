@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] [1차]비밀 지도 (JavaScript)"
+title: '[프로그래머스] [1차]비밀 지도 (JavaScript)'
 category: ps
 date: 2022-06-23
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -61,8 +60,8 @@ function solution(n, arr1, arr2) {
 
   for (let i = 0; i < n; i++) {
     let tmp = (arr1[i] | arr2[i]).toString(2);
-    tmp = tmp.length < n ? "0".repeat(n - tmp.length) + tmp : tmp;
-    answer.push(tmp.replace(/0/g, " ").replace(/1/g, "#"));
+    tmp = tmp.length < n ? '0'.repeat(n - tmp.length) + tmp : tmp;
+    answer.push(tmp.replace(/0/g, ' ').replace(/1/g, '#'));
   }
 
   return answer;

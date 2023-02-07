@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 압축 (JavaScript)"
+title: '[프로그래머스] 압축 (JavaScript)'
 category: ps
 date: 2022-09-12
-author: Kihoon
 tags:
   - 프로그래머스
   - lv2
@@ -94,7 +93,7 @@ function solution(msg) {
   const dict = new Map(
     [...Array(26)].map((_, i) => {
       return [String.fromCharCode(i + 65), i + 1];
-    })
+    }),
   );
 
   let w = (c = 0);
@@ -135,9 +134,9 @@ function solution(msg) {
 
 ```jsx
 const map = new Map();
-map.set("a", 1);
-map.set("b", 2);
-map.set("c", 3);
+map.set('a', 1);
+map.set('b', 2);
+map.set('c', 3);
 
 console.log(map.size); // 3
 ```

@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 숫자짝꿍 (JavaScript)"
+title: '[프로그래머스] 숫자짝꿍 (JavaScript)'
 category: ps
 date: 2022-11-14
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -59,8 +58,8 @@ function solution(X, Y) {
   const hashX = [...Array(10)].fill(0);
   const hashY = [...Array(10)].fill(0);
 
-  [...X].forEach((item) => hashX[item]++);
-  [...Y].forEach((item) => hashY[item]++);
+  [...X].forEach(item => hashX[item]++);
+  [...Y].forEach(item => hashY[item]++);
 
   const answer = hashX.map((item, idx) => {
     if (item !== 0 && hashY[idx] !== 0) {
@@ -68,9 +67,9 @@ function solution(X, Y) {
     }
   });
 
-  const result = answer.reverse().join("");
+  const result = answer.reverse().join('');
 
-  return result ? (+result ? result : "0") : "-1";
+  return result ? (+result ? result : '0') : '-1';
 }
 ```
 

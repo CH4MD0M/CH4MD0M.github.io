@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: 비동기 처리(이벤트 루프, 태스크 큐)"
+title: 'JavaScript: 비동기 처리(이벤트 루프, 태스크 큐)'
 category: javascript
 date: 2022-07-13
-author: Kihoon
 tags:
   - 비동기
   - 이벤트루프
@@ -31,11 +30,11 @@ function sleep(func, delay) {
 }
 
 function foo() {
-  console.log("foo");
+  console.log('foo');
 }
 
 function bar() {
-  console.log("bar");
+  console.log('bar');
 }
 
 sleep(foo, 3 * 1000);
@@ -55,11 +54,11 @@ bar();
 
 ```jsx
 function foo() {
-  console.log("foo");
+  console.log('foo');
 }
 
 function bar() {
-  console.log("bar");
+  console.log('bar');
 }
 
 // 타이머 함수 setTimeout은 bar 함수를 블로킹하지 않는다.

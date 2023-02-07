@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 로또의 최고 순위와 최저 순위 (JavaScript)"
+title: '[프로그래머스] 로또의 최고 순위와 최저 순위 (JavaScript)'
 category: ps
 date: 2022-07-05
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -66,8 +65,8 @@ tags:
 ```jsx
 function solution(lottos, win_nums) {
   const lotto_point = [6, 6, 5, 4, 3, 2, 1];
-  const zero_count = lottos.filter((v) => v === 0).length;
-  const count = lottos.filter((v) => win_nums.includes(v)).length;
+  const zero_count = lottos.filter(v => v === 0).length;
+  const count = lottos.filter(v => win_nums.includes(v)).length;
 
   return [lotto_point[count + zero_count], lotto_point[count]];
 }

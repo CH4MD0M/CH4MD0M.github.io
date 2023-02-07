@@ -1,8 +1,7 @@
 ---
-title: "[프로그래머스] 신규 아이디 추천 (JavaScript)"
+title: '[프로그래머스] 신규 아이디 추천 (JavaScript)'
 category: ps
 date: 2022-07-05
-author: Kihoon
 tags:
   - 프로그래머스
   - lv1
@@ -57,12 +56,12 @@ tags:
 function solution(new_id) {
   let answer = new_id
     .toLowerCase()
-    .replace(/[^\w\d-_.]/g, "")
-    .replace(/\.{2,}/g, ".")
-    .replace(/^\.|\.$/g, "");
+    .replace(/[^\w\d-_.]/g, '')
+    .replace(/\.{2,}/g, '.')
+    .replace(/^\.|\.$/g, '');
 
-  if (!answer.length) answer = "a";
-  answer = answer.slice(0, 15).replace(/\.$/g, "");
+  if (!answer.length) answer = 'a';
+  answer = answer.slice(0, 15).replace(/\.$/g, '');
 
   const len = answer.length;
 
@@ -76,12 +75,12 @@ function solution(new_id) {
 function solution(new_id) {
   const answer = new_id
     .toLowerCase()
-    .replace(/[^\w\d-_.]/g, "")
-    .replace(/\.{2,}/g, ".")
-    .replace(/^\.|\.$/g, "")
-    .padEnd(1, "a")
+    .replace(/[^\w\d-_.]/g, '')
+    .replace(/\.{2,}/g, '.')
+    .replace(/^\.|\.$/g, '')
+    .padEnd(1, 'a')
     .slice(0, 15)
-    .replace(/^\.|\.$/g, "");
+    .replace(/^\.|\.$/g, '');
 
   return answer.padEnd(3, answer[answer.length - 1]);
 }

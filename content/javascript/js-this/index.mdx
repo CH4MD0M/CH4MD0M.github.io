@@ -1,8 +1,7 @@
 ---
-title: "JavaScript: this란?"
+title: 'JavaScript: this란?'
 category: javascript
 date: 2022-04-04
-author: Kihoon
 tags:
   - this
 ---
@@ -37,11 +36,11 @@ var value = 1;
 const obj = {
   value: 100,
   foo() {
-    console.log("foo의 this: ", this); // window
+    console.log('foo의 this: ', this); // window
 
     setTimeout(function () {
-      console.log("callback 함수의 this: ", this); // window
-      console.log("callback 함수의 this.value: ", this.value); // 1
+      console.log('callback 함수의 this: ', this); // window
+      console.log('callback 함수의 this.value: ', this.value); // 1
     }, 100);
   },
 };
@@ -87,7 +86,7 @@ const obj = {
       function () {
         console.log(this.value); // 100
       }.bind(this),
-      100
+      100,
     );
   },
 };
@@ -116,7 +115,7 @@ obj.foo();
 
 ```jsx
 const person = {
-  name: "Roh",
+  name: 'Roh',
   getName() {
     // 메서드 내부에서의 this는 메서드를 호출한 객체에 바인딩된다.
     return this.name;
@@ -131,7 +130,7 @@ console.log(person.getName()); // Roh
 
 ```jsx
 const anotherPerson = {
-  name: "Kim",
+  name: 'Kim',
 };
 
 //getName 메서드를 anotherPerson 객체의 메서드로 할당
@@ -160,12 +159,12 @@ Person.prototype.getName = function () {
   return this.name;
 };
 
-const me = new Person("Roh");
+const me = new Person('Roh');
 
 // getName 메서드를 호출한 객체는 me다.
 console.log(me.getName()); // ① Roh
 
-Person.prototype.name = "Kim";
+Person.prototype.name = 'Kim';
 
 // getName 메서드를 호출한 객체는 Person.prototype이다.
 console.log(Person.prototype.getName()); // ② Kim
@@ -283,7 +282,7 @@ console.log(getThisBinding.bind(thisArg)()); // { a: 1 }
 
 ```jsx
 const person = {
-  name: "Roh",
+  name: 'Roh',
   foo(callback) {
     // bind 메서드로 callback 함수 내부의 this 바인딩을 전달
     setTimeout(callback.bind(this), 100);
