@@ -47,7 +47,7 @@ function solution(book_time) {
   for (const [startTime, endTime] of book_time) {
     let st = calcTime(startTime);
     const et = calcTime(endTime);
-    for (st; st < et + 10; st++) map.set(st, (map.get(st) || 0) + 1);
+    for (; st < et + 10; st++) map.set(st, (map.get(st) || 0) + 1);
   }
 
   return Math.max(...map.values());
