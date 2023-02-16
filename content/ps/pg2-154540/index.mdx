@@ -34,47 +34,57 @@ tags:
 # 코드
 
 ```jsx
-function BFS(queue, maps, visited) {
-  let value = 0;
+function BFS(startX, startY, maps, visited) {
+  const queue = [[startX, startY]];
+  let days = 0;
 
-  const dx = [-1, 1, 0, 0];
-  const dy = [0, 0, -1, 1];
+  const dirextions = [
+    [-1, 0], // up
+    [1, 0], // down
+    [0, -1], // left
+    [0, 1], // right
+  ];
 
   while (queue.length) {
     let [x, y] = queue.shift();
-    value += +maps[x][y];
+    visited[x][y] = true;
+    days += +maps[x][y];
 
-    for (let i = 0; i < 4; i++) {
-      const nx = x + dx[i];
-      const ny = y + dy[i];
+    for (const [dx, dy] of dirextions) {
+      const nx = x + dx;
+      const ny = y + dy;
 
-      if (nx < 0 || ny < 0 || n <= nx || m <= ny) continue;
-      if (maps[nx][ny] == 'X') continue;
-
-      if (!visited[nx][ny]) {
-        queue.push([nx, ny]);
-        visited[nx][ny] = true;
+      if (
+        nx < 0 ||
+        ny < 0 ||
+        maps.length <= nx ||
+        maps[0].length <= ny ||
+        visited[nx][ny] ||
+        maps[nx][ny] == 'X'
+      ) {
+        continue;
       }
+
+      queue.push([nx, ny]);
+      visited[nx][ny] = true;
     }
   }
-  return value;
+  return days;
 }
 
 function solution(maps) {
   const answer = [];
   const [n, m] = [maps.length, maps[0].length];
   const visited = Array.from({ length: n }, () => Array(m).fill(false));
-  const queue = [];
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < m; j++) {
       if (maps[i][j] !== 'X' && !visited[i][j]) {
-        queue.push([i, j]);
-        visited[i][j] = true;
-        answer.push(BFS(queue, maps, visited));
+        answer.push(BFS(i, j, maps, visited));
       }
     }
   }
-  console.log(answer);
+
+  return answer.length ? answer.sort((a, b) => a - b) : [-1];
 }
 ```
