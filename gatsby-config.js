@@ -1,6 +1,6 @@
-const blogConfig = require("./blog-config");
+const blogConfig = require('./blog-config');
 
-const wrapESMPlugin = (name) =>
+const wrapESMPlugin = name =>
   function wrapESM(opts) {
     return async (...args) => {
       const mod = await import(name);
@@ -14,14 +14,14 @@ module.exports = {
 
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `content`,
+        name: 'content',
         path: `${__dirname}/content`,
       },
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
         trackingIds: [
           blogConfig.ga, // Google Analytics / GA
@@ -32,31 +32,31 @@ module.exports = {
         pluginConfig: {
           head: true,
           respectDNT: true,
-          exclude: ["/preview/**", "/do-not-track/me/too/"],
+          exclude: ['/preview/**', '/do-not-track/me/too/'],
         },
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: blogConfig.title,
         short_name: blogConfig.title,
         description: blogConfig.description,
-        start_url: `/`,
-        display: `standalone`,
-        icon: `static/favicon.png`,
+        start_url: '/',
+        display: 'standalone',
+        icon: 'static/favicon.png',
       },
     },
     {
-      resolve: `gatsby-plugin-robots-txt`,
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: "https://chamdom.blog",
-        sitemap: "https://chamdom.blog/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }],
+        host: 'https://chamdom.blog',
+        sitemap: 'https://chamdom.blog/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
         {
@@ -73,13 +73,13 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map((edge) => {
+              return allMdx.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }],
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
                 });
               });
             },
@@ -102,67 +102,67 @@ module.exports = {
                 }
               }
             `,
-            output: `/rss.xml`,
+            output: '/rss.xml',
             title: `RSS Feed of ${blogConfig.title}`,
           },
         ],
       },
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: 'gatsby-plugin-canonical-urls',
       options: {
-        siteUrl: `https://chamdom.blog`,
+        siteUrl: 'https://chamdom.blog',
         stripQueryString: true,
       },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 680,
-              backgroundColor: "transparent",
+              backgroundColor: 'transparent',
               linkImagesToOriginal: false,
             },
           },
           {
-            resolve: `gatsby-remark-images-medium-zoom`,
+            resolve: 'gatsby-remark-images-medium-zoom',
             options: {
               margin: 36,
               scrollOffset: 0,
             },
           },
           {
-            resolve: "gatsby-remark-external-links",
+            resolve: 'gatsby-remark-external-links',
             options: {
-              target: "_blank",
+              target: '_blank',
             },
           },
-          `gatsby-remark-static-images`,
+          'gatsby-remark-static-images',
         ],
 
-        remarkPlugins: [wrapESMPlugin(`remark-slug`), require(`remark-math`)],
-        rehypePlugins: [require(`rehype-katex`)],
+        remarkPlugins: [wrapESMPlugin('remark-slug'), require('remark-math')],
+        rehypePlugins: [require('rehype-katex')],
       },
     },
     {
-      resolve: "gatsby-plugin-google-fonts",
+      resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          `Damion`,
-          `Fira+Code\:300,400,500,600,700`,
-          `Nanum+Gothic\:400,700,800`,
+          'Damion',
+          'Fira+Code:300,400,500,600,700',
+          'Nanum+Gothic:400,700,800',
         ],
-        display: "swap",
+        display: 'swap',
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-advanced-sitemap",
-    "gatsby-plugin-sharp",
-    "gatsby-plugin-styled-components",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
   ],
 };

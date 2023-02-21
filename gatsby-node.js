@@ -1,11 +1,11 @@
-const { createFilePath } = require("gatsby-source-filesystem");
+const { createFilePath } = require('gatsby-source-filesystem');
 const path = require(`path`);
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `Mdx`) {
     const slug = createFilePath({ node, getNode, basePath: `content` });
-    const newSlug = `/${slug.split("/").reverse()[1]}/`;
+    const newSlug = `/${slug.split('/').reverse()[1]}/`;
     createNodeField({
       node,
       name: `slug`,

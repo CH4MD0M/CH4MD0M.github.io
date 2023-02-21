@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FixedWrapper = styled.nav`
   display: block;
   position: fixed;
-  top: ${(props) => (props.isHidden ? "-100px" : "0px")};
+  top: ${props => (props.isHidden ? '-100px' : '0px')};
   left: 0;
   right: 0;
   padding: 1rem;
@@ -23,18 +23,17 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.sideSpace.sm};
 
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     padding: 0 1.5rem;
   }
 `;
 
 export const NavTitle = styled.div`
-  font-family: "Damion", cursive;
+  font-family: 'Damion', cursive;
   font-size: 2.7rem;
   font-weight: 600;
-  letter-spacing: ${(props) => props.theme.text.spacing};
+  letter-spacing: 0.15rem;
   animation: var(--animation) 1.5s infinite;
 `;
 
@@ -52,7 +51,7 @@ export const LinksWrapper = styled.div`
     text-transform: uppercase;
     margin: 0 1rem;
   }
-  @media screen and (max-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
     display: none;
   }
 `;
@@ -76,7 +75,7 @@ export const MenuIcon = styled.div`
     fill: var(--textColor);
   }
 
-  @media screen and (min-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (min-width: ${props => props.theme.responsive.sm}) {
     &:last-child {
       display: none;
     }
@@ -92,7 +91,7 @@ export const Background = styled.div`
   background: transparent;
   z-index: 300;
 
-  @media screen and (min-width: ${(props) => props.theme.responsive.sm}) {
+  @media screen and (min-width: ${props => props.theme.responsive.sm}) {
     display: none;
   }
 `;
