@@ -9,7 +9,7 @@ tags:
 
 # 문제
 
-[코딩테스트 연습 - 베스트 앨범](https://school.programmers.co.kr/learn/courses/30/lessons/425789)
+[코딩테스트 연습 - 베스트 앨범](https://school.programmers.co.kr/learn/courses/30/lessons/42579)
 
 ### 문제 설명
 
@@ -40,29 +40,34 @@ tags:
 
 ```jsx
 function solution(genres, plays) {
-  const answer = [];
-  const map = new Map();
-  genres.forEach((g, idx) => {
-    map.set(g, (map.get(g) || 0) + plays[idx]);
+  const genreCountMap = new Map();
+  const albumsWithIndex = genres.map((genre, idx) => ({
+    genre,
+    playCount: plays[idx],
+    idx,
+  }));
+
+  albumsWithIndex.forEach(({ genre, playCount }) => {
+    genreCountMap.set(genre, (genreCountMap.get(genre) || 0) + playCount);
   });
 
-  const albums = genres
-    .map((g, idx) => ({ genre: g, count: plays[idx], idx }))
-    .sort((a, b) => {
-      if (a.genre !== b.genre) return map.get(b.genre) - map.get(a.genre);
-      if (a.count !== b.count) return b.count - a.count;
-      return a.idx - b.idx;
-    });
+  const sortedAlbums = albumsWithIndex.sort((a, b) => {
+    if (a.genre !== b.genre)
+      return genreCountMap.get(b.genre) - genreCountMap.get(a.genre);
+    if (a.playCount !== b.playCount) return b.playCount - a.playCount;
+    return a.idx - b.idx;
+  });
 
-  map.clear();
+  const selectedAlbums = new Map();
+  const answer = [];
 
-  for (const song of albums) {
-    if (2 <= map.get(song.genre)) continue;
-    else {
-      map.set(song.genre, (map.get(song.genre) || 0) + 1);
-      answer.push(song.idx);
+  sortedAlbums.forEach(({ genre, idx }) => {
+    const albumCount = selectedAlbums.get(genre) || 0;
+    if (albumCount < 2) {
+      selectedAlbums.set(genre, albumCount + 1);
+      answer.push(idx);
     }
-  }
+  });
 
   return answer;
 }
