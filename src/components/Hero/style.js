@@ -22,18 +22,3 @@ export const HeroWrapper = styled.div`
     }
   }
 `;
-
-export const Profile = styled.div`
-  display: block;
-  width: 256px;
-  height: 256px;
-  background-image: url(${props => props.profileImageRoot}/profile.gif);
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 999px;
-
-  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    display: none;
-  }
-`;
