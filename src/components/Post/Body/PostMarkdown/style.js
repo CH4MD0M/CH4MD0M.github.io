@@ -50,8 +50,9 @@ export const MDWrapper = styled.div`
   b,
   strong {
     font-weight: bold;
-    .kaatex {
-      font-weight: bold;
+
+    .katex {
+      font-weight: 900;
     }
   }
 
@@ -98,6 +99,7 @@ export const MDWrapper = styled.div`
     padding-left: 3rem;
     & ul {
       margin: 0.4rem 0 1rem;
+
       padding-left: 2rem;
       list-style: circle;
 
@@ -107,6 +109,12 @@ export const MDWrapper = styled.div`
     }
     & li:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  & ol {
+    & ul {
+      margin-top: -2rem;
     }
   }
 
@@ -150,7 +158,7 @@ export const MDWrapper = styled.div`
 
   /* blockquote */
   blockquote {
-    margin: 4rem 0;
+    margin: 2rem 0 4rem;
     padding: 1.2rem 2rem;
     color: var(--textColor);
     background: var(--blockQuoteBgColor);
@@ -160,6 +168,11 @@ export const MDWrapper = styled.div`
     }
     p:last-child {
       margin-bottom: 0;
+    }
+
+    ul:only-of-type,
+    ol:only-of-type {
+      margin: 0;
     }
   }
 
