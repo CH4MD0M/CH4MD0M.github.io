@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-export const NavigatorWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    flex-direction: column;
-
-    & > div:first-child {
-      margin-bottom: 1.3rem;
-    }
-  }
-`;
-
 export const FlexWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -39,6 +26,18 @@ export const Icon = styled.div`
   height: 32px;
   font-size: 3rem;
   transition: transform 0.3s;
+`;
+
+export const ButtonLabel = styled.div`
+  font-size: 1.2rem;
+`;
+
+export const ButtonTitle = styled.div`
+  padding: 0.3rem 0 1rem;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 1.7rem;
 `;
 
 export const PostCardWrapper = styled.div`
@@ -82,21 +81,23 @@ export const PostCardWrapper = styled.div`
   }
 `;
 
-export const ButtonLabel = styled.div`
-  font-size: 1.2rem;
-  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    font-size: 1rem;
-  }
-`;
-
-export const ButtonTitle = styled.div`
-  padding: 0.3rem 0 1rem;
-  width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  font-size: 1.7rem;
+export const NavigatorWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 
   @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    font-size: 1.4rem;
+    flex-direction: column;
+
+    & > div:first-child {
+      margin-bottom: 1.3rem;
+    }
+
+    ${ButtonLabel} {
+      font-size: 1rem;
+    }
+
+    ${ButtonTitle} {
+      font-size: 1.4rem;
+    }
   }
 `;

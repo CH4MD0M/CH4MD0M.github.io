@@ -1,32 +1,10 @@
 import styled from 'styled-components';
 
-export const FixedWrapper = styled.nav`
-  display: block;
-  position: fixed;
-  top: ${props => (props.isHidden ? '-100px' : '0px')};
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: var(--headerBgColor);
-  backdrop-filter: blur(10px);
-  transition: top 0.5s ease-in-out;
-  z-index: 400;
-  box-shadow: var(--headerShadow);
-
-  a {
-    color: var(--textColor);
-  }
-`;
-
 export const NavWrapper = styled.div`
   max-width: 1300px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-
-  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    padding: 0 1.5rem;
-  }
 `;
 
 export const NavTitle = styled.div`
@@ -74,12 +52,6 @@ export const MenuIcon = styled.div`
   svg:hover path {
     fill: var(--textColor);
   }
-
-  @media screen and (min-width: ${props => props.theme.responsive.sm}) {
-    &:last-child {
-      display: none;
-    }
-  }
 `;
 
 export const Background = styled.div`
@@ -90,8 +62,38 @@ export const Background = styled.div`
   height: 100vh;
   background: transparent;
   z-index: 300;
+`;
+
+export const FixedWrapper = styled.nav`
+  display: block;
+  position: fixed;
+  top: ${props => (props.isHidden ? '-100px' : '0px')};
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: var(--headerBgColor);
+  backdrop-filter: blur(10px);
+  transition: top 0.5s ease-in-out;
+  z-index: 400;
+  box-shadow: var(--headerShadow);
+
+  a {
+    color: var(--textColor);
+  }
 
   @media screen and (min-width: ${props => props.theme.responsive.sm}) {
-    display: none;
+    ${NavWrapper} {
+      padding: 0 1.5rem;
+    }
+
+    ${MenuIcon} {
+      &:last-child {
+        display: none;
+      }
+    }
+
+    ${Background} {
+      display: none;
+    }
   }
 `;

@@ -1,12 +1,5 @@
 import styled from 'styled-components';
-
-export const Wrapper = styled.article`
-  display: block;
-  margin-bottom: 1.5rem;
-  padding: 3rem 0;
-  line-height: 1.5;
-  border-radius: 6px;
-`;
+import { TagListWrapper } from '../TagLabel/style';
 
 export const PostTitle = styled.h2`
   color: var(--textColor);
@@ -33,4 +26,26 @@ export const Date = styled.p`
   margin-top: 2rem;
   font-size: 1.4rem;
   color: var(--postDateColor);
+`;
+
+export const Wrapper = styled.article`
+  display: block;
+  margin-bottom: 1.5rem;
+  padding: 3rem 0;
+  line-height: 1.5;
+  border-radius: 6px;
+
+  @media screen and (max-width: ${props => props.theme.responsive.sm}) {
+    ${PostTitle} {
+      font-size: 2.3rem;
+    }
+
+    ${PostDescription},${Date} {
+      font-size: 1.3rem;
+    }
+
+    ${TagListWrapper} {
+      font-size: 1.3rem;
+    }
+  }
 `;
