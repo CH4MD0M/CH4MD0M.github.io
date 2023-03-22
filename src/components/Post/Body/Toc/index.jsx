@@ -8,9 +8,9 @@ import getElementOffsetY from '../../../../utils/getOffset';
 import * as S from './style';
 
 const Toc = () => {
-  const [currentId, setCurrentId] = useState();
-  const [headings, setHeading] = useState([]);
-  useIntersectionObserver(setCurrentId);
+  const [headings, setHeadings] = useState([]);
+
+  const activeId = useIntersectionObserver();
 
   // TOC-Item Click Handler
   const handleClickHeading = useCallback(itemId => {
@@ -24,7 +24,7 @@ const Toc = () => {
         '#post-contents > h1, #post-contents > h2, #post-contents > h3',
       ),
     );
-    setHeading(headingElements);
+    setHeadings(headingElements);
   }, []);
 
   return (
@@ -32,7 +32,7 @@ const Toc = () => {
       {headings.map((item, idx) => (
         <S.TocItem
           key={idx}
-          active={item.id === currentId}
+          active={item.id === activeId}
           ml={
             item.tagName === 'H1'
               ? '0.5rem'

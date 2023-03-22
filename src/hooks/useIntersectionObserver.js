@@ -1,49 +1,56 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const defaultOptions = {
-  rootMargin: '-60px 0px -80% 0px',
+  rootMargin: '-20px 0px 0% 0px',
 };
 
-const useIntersectionObserver = (setActiveId, options = defaultOptions) => {
-  const headingElementsRef = useRef({});
+const useIntersectionObserver = (options = defaultOptions) => {
+  const [activeId, setActiveId] = useState(null);
+  const headingElementsRef = useRef([]);
 
   useEffect(() => {
-    const handleIntersect = headings => {
-      headingElementsRef.current = headings.reduce((map, headingElement) => {
-        map[headingElement.target.id] = headingElement;
-        return map;
-      }, headingElementsRef.current);
+    const handleIntersect = entries => {
+      const visibleHeadings = entries
+        .filter(entry => entry.isIntersecting)
+        .map(entry => entry.target);
 
-      const visibleHeadings = [];
-      Object.keys(headingElementsRef.current).forEach(key => {
-        const headingElement = headingElementsRef.current[key];
-        if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
-      });
-
-      const getIndexFromId = id =>
-        headingElements.findIndex(heading => heading.id === id);
-
-      if (visibleHeadings.length === 1) {
-        setActiveId(visibleHeadings[0].target.id);
-      } else if (visibleHeadings.length > 1) {
-        const sortedVisibleHeadings = visibleHeadings.sort(
-          (a, b) => getIndexFromId(a.target.id) > getIndexFromId(b.target.id),
-        );
-        setActiveId(sortedVisibleHeadings[0].target.id);
+      if (visibleHeadings.length > 0) {
+        setActiveId(visibleHeadings[0].id);
       }
     };
 
     const observer = new IntersectionObserver(handleIntersect, options);
 
-    const headingElements = [
+    const headings = [
       ...document.querySelectorAll(
         '#post-contents > h1, #post-contents > h2, #post-contents > h3',
       ),
     ];
 
-    headingElements.forEach(element => observer.observe(element));
+    headingElementsRef.current = headings;
+
+    headings.forEach(heading => observer.observe(heading));
     return () => observer.disconnect();
-  }, [setActiveId]);
+  }, [options]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const visibleHeadings = headingElementsRef.current
+        .filter(heading => heading.offsetTop <= scrollPosition + 10)
+        .sort((a, b) => b.offsetTop - a.offsetTop);
+
+      if (visibleHeadings.length > 0 && activeId !== visibleHeadings[0].id) {
+        setActiveId(visibleHeadings[0].id);
+      }
+    };
+
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, [activeId]);
+
+  return activeId;
 };
 
 export default useIntersectionObserver;
