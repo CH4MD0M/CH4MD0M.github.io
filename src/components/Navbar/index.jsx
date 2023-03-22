@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { AnimatePresence, useCycle } from 'framer-motion';
 
@@ -13,22 +13,18 @@ const Navbar = ({ title }) => {
   const [hidden, setHidden] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  const detectScroll = () => {
-    if (window.scrollY <= scrollY) {
-      setHidden(false);
-    } else if (scrollY < window.scrollY && 400 <= window.scrollY) {
-      setHidden(true);
-    }
-
-    setScrollY(window.scrollY);
-  };
+  const detectScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    setHidden(currentScrollY > 400 && currentScrollY > scrollY);
+    setScrollY(currentScrollY);
+  }, [scrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', detectScroll);
     return () => {
       window.removeEventListener('scroll', detectScroll);
     };
-  }, [scrollY]);
+  }, [detectScroll]);
 
   return (
     <>
