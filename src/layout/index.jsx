@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 
 import { useSiteMetaData } from '../hooks/useSiteMetaData';
-import { useThemeEffect } from '../hooks/useThemeEffect';
 import { pageVariants } from '../utils/framer';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -17,8 +16,6 @@ import GlobalStyle from '../style/globalStyle';
 const Layout = ({ children }) => {
   const data = useSiteMetaData();
   const { title, author } = data.site.siteMetadata;
-
-  useThemeEffect();
 
   return (
     <ThemeProvider theme={theme}>
