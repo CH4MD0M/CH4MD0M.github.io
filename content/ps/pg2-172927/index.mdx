@@ -68,7 +68,9 @@ function solution(picks, minerals) {
     return acc;
   }, []);
 
-  const sortedMinerals = countedMinerals.sort((a, b) => b[0] - a[0]);
+  const sortedMinerals = countedMinerals.sort(
+    (a, b) => b[0] - a[0] || b[1] - a[1],
+  );
 
   for (const [dia, iron, stone] of sortedMinerals) {
     if (picks[0]) {
