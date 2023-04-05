@@ -11,6 +11,7 @@ const wrapESMPlugin = name =>
 
 module.exports = {
   siteMetadata: blogConfig,
+  graphqlTypegen: true,
 
   plugins: [
     {
@@ -18,6 +19,22 @@ module.exports = {
       options: {
         name: 'content',
         path: `${__dirname}/content`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        allExtensions: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-typegen',
+      options: {
+        outputPath: 'src/__generated__/gatsby-types.d.ts',
+        emitSchema: {
+          'src/__generated__/gatsby-schema.graphql': true,
+        },
       },
     },
     {

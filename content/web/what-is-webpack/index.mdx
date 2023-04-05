@@ -30,8 +30,11 @@ module.exports = {
 
 Output은 웹팩을 통해 변환된 결과물의 파일 경로와 이름을 설정한다. Output은 웹팩 설정 파일(webpack.config.js)에서 `output` 속성을 통해 설정할 수 있다.
 
-- **path:** 번들링된 결과물의 위치를 설정.
-- **filename:** 번들링된 결과물의 파일 이름을 설정.
+- **path 속성:** 번들링된 파일이 저장될 경로를 지정한다.
+- **filename 속성:** 번들링된 파일의 이름을 지정한다.
+- **chunkFilename 속성:** 분할된 청크 파일의 이름을 설정한다.
+- **clean 속성:** 이전 빌드 결과물을 제거하는 옵션이다.
+- **publicPath 속성:** 웹사이트의 루트 경로를 지정한다. 이 속성은 파일 경로를 계산할 때 사용된다. 일반적으로 이 값을 `'/'`로 설정하여 루트 경로에서 파일을 로드하도록 한다.
 
 ```js
 // webpack.config.js
@@ -64,9 +67,12 @@ Loader는 웹팩에서 웹 자원을 변환할 때 사용하는 속성이다. Lo
 
 **기본적으로 webpack은 JavaScript와 JSON 파일만 이해할 수 있다. 하지만 Loader를 사용하면 웹팩이 다른 타입의 파일들도 처리할 수 있도록 도와준다.**
 
-- **test:** 변환할 파일의 확장자를 설정.
-- **exclude:** 제외할 파일 또는 폴더를 설정.
-- **use:** 적용할 Loader를 설정.
+- **rules 속성:** 모듈을 처리하는 방식을 설정한다.
+- **test 속성:** 정규식 패턴을 사용하여 로드할 파일을 지정한다.
+- **exclude 속성:** 로드하지 않을 파일을 지정한다.
+- **use 속성:** 로드할 파일에 대해 어떤 로더를 사용할지 지정한다.
+- **type 속성:** 모듈의 타입을 지정한다. `asset/resource`는 파일을 복사하고, `asset/inline`은 파일을 인라인으로 처리한다.
+- **generator 속성:** 파일을 생성할 때 사용할 규칙을 지정한다. `[name]`은 파일의 이름, `[contenthash]`는 파일의 내용을 해시화한 값, `[ext]`는 파일의 확장자를 의미한다.
 
 ```js
 // webpack.config.js
@@ -74,9 +80,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.css$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name].[contenthash][ext]',
+        },
       },
     ],
   },

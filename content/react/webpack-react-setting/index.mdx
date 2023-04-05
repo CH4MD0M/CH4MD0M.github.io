@@ -1,0 +1,188 @@
+---
+title: 'CRA 사용하지 않고 React 프로젝트 시작하기'
+category: react
+date: 2023-03-28
+tags:
+  - webpack
+  - react
+  - babel
+---
+
+# 들어가기 전에
+
+React 환경을 구축하기 위해 **CRA (Create-React-App)**를 사용한다면 기본적으로 Webpack과 Babel과 같은 설정들이 세팅되어 있다. 모듈 번들러(Module Bundler)에 대해 공부하면서 CRA 없이 webpack을 사용해서 React 프로젝트를 설정하고 싶었다. 그래서 CRA 없이 React 프로젝트를 시작하는 방법을 정리해보았다.
+
+> Webpack과 관련된 내용은 [웹팩(webpack) 이란?](https://chamdom.blog/what-is-webpack/)에서 확인할 수 있다.
+
+# 프로젝트 초기화 및 폴더 구조
+
+### 프로젝트 초기화
+
+```bash
+$ mkdir webpack-react-ts
+$ cd webpack-react-ts
+$ yarn init -y
+```
+
+### 폴더 구조
+
+폴더 구조는 아래와 같이 구성하였다.
+
+```bash
+├── node_modules
+├── public
+│   └── index.html
+├── src
+│   ├── App.tsx
+│   └── index.tsx
+├── webpack.common.js
+├── webpack.dev.js
+├── webpack.prod.js
+├── babel.config.json
+├── package.json
+├── tsconfig.json
+└── yarn.lock
+```
+
+# Babel 설치 및 설정
+
+### Babel 설치
+
+```bash
+$ yarn add @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader -D
+```
+
+### Babel 설정
+
+```json
+// babel.config.json
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3.22"
+      }
+    ],
+    ["@babel/preset-react", { "runtime": "automatic" }],
+    "@babel/preset-typescript"
+  ],
+  "targets": "> 0.5%, not dead"
+}
+```
+
+# TypeScript 설치 및 설정
+
+### TypeScript 설치
+
+```bash
+$ yarn add typescript @types/react @types/react-dom @types/react-router-dom -D
+```
+
+### TypeScript 설정
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM"],
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "target": "es5",
+    "strict": true,
+    "strictNullChecks": false,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src"]
+}
+```
+
+# Webpack 설치 및 설정
+
+### Webpack 설치
+
+```bash
+$ yarn add webpack webpack-cli webpack-dev-server webpack-merge -D
+```
+
+추가적으로 필요한 라이브러리들을 설치한다.
+
+```bash
+$ yarn add copy-webpack-plugin core-js fork-ts-checker-webpack-plugin html-webpack-plugin terser-webpack-plugin ts-loader typescript -D
+```
+
+**(optional)** css 파일을 번들링하기 위해 아래의 라이브러리들을 설치한다.
+
+```bash
+$ yarn add css-loader css-minimizer-webpack-plugin mini-css-extract-plugin sass sass-loader style-loader -D
+```
+
+### Webpack 설정
+
+`webpack.common.js`를 먼저 생성할 것이다. 이 파일은 개발 환경과 배포 환경에서 공통적으로 사용되는 설정들을 담고 있다.
+
+```js
+//webpack.common.js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
+module.exports = {
+  entry: './src/index.tsx',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].bundle.js',
+    chunkFilename: '[name].[contenthash].chunk.bundle.js',
+    clean: true,
+    publicPath: '/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'ts-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico|webp)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name].[contenthash][ext]',
+        },
+      },
+      { test: /\.svg$/, use: ['@svgr/webpack'] },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+    new ForkTsCheckerWebpackPlugin(),
+  ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        react: {
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom|react-router)[\\/]/,
+          name: 'react',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+};
+```
