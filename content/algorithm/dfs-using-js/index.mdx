@@ -27,7 +27,7 @@ DFS를 구현하는 데는 2가지의 방법이 있다. 첫 번째는 재귀를 
 2. 노드를 방문할 때마다 해당 노드의 visited 배열 값을 `true`로 변경한다.
 3. 해당 노드(`v`)와 연결된 노드 중에 방문하지 않은 노드(`node`)이 있다면 방문하지 않은 노드(`node`)를 시작점으로 하여 DFS를 다시 시작한다.
 
-```jsx
+```js
 function dfs(graph, v, visited) {
   // 현재 노드를 방문 처리
   visited[v] = true;
@@ -113,7 +113,7 @@ dfs(graph, 0, visited);
 
 ### 코드 구현
 
-```jsx
+```js
 function dfs(graph, start, visited) {
   const stack = [];
   stack.push(start);
@@ -154,7 +154,7 @@ dfs(graph, 0, visited);
 
 Recursive DFS와 같이 동작하도록 Iteractive DFS 코드를 개선해보자.
 
-```jsx
+```js
 function dfs(graph, visited) {
   // 루트 노드는 부모가 없으므로 -1, null, undefined 등 존재할 수 없는 수를 넣어준다.
   const stack = [[0, -1]];
@@ -176,7 +176,7 @@ function dfs(graph, visited) {
 
 부모 노드를 추적하고 부모 노드로 되돌아가는 로직을 수행하기 위해 stack에서 pop하고 다시 push를 해주는 작업을 하게 된다. 이때 유의할 점이 pop 이후에 이미 방문한 노드를 바로 push 하면 무한루프에 빠질 수 있기 때문에 pop과 push 사이에 조건을 넣어줘야 한다. 이 부분이 **기존의 Iteractive DFS에서 빠져 있던 부분이고 Recursive DFS와 같게 만들어 주는데 필요한 로직**이다.
 
-```jsx
+```js
 function dfs(graph, visited) {
   const stack = [[0, -1]];
 
@@ -200,7 +200,7 @@ function dfs(graph, visited) {
 
 방문하지 않았던 노드라면 `cur`은 부모 노드가 되어 다음 노드를 계속 탐색하게 된다.
 
-```jsx
+```js
 function dfs(graph, visited) {
   const stack = [[0, -1]];
 

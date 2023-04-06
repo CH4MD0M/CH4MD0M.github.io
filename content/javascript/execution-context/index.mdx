@@ -33,7 +33,7 @@ ECMAScript 사양은 소스코드를 4가지 타입으로 구분한다.
 
 <br />
 
-```jsx
+```js
 var x;
 x = 1;
 ```
@@ -49,7 +49,7 @@ x = 1;
 
 아래 코드는 전역 코드와 함수 코드로 구성되어 있다. 자바스크립트 엔진이 아래 코드를 어떻게 평가하고 실행하는지 알아보자.
 
-```jsx
+```js
 // 전역 변수 선언
 const x = 1;
 const y = 2;
@@ -89,7 +89,7 @@ _실행 컨텍스트는 식별자(변수, 함수, 클래스 등의 이름)을 �
 
 # 실행 컨텍스트 스택(Execution Context Stack)
 
-```jsx
+```js
 const x = 1;
 
 function outer() {
@@ -147,7 +147,7 @@ Lexical Environment(렉시컬 환경)은 `Environment Record`와 `Outer Lexical 
 
 아래 코드를 기준으로 어떻게 실행 컨텍스트가 생성되고 코드가 관리되는지 알아보자.
 
-```jsx
+```js
 var x = 1;
 const y = 2;
 
@@ -331,7 +331,7 @@ foo 함수가 종료하면 더 이상 실행할 코드가 없으므로 전역 �
 
 다음 코드를 통해 블록 레벨 스코프에서 실행 컨텍스트가 어떻게 생성되는지 알아보자.
 
-```jsx
+```js
 let x = 1;
 
 if (true) {

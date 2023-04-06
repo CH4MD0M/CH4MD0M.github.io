@@ -48,7 +48,7 @@ tags:
 
 ### 이진 탐색 트리 구현
 
-```jsx
+```js
 class Node {
   constructor(value) {
     this.value = value;
@@ -94,7 +94,7 @@ const bst = new BinarySearchTree();
 **전위 순회(preorder traversal)**는 루트, 왼쪽 서브 트리, 오른쪽 서브 트리 순서로 방문한다.
 ![preorder-traversal](./image/preorder.png)
 
-```jsx
+```js
 traversePreOrder(node = this.root, result = []) {
     if (node) {
       result.push(node.value);
@@ -110,7 +110,7 @@ traversePreOrder(node = this.root, result = []) {
 **중위 순회(inorder traversal)**는 왼쪽 서브 트리, 루트, 오른쪽 서브 트리를 순서로 방문한다.
 ![inorder-traversal](./image/inorder.png)
 
-```jsx
+```js
 traverseInOrder(node = this.root, result = []) {
     if (node) {
       this.traversePostOrder(node.left, result);
@@ -127,7 +127,7 @@ traverseInOrder(node = this.root, result = []) {
 
 ![postorder-traversal](./image/postorder.png)
 
-```jsx
+```js
 traversePostOrder(node = this.root, result = []) {
     if (node) {
       this.traversePostOrder(node.left, result);

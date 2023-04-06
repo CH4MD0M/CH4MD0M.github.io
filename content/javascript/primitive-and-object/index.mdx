@@ -19,7 +19,7 @@ tags:
 
 다음 코드를 살펴보자.
 
-```jsx
+```js
 var score = 80;
 var copy = score;
 
@@ -48,7 +48,7 @@ console.log(copy); // 80
 
 객체는 프로퍼티의 개수가 정해져 있지 않으며, 동적으로 추가되고 삭제할 수 있다. 또한 프로퍼티의 값에도 제약이 없다. 따라서 객체는 원시 값과 같이 메모리 공간의 크기를 사전에 정해 둘 수 없다.
 
-```jsx
+```js
 var person = {
   name: 'Roh',
 };
@@ -60,7 +60,7 @@ var person = {
 
 객체는 변경 가능한 값이므로 메모리에 저장된 객체를 직접 수정할 수 있다. 위 코드의 객체를 변경해보자.
 
-```jsx
+```js
 var person = {
   name: 'Roh',
 };
@@ -78,7 +78,7 @@ person.address = 'Seoul';
 
 객체의 식별자 공유를 자세히 알아보자.
 
-```jsx
+```js
 var person = {
   name: 'Roh',
 };

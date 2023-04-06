@@ -35,7 +35,7 @@ tags:
 
 # 코드
 
-```jsx
+```js
 function solution(progresses, speeds) {
   const answer = [];
   const days = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
@@ -53,18 +53,18 @@ function solution(progresses, speeds) {
 }
 ```
 
-# 문제 풀이 방법
+# 문제 풀이
 
 먼저 작업을 마치는데 소요되는 일수를 저장하는 `days` 변수를 생성한다. 각 작업이 마치는데 소요되는 일수는 `100 - progresses / speeds`로 계산할 수 있다. 이때 소수점이 생기면 하루가 더 걸리기 때문에 소수점 자리는 올림(`Math.ceil`) 한다.
 
-```jsx
+```js
 const days = progresses.map((p, i) => Math.ceil((100 - p) / speeds[i]));
 console.log(days); // [ 7, 3, 9 ] or [ 5, 10, 1, 1, 20, 1 ]
 ```
 
 문제 풀이에서 핵심은 뒤에 있는 기능이 먼저 완료되더라도 앞에 기능과 함께 배포된다는 것이다. 즉, days를 순회할 때 현재 요소의 값이 이전 요소의 값보다 크다면 같이 배포될 수 없는 것을 의미한다. 따라서 두 개의 요소를 비교하기 위해 `prev` 변수를 선언한다.
 
-```jsx
+```js
 let prev = 0;
 for (let i = 0; i < days.length; i++) {
   // ...
@@ -73,7 +73,7 @@ for (let i = 0; i < days.length; i++) {
 
 그리고 현재 요소의 값이 이전 요소의 값보다 클 때 현재 요소는 같이 배포될 수 없으므로 이전 요소까지의 작업 개수(`현재 요소 index - 이전 요소 index`)를 `answer`에 push 한다.
 
-```jsx
+```js
 let prev = 0;
 for (let i = 0; i < days.length; i++) {
   if (days[prev] < days[i]) {
@@ -83,9 +83,9 @@ for (let i = 0; i < days.length; i++) {
 }
 ```
 
-`for`문 순회가 끝났을 때 if문에서 pass된 값들을 answer에 push해준다.
+for문 순회가 끝났을 때 if문에서 pass된 값들을 `answer`에 push한다.
 
-```jsx
+```js
 answer.push(days.length - prev);
 ```
 

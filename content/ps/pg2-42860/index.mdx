@@ -46,7 +46,7 @@ ex) 완성해야 하는 이름이 세 글자면 AAA, 네 글자면 AAAA
 
 # 코드
 
-```jsx
+```js
 function solution(name) {
   let answer = 0;
   let min_move = name.length - 1;
@@ -71,7 +71,7 @@ function solution(name) {
 }
 ```
 
-# 문제 풀이 방법
+# 문제 풀이
 
 문자 A가 연속적으로 나오는 부분을 처리하는 것이 관건인 문제였다. <br/>
 먼저 상하로 움직이는 부분을 정리한다. `charCodeAt()` 을 사용해서 더 작은 값을 더해주는 방식으로 해결했다.

@@ -36,7 +36,7 @@ tags:
 
 # 코드
 
-```jsx
+```js
 function solution(X, Y) {
   const hashX = new Map();
   const hashY = new Map();
@@ -59,13 +59,13 @@ function solution(X, Y) {
 }
 ```
 
-## 문제 풀이 방법
+## 문제 풀이
 
 자바스크립트의 `Map` 객체를 이용해 구현했다.
 
 먼저 X, Y 각각에 대해 Map 객체를 선언하고 Map 객체를 업데이트 한다.
 
-```jsx
+```js
 const hashX = new Map();
 const hashY = new Map();
 
@@ -79,7 +79,7 @@ for (const digit of Y) {
 
 그리고 **가장 큰 수를 만들기 위해서** 9부터 공통되는 수를 찾는다. 이때 공통되는 수를 찾는 것이기 때문에 `Math.min()`메서드를 사용한다.
 
-```jsx
+```js
 let answer = '';
 for (let i = 9; i >= 0; i--) {
   const char = String(i);
@@ -90,6 +90,6 @@ for (let i = 9; i >= 0; i--) {
 
 문제 출력 조건에 맞게 0으로만 이루어져 있으면 0을, 짝이 존재하지 않는 다면 -1을, 짝이 존재한다면 결과값을 return 한다. `00`과 같은 문자열을 `0`으로 처리해야 하기 때문에 중간에 answer를 Number로 검사한다.
 
-```jsx
+```js
 return answer ? (Number(answer) ? answer : '0') : '-1';
 ```

@@ -19,7 +19,7 @@ _자바스크립트 엔진은 단 하나의 실행 컨텍스트 스택을 갖는
 
 _자바스크립트 엔진은 한 번에 하나의 테스크만 실행할 수 있는 싱글 스레드(single thread) 방식으로 동작한다._ 싱글 스레드 방식은 한 번에 하나의 테스크만 실행할 수 있기 때문에 처리에 시간이 걸리는 테스크를 실행하는 경우 **블로킹(작업 중단; blocking)**이 발생한다.
 
-```jsx
+```js
 function sleep(func, delay) {
   const delayUntil = Date.now() + delay;
 
@@ -52,7 +52,7 @@ bar();
 
 위 코드를 `setTimeout`을 사용하여 수정해 보자.
 
-```jsx
+```js
 function foo() {
   console.log('foo');
 }
@@ -106,7 +106,7 @@ bar();
 
 태스크 큐는 구체적으로 **매크로 태스크 큐(macrotask queue/evnet queue)**와 **마이크로 태스크 큐(microtask queue/job queue)**로 나누어진다. 아래 코드를 살펴보자.
 
-```jsx
+```js
 setTimeout(() => console.log(1), 0);
 
 Promise.resolve()

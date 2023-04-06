@@ -15,7 +15,7 @@ tags:
 
 ## 콜백 헬(Callback Hell)
 
-```jsx
+```js
 // GET 요청을 위한 비동기 함수
 const get = (url, successCallback, failureCallback) => {
   const xhr = new XMLHttpRequest();
@@ -41,7 +41,7 @@ get('https://jsonplaceholder.typicode.com/posts/1', console.log, console.error);
 
 콜백 함수를 통해 비동기 처리 결과에 대한 후속 처리를 수행하는 비동기 함수가 비동기 처리 결과를 가지고 또 다시 비동기 함수를 호출해야 한다면 콜백 함수가 중첩되어 복잡도가 높아지는 현상이 발생한다. 이를 **콜백 헬(Callback Hell)**이라 한다.
 
-```jsx
+```js
 get('/step1', a => {
   get(`/step2/${a}`, b => {
     get(`/step3/${b}`, c => {
@@ -55,7 +55,7 @@ get('/step1', a => {
 
 ## 에러 처리의 어려움
 
-```jsx
+```js
 try {
   setTimeout(() => {
     throw new Error('Error!');
@@ -75,7 +75,7 @@ setTimeout 함수의 콜백 함수를 호출한 것은 setTimeout 함수가 아�
 
 Promise 생성자 함수를 `new` 연산자와 함께 호출하면 프로미스(Promise 객체)를 생성한다. Promise 생성자 함수는 비동기 처리를 수행할 콜백 함수를 인수로 전달받는데 이 콜백 함수는 `resolve`와 `reject` 함수를 인수로 전달받는다.
 
-```jsx
+```js
 const promise = new Promise((resolve, reject) => {
     // Promise 함수의 콜백 함수 내부에서 비동기 처리를 수행한다.
     if (/* 비동기 처리 성공 */) {
@@ -109,7 +109,7 @@ fulfilled 또는 rejected 상태를 `settled` 상태라고 한다. settled 상�
 
 `then` 메서드는 두개의 콜백 함수를 인수로 받는다. 첫 번째 콜백 함수는 프로미스가 `fulfilled` 상태가 되면 호출된다. 이때 콜백 함수는 **프로미스의 비동기 처리 결과**를 인수로 전달받는다. 두 번째 콜백 함수는 프로미스가 `rejected` 상태가 되면 호출된다. 이때 콜백 함수는 **프로미스의 에러**를 인수로 전달받는다. 즉, 첫 번째 콜백 함수는 비동기 처리가 성공했을 때 호출되는 함수이고, 두 번째 콜백 함수는 비동기 처리가 실패했을 때 호출되는 함수이다.
 
-```jsx
+```js
 // fulfilled
 new Promise(resolve => resolve('fulfilled')).then(
   v => console.log(v),
@@ -129,7 +129,7 @@ then 메서드의 콜백 함수가 프로미스를 반환하면 프로미스를 
 
 `catch` 메서드는 한 개의 콜백 함수를 인수로 전달받는다. `catch` 메서드의 콜백 함수는 프로미스가 `rejected` 상태인 경우만 호출된다. _catch 메서드는 then 과 동일하게 언제나 프로미스를 반환한다._
 
-```jsx
+```js
 // rejected
 new Promise((_, reject) => reject(new Error('rejected'))).catch(e =>
   console.log(e),
@@ -140,7 +140,7 @@ new Promise((_, reject) => reject(new Error('rejected'))).catch(e =>
 
 `finally` 메서드는 한 개의 콜백 함수를 인수로 전달받는다. `finally` 메서드의 콜백 함수는 프로미스의 성공 또는 실패와 상관없이 무조건 한 번 호출된다. `finally` 메서드는 프로미스의 상태와 상관없이 공통적으로 수행해야 할 처리 내용이 있을 때 유용하다. _finally 메서드도 then / catch 메서드와 마찬가지로 언제나 프로미스를 반환한다._
 
-```jsx
+```js
 new Promise(() => {}).finally(() => console.log('finally')); // finally
 ```
 
@@ -148,7 +148,7 @@ new Promise(() => {}).finally(() => console.log('finally')); // finally
 
 비동기 처리에서 발생한 에러는 `then` 메서드의 두 번째 콜백 함수로 처리할 수 있다. 단, `then` 메서드의 첫 번째 콜백 함수에서 발생한 에러를 캐치하지 못하고 코드의 가독성이 좋지 않다.
 
-```jsx
+```js
 const wrongUrl = 'https://jsonplaceholder.typicode.com/XXX/1';
 
 promiseGet(wrongUrl).then(
@@ -159,7 +159,7 @@ promiseGet(wrongUrl).then(
 
 비동기 처리에서 발생한 에러는 프로미스의 `catch` 메서드를 사용해 처리할 수 있다. `catch` 메서드를 호출하면 내부적으로 `then(undefined, onRejected)`을 호출한다.
 
-```jsx
+```js
 const wrongUrl = 'https://jsonplaceholder.typicode.com/XXX/1';
 
 promiseGet(wrongUrl)
@@ -169,7 +169,7 @@ promiseGet(wrongUrl)
 
 `catch` 메서드를 모든 `then` 메서드를 호출한 이후에 호출하면 비동기 처리에서 발생한 에러뿐만 아니라 `then` 메서드 내부에서 발생한 에러까지 모두 캐치할 수 있다.
 
-```jsx
+```js
 promiseGet('https://jsonplaceholder.typicode.com/todos/1')
   .then(res => console.xxx(res))
   .catch(err => console.error(err));
@@ -178,7 +178,7 @@ promiseGet('https://jsonplaceholder.typicode.com/todos/1')
 
 # 프로미스 체이닝
 
-```jsx
+```js
 const url = 'https://jsonplaceholder.typicode.com';
 
 promiseGet(`${url}/posts/1`)
@@ -199,7 +199,7 @@ promiseGet(`${url}/posts/1`)
 
 `Promise.resolve` 메서드는 인수로 전달받은 값을 resolve 하는 프로미스를 생성한다.
 
-```jsx
+```js
 const resolvedPromise = Promise.resolve([1, 2, 3]);
 
 // 아래 코드는 위와 동일하게 동작한다.
@@ -212,7 +212,7 @@ resolvedPromise.then(console.log); // [1, 2, 3]
 
 `Promise.reject` 메서드는 인수로 전달받은 값을 reject 하는 프로미스를 생성한다.
 
-```jsx
+```js
 // 에러 객체를 reject하는 프로미스를 생성
 const rejectedPromise = Promise.reject(new Error('Error!'));
 
@@ -226,7 +226,7 @@ rejectedPromise.catch(console.log); // Error: Error!
 
 `Promise.all` 메서드는 여러 개의 비동기 처리를 모두 병렬 처리할 때 사용한다.
 
-```jsx
+```js
 const requestData1 = () =>
   new Promise(resolve => setTimeout(() => resolve(1), 3000));
 const requestData2 = () =>
@@ -243,7 +243,7 @@ Promise.all([requestData1(), requestData2(), requestData3()])
 
 `Promise.all` 메서드는 인수로 전달받은 배열의 프로미스가 하나라도 `rejected` 상태가 되면 나머지 프로미스가 `fulfilled` 상태가 되는 것을 기다리지 않고 즉시 종료한다.
 
-```jsx
+```js
 Promise.all([
   new Promise((_, reject) =>
     setTimeout(() => reject(new Error('Error 1')), 3000),
@@ -261,7 +261,7 @@ Promise.all([
 
 `Promise.all` 메서드는 인수로 전달받은 이터러블의 요소가 프로미스가 아닌 경우 `Promise.resolve` 메서드를 통해 프로미스로 래핑한다.
 
-```jsx
+```js
 Promise.all([
   1, // => Promise.resolve(1)
   2, // => Promise.resolve(2)
@@ -275,7 +275,7 @@ Promise.all([
 
 `Promise.race` 메서드는 `Promise.all` 메서드와 동일하게 프로미스를 요소로 갖는 배열 등의 이터러블을 인수로 전달받는다. `Promise.race` 메서드는 모든 프로미스가 `fulfilled` 상태가 되는 것을 기다리는 것이 아니라 가장 먼저 `fulfilled` 상태가 된 프로미스의 처리 결과를 `resolve` 하는 새로운 프로미스를 반환한다.
 
-```jsx
+```js
 const requestData1 = () =>
   new Promise(resolve => setTimeout(() => resolve(1), 3000));
 const requestData2 = () =>
@@ -290,7 +290,7 @@ Promise.race([requestData1(), requestData2(), requestData3()])
 
 프로미스가 하나라도 `rejected` 상태가 되면 `Promise.all` 메서드와 동일하게 에러를 `reject` 하는 새로운 프로미스를 즉시 반환한다.
 
-```jsx
+```js
 Promise.race([
   new Promise((_, reject) =>
     setTimeout(() => reject(new Error('Error 1')), 3000),
@@ -310,7 +310,7 @@ Promise.race([
 
 `Promise.allSettled` 메서드는 프로미스를 요소로 갖는 배열 등의 이터러블을 인수로 받는다. 그리고 전달받은 프로미스가 모두 `settled` 상태가 되면 처리 결과를 배열로 반환한다.
 
-```jsx
+```js
 Promise.allSettled([
   new Promise(resolve => setTimeout(() => resolve(1), 2000)),
   new Promise((_, reject) =>

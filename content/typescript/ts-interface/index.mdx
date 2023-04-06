@@ -15,7 +15,7 @@ tags:
 
 다음은 객체 타입을 타입 별칭으로 구현한 간략한 구문이다.
 
-```tsx
+```ts
 type User = {
   id: number;
   name: string;
@@ -25,7 +25,7 @@ type User = {
 
 다음은 인터페이스로 구현한 구문이다.
 
-```tsx
+```ts
 interface User {
   id: number;
   name: string;
@@ -46,7 +46,7 @@ interface User {
 
 객체 타입과 마찬가지로 모든 객체가 필수적으로 인터페이스 속성을 가질 필요는 없다. 타입 애너테이션 `?:`을 사용해 인터페이스의 속성이 선택적 속성임을 나타낼 수 있다.
 
-```tsx
+```ts
 interface Book {
   author?: string;
   pages: number;
@@ -70,7 +70,7 @@ const missing: Book = {
 
 **readonly 제한자는 타입 시스템에만 존재하면 인터페이스에서만 사용할 수 있다.**
 
-```tsx
+```ts
 interface Page {
   readonly text: string;
 }
@@ -92,7 +92,7 @@ function read(page: Page) {
 
 다음 코드의 **method**와 **property** 멤버는 둘 다 매개변수 없이 호출되어 `string`을 반환한다.
 
-```tsx
+```ts
 interface FunctionTypes {
   property: () => string;
   method(): string;
@@ -111,7 +111,7 @@ foo.method(); // Ok
 
 두 가지 방법 모두 선택적 속성 키워드인 `?`를 사용해 필수로 제공하지 않아도 되는 멤버로 나타낼 수 있다.
 
-```tsx
+```ts
 interface FunctionTypes {
   property?: () => string;
   method?(): string;
@@ -133,7 +133,7 @@ interface FunctionTypes {
 
 인터페이스와 객체 타입은 **호출 시그니처(call signature)**로 선언할 수 있다. 호출 시그니처는 값을 함수처럼 호출하는 방식에 대한 타입이다. 호출 시그니처는 타입스크립트에서 함수의 타입을 지정할 때 사용하는 문법이다. 함수에 함수를 인수로 전달하거나, 함수를 반환하는 경우 이 문법을 통해 인수나 반환 함수의 타입을 지정할 수 있다.
 
-```tsx
+```ts
 interface CallSignature {
   (input: string): number;
 }
@@ -148,7 +148,7 @@ const foo: CallSignature = input => input.length;
 
 타입스크립트는 **인덱스 시그니처(index signature)** 구문을 제공해 인터페이스의 객체가 임의의 키를 받고, 해당 키 아래의 특정 타입을 반환할 수 있도록 한다.
 
-```tsx
+```ts
 interface WordCounts {
   [i: string]: number;
 }
@@ -168,7 +168,7 @@ const counts: WordCounts = {
 
 하지만, 이때 인덱스 시그니처에서는 문자열 또는 숫자 인덱스 이외의 다른 타입은 허용되지 않는다. 즉, 인덱스 시그니처를 통해 동적으로 추가되는 모든 속성의 타입은 인덱스 시그니처에서 지정한 타입들과 일치해야 합니다.
 
-```tsx
+```ts
 // Ok
 interface User {
   name: string;
@@ -181,7 +181,7 @@ interface User {
 
 하지만, 이 방법의 문제점은 모든 속성이 `string` 또는 `number` 타입으로 제한된다는 점이다. 만약 명명된 속성의 타입이 인덱스 시그니처에 할당될 수 있는 경우 특정 속성에 대해 더 구체적인 타입을 지정해서 인덱스 시그니처의 타입으로 제한되는 것을 피할 수 있다.
 
-```tsx
+```ts
 interface Product {
   category: 'food';
   [key: string]: string;
@@ -203,7 +203,7 @@ const product2: Product = {
 
 객체 타입이 다른 객체 타입의 속성으로 중첩될 수 있는 것처럼 인터페이스 타입도 자체 인터페이스 타입 또는 객체 타입을 속성으로 가질 수 있다.
 
-```tsx
+```ts
 interface Novel {
   author: {
     name: string;
@@ -236,7 +236,7 @@ myNovel = {
 
 파생 인터페이스로 생성한 객체는 기본 인터페이스의 모든 멤버도 가져야 한다는 것을 타입스크립트에 알린다.
 
-```tsx
+```ts
 interface Writing {
   title: string;
 }
@@ -264,7 +264,7 @@ const missingPages: Novella = {
 
 속성을 재선언하는 대부분의 파생 인터페이스는 해당 속성을 유니언 타입의 더 구체적인 하위 집합으로 만들거나 속성을 기본 인터페이스의 타입에서 확장된 타입으로 만드는 데 사용한다.
 
-```tsx
+```ts
 interface NullableName {
   name: string | null;
 }
@@ -286,7 +286,7 @@ interface NumericName extends NullableName {
 
 **타입스크립트의 인터페이스는 여러 개의 다른 인터페이스를 확장해서 선언할 수 있다.** 파생 인터페이스 이름에 있는 extends 키워드 뒤에 쉼표로 인터페이스 이름을 구분해 사용하면 된다.
 
-```tsx
+```ts
 interface GiveNumber {
   giveNumber(): number;
 }
@@ -312,7 +312,7 @@ function useGiversBoth(instance: GiveBothAndEither) {
 
 인터페이스의 중요한 특징 중 하나는 서로 병합하는 능력이다. **두 개의 인터페이스가 같은 이름으로 같은 스코프에 선언된 경우, 선언된 모든 필드를 포함하는 더 큰 인터페이스가 코드에 추가된다.**
 
-```tsx
+```ts
 interface Merged {
   fromFirst: string;
 }
@@ -334,7 +334,7 @@ interface Merged {
 
 병합된 인터페이스는 **타입이 다른 같은 이름의 속성을 여러 번 선언할 수 없다.** 속성이 이미 인터페이스에 선언되어 있다면 나중에 병합된 인터페이스도 같은 타입을 사용해야 한다.
 
-```tsx
+```ts
 interface Merged {
   same: (input: boolean) => string;
   different: (input: string) => number;
@@ -355,7 +355,7 @@ interface Merged {
 >
 > 타입스크립트에서 시그니처(signature)란, 함수나 메서드의 타입을 정의하는 부분으로, 매개변수와 반환값에 대한 타입을 나타낸다.
 
-```tsx
+```ts
 interface Merged {
   different(input: string): number;
 }
@@ -375,7 +375,7 @@ interface Merged {
 - https://typescript-kr.github.io/
 - 러닝 타입스크립트
 
-```tsx
+```ts
 function 뭐시깽1(input?: string) {}
 function 뭐시깽2(input: string | undefined) {}
 ```

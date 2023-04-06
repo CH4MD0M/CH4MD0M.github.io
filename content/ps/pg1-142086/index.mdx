@@ -41,7 +41,7 @@ tags:
 
 # 코드
 
-```jsx
+```js
 function solution(s) {
   const answer = [];
   const map = new Map();
@@ -56,14 +56,14 @@ function solution(s) {
 }
 ```
 
-# 문제 풀이 방법
+# 문제 풀이
 
 자바스크립트의 `Map` 객체를 사용해서 풀었다.
 
 먼저 map에 현재 글자가 없다면(처음 나온 글자라면) `answer`에 -1을 push한다. <br/>
 반대로 map에 현재 글자가 있다면(이전에 나온적이 있는 글자라면) map에서 index를 불러오고 현재 글자의 index와의 차를 `answer`에 push한다.
 
-```jsx
+```js
 // v는 s의 글자, i는 글자의 index다.
 
 [...s].map((v, i) => {
@@ -74,7 +74,7 @@ function solution(s) {
 
 자신과 가장 가까운 곳에 있는 같은 글자를 찾아야 하므로 반복마다 map을 갱신해주어야 한다.
 
-```jsx
+```js
 [...s].map((v, i) => {
   if (!map.has(v)) answer.push(-1);
   else answer.push(i - map.get(v));

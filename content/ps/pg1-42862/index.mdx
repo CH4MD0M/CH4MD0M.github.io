@@ -35,7 +35,7 @@ tags:
 
 # 코드
 
-```jsx
+```js
 function solution(n, lost, reserve) {
   let lost_student = lost.filter(v => !reserve.includes(v)).sort();
   let reserve_student = reserve.filter(v => !lost.includes(v)).sort();
@@ -52,6 +52,6 @@ function solution(n, lost, reserve) {
 }
 ```
 
-## 문제 풀이 방법
+## 문제 풀이
 
 여벌옷이 있어도 도난 당한 학생은 여벌옷이 없는 것과 마찬가지이다. 따라서, 이 경우를 먼저 처리해주고 배열이 정렬되어 있지 않는 경우도 있기 때문에 이를 위해 여벌 옷이 있는 학생의 배열(reserve_student)과 도난 당한 학생의 배열(lost_student)을 정렬해 주었다.

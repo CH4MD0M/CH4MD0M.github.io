@@ -13,7 +13,7 @@ tags:
 
 함수 몸체가 하나의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 `{}`를 생략할 수 있다. 이때 함수 **몸체 내부의 문이 값으로 평가될 수 있는 표현식인 문이라면 암묵적으로 반환된다.** 만약 함수 몸체 내부의 문이 표현식이 아닌 문이라면 에러가 발생하므로 중괄호를 생략할 수 없다.
 
-```jsx
+```js
 const pow = x => x ** 2;
 pow(2); // 4
 
@@ -25,14 +25,14 @@ const pow = x => {
 
 화살표 함수는 객체 리터럴을 반환하는 경우 소괄호 `()`로 감싸주어야 한다. 객체 리터럴을 소괄호 `()`로 감싸지 않으면 객체 리터럴의 중괄호`{}`를 함수의 몸체를 감싸는 중괄호`{}`로 잘못 해석한다.
 
-```jsx
+```js
 const info = (id, name) => ({ id, name });
 info(1, 'Roh'); // {id: 1, name: "Roh"}
 ```
 
 함수 몸체가 여러 개의 문으로 구성된다면 함수 몸체를 감싸는 중괄호 `{}`를 생략할 수 없다.
 
-```jsx
+```js
 const add = (a, b) => {
   const result = a + b;
   return result;
@@ -45,7 +45,7 @@ const add = (a, b) => {
 
 화살표 함수는 인스턴스를 생성할 수 없으므로 `prototype` 프로퍼티가 없고 프로토타입도 생성하지 않는다.
 
-```jsx
+```js
 const Foo = () => {};
 
 new Foo(); // TypeError: Foo is not a constructor
@@ -56,7 +56,7 @@ Foo.hasOwnProperty('prototype'); // -> false
 
 일반 함수는 중복된 매개변수 이름을 선언해도 에러가 발생되지 않는다. (단, strict mode에서 중복된 매개변수 이름을 선언하면 에러가 발생한다.) 화살표 함수는 중복된 매개변수 이름을 선언하면 에러가 발생한다.
 
-```jsx
+```js
 // strict mode에서는 일반 함수도 중복된 매개변수 이름을 사용할 수 없다.
 'use strict';
 function normal(a, a) {
@@ -65,7 +65,7 @@ function normal(a, a) {
 // SyntaxError:  Duplicate parameter name not allowed in this context
 ```
 
-```jsx
+```js
 // 화살표 함수는 중복된 매개변수 이름을 선언하면 에러가 발생한다.
 const arrow = (a, a) => a + a;
 // SyntaxError:  Duplicate parameter name not allowed in this context
@@ -85,7 +85,7 @@ const arrow = (a, a) => a + a;
 
 다음 코드를 살펴보자.
 
-```jsx
+```js
 class Prefixer {
   constructor(prefix) {
     this.prefix = prefix;
@@ -117,7 +117,7 @@ console.log(prefixer.add(['transition', 'user-select']));
 
 **that 변수로 this 회피**
 
-```jsx
+```js
 ...
 
 add (arr) {
@@ -132,7 +132,7 @@ add (arr) {
 
 **Function.prototype.bind 메서드 사용**
 
-```jsx
+```js
 ...
 
 add (arr) {
@@ -150,7 +150,7 @@ add (arr) {
 
 ### 화살표 함수를 이용한 this 문제 해결
 
-```jsx
+```js
 class Prefixer {
   constructor(prefix) {
     this.prefix = prefix;
@@ -174,7 +174,7 @@ _화살표 함수는 함수 자체의 this 바인딩을 갖지 않는다. 따라
 
 화살표 함수는 `super` 바인딩을 갖지 않기 때문에 `this`와 마찬가지로 상위 스코프의 `super`를 참조한다.
 
-```jsx
+```js
 class Parent {
   constructor(name) {
     this.name = name;
@@ -200,7 +200,7 @@ console.log(child.askAge()); // Hi! Roh. how old are you?
 
 화살표 함수는 `arguments` 바인딩을 갖지 않기 때문에 `this`와 마찬가지로 상위 스코프의 `arguments`를 참조한다.
 
-```jsx
+```js
 (function () {
   // 화살표 함수의 arguments 상위 스코프인 즉시 실행 함수의 arguments 객체를 가리킨다.
   const foo = () => console.log(arguments); // [Arguments] { '0': 1, '1': 2 }

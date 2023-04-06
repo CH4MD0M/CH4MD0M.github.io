@@ -21,7 +21,7 @@ tags:
 
 다음 코드를 통해 클로저에 대해 자세히 알아보자.
 
-```jsx
+```js
 const x = 1;
 
 // ①
@@ -82,7 +82,7 @@ inner 함수를 호출(④)하면 inner 함수의 실행 컨텍스트가 생성�
 
 클로저는 **상태(state)를 안전하게 변경하고 유지하기 위해 사용한다.** 다시 말해, **상태를 안전하게 은닉(information hiding)하고 특정 함수에게만 상태 변경을 허용**하기 위해 사용한다.
 
-```jsx
+```js
 const counter = (function () {
   let num = 0;
 
@@ -106,7 +106,7 @@ console.log(counter.decrease()); // 0
 
 위 코드를 생성자 함수로 표현하면 다음과 같다.
 
-```jsx
+```js
 const Counter = (function () {
   let num = 0;
 
@@ -141,7 +141,7 @@ console.log(counter.decrease()); // 0
 
 외부 상태 변경이나 가변(mutable) 데이터를 피하고 불변성(mmutability)을 지향하는 함수형 프로그래밍에서 부수 효괴를 최대한 억제하여 오류를 피하고 프로그램의 안정성을 높이기 위해 클로저를 적극적으로 사용한다. 다음은 함수형 프로그래밍에서 클로저를 활용하는 간단한 예제다.
 
-```jsx
+```js
 // 함수를 반환하는 고차 함수
 const counter = (function () {
   // 카운터 상태를 유지하기 위한 자유 변수

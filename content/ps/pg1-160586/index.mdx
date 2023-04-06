@@ -47,7 +47,7 @@ tags:
 
 # 코드
 
-```jsx
+```js
 function solution(keymap, targets) {
   const answer = [];
   const map = new Map();
@@ -76,7 +76,7 @@ function solution(keymap, targets) {
 
 먼저 문자를 출력하기 위한 최소 횟수를 체크하면 되기 때문에 `Map` 객체를 사용했다. 그리고 keymap을 순회하면서 **1. map 객체에 key가 없거나**, **2. 문자를 누른 횟수 기존에 저장되어 있는 문자의 누른 횟수보다 작다면** 문자를 key 값으로 `i+1`을 value로 저장한다.
 
-```jsx
+```js
 for (const key of keymap) {
   for (let i = 0; i < key.length; i++) {
     if (!map.has(key[i]) || i + 1 < map.get(key[i])) map.set(key[i], i + 1);
@@ -88,7 +88,7 @@ target 배열을 순회하면서 map 객체에서 값을 가져와 count를 증�
 
 `NaN`은 falsy 값으로 평가되기 때문에 `count || -1`을 answer에 push한다.
 
-```jsx
+```js
 for (const target of targets) {
   let count = 0;
   for (let i = 0; i < target.length; i++) {

@@ -37,7 +37,7 @@ tags:
 
 기본적으로 사용될 메서드 들은 아래와 같다.
 
-```jsx
+```js
 class MinHeap {
   constructor() {
     // 힙을 저장할 배열
@@ -90,7 +90,7 @@ Min Heap의 삽입 연산은 다음과 같은 단계로 이루어진다.
 
 코드로 구현한 것은 다음과 같다.
 
-```jsx
+```js
 // 새로운 노드를 추가하는 메서드
 add(value) {
   this.heap.push(value); // 힙의 끝에 새로운 노드 추가
@@ -148,7 +148,7 @@ Min Heap의 삭제 연산은 다음과 같은 단계로 이루어진다.
 
 코드로 구현한 것은 다음과 같다.
 
-```jsx
+```js
 poll() {
   if (this.heap.length === 1) {
     return this.heap.pop(); // 힙의 크기가 1인 경우, 힙에서 값을 삭제하고 return
@@ -191,7 +191,7 @@ bubbleDown() {
 
 주석을 제거한 전체 코드는 다음과 같다.
 
-```jsx
+```js
 class MinHeap {
   constructor() {
     this.heap = [];

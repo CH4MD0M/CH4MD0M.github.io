@@ -30,7 +30,7 @@ _this 바인딩은 함수가 어떻게 호출되었는지에 따라 동적으로
 
 기본적으로 `this`에는 **전역 객체(global object)**가 바인딩된다.
 
-```jsx
+```js
 var value = 1;
 
 const obj = {
@@ -54,7 +54,7 @@ const obj = {
 
 **that을 사용한 명시적 바인딩**
 
-```jsx
+```js
 var value = 1;
 
 const obj = {
@@ -75,7 +75,7 @@ obj.foo();
 
 **apply/call/bind 메서드를 사용한 명시적 바인딩**
 
-```jsx
+```js
 var value = 1;
 
 const obj = {
@@ -95,7 +95,7 @@ obj.foo();
 
 **화살표 함수를 사용한 명시적 바인딩**
 
-```jsx
+```js
 var value = 1;
 
 const obj = {
@@ -113,7 +113,7 @@ obj.foo();
 
 메서드 내부의 this에는 메서드를 호출한 객체(메서드를 호출할 때 메서드 이름 앞의 마침표(.) 연산자 앞에 기술한 객체)가 바인딩된다. 즉, _메서드 내부의 this는 메서드를 소유한 객체가 아닌 메서드를 호출한 객체에 바인딩 된다._
 
-```jsx
+```js
 const person = {
   name: 'Roh',
   getName() {
@@ -128,7 +128,7 @@ console.log(person.getName()); // Roh
 
 **메서드는 프로퍼티에 바인딩된 함수다.** 위 코드에서 getName 메서드는 person 객체에 포함된 것이 아니라 독립적으로 존재한다. 단지 getName 프로퍼티가 함수 객체를 가리키고 있을 뿐이다. 따라서 getName 메서드는 다른 객체의 프로퍼티에 할당하는 것으로 다른 객체의 메서드가 될 수도 있고 변수에 할당하여 일반 함수로 호출될 수도 있다.
 
-```jsx
+```js
 const anotherPerson = {
   name: 'Kim',
 };
@@ -150,7 +150,7 @@ console.log(getName()); // ''
 
 프로토타입 메서드 내부에서 사용된 this도 일반 메서드와 마찬가지로 **해당 메서드를 호출한 객체**에 바인딩된다.
 
-```jsx
+```js
 function Person(name) {
   this.name = name;
 }
@@ -181,7 +181,7 @@ console.log(Person.prototype.getName()); // ② Kim
 
 _생성자 함수 내부의 this에는 생성자 함수가 생성할 인스턴스가 바인딩된다._
 
-```jsx
+```js
 function Circle(radius) {
   // 생성자 함수 내부의 this는 생성자 함수가 생성할 인스턴스를 가리킨다.
   this.radius = radius;
@@ -200,7 +200,7 @@ console.log(circle2.getDiameter()); // 20
 일반 함수와 동일한 방법으로 생성자 함수를 정의하고 new 연산자와 함께 호출하면 해당 함수는 생성자 함수로 동작한다. 만약 new 연산자와 함께 생성자 힘수를 호출하지 않으면 생성자 함수가 아니라 일반 함수로 동작
 한다.
 
-```jsx
+```js
 const circle3 = Circle(20);
 
 // 알번 함수로 호출된 Circle에는 return문이 없으므로 암묵적으로 undefined를 return한다.
@@ -218,7 +218,7 @@ console.log(radius); // 20
 
 `Function.prototype.apply`, `Function.prototype.call`메서드는 this로 사용할 객체와 인수리스트를 인수로 전달받아 함수를 호출한다.
 
-```jsx
+```js
 /**
 * @param thisArg -> this로 사용할 객체
 * @param argsArray -> 함수에게 전달할 인수 리스트 배열(또는 유사배열객체)
@@ -227,7 +227,7 @@ console.log(radius); // 20
 Function.prototype.apply(thisArg[, argsArray])
 ```
 
-```jsx
+```js
 /**
 * @parma thisArg -> this로 사용할 객체
 * @param arg1, arg2, ... -> 함수에게 전달할 인수 리스트
@@ -243,7 +243,7 @@ Function.prototype.call(thisArg[, arg1[, arg2[, ...]]])
 - apply 메서드는 호출할 함수의 인수를 **배열**로 전달한다.
 - call 메서드는 호출할 함수의 인수를 **쉼표로 구분한 리스트 형식**으로 전달한다.
 
-```jsx
+```js
 function getThisBinding() {
   console.log(arguments);
   console.log(this);
@@ -265,7 +265,7 @@ getThisBinding.call(thisArg, 1, 2, 3);
 
 `bind` 메서드는 apply와 call 메서드와 달리 함수를 호출하지 않고 this로 사용할 객체만 전달한다.
 
-```jsx
+```js
 function getThisBinding() {
   return this;
 }
@@ -280,7 +280,7 @@ console.log(getThisBinding.bind(thisArg)()); // { a: 1 }
 
 `bind` 메서드는 메서드의 this와 메서드 내부의 중첩 함수, 콜백 함수의 this가 불일치하는 문제를 해결하기 위해 유용하게 사용된다.
 
-```jsx
+```js
 const person = {
   name: 'Roh',
   foo(callback) {
