@@ -128,6 +128,9 @@ export const MDWrapper = styled.div`
     a {
       color: var(--linkColor);
     }
+    code {
+      font-size: 1.4rem;
+    }
   }
 
   /* code */
