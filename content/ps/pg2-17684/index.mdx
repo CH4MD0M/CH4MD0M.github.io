@@ -15,7 +15,7 @@ tags:
 
 신입사원 어피치는 카카오톡으로 전송되는 메시지를 압축하여 전송 효율을 높이는 업무를 맡게 되었다. 메시지를 압축하더라도 전달되는 정보가 바뀌어서는 안 되므로, 압축 전의 정보를 완벽하게 복원 가능한 무손실 압축 알고리즘을 구현하기로 했다.
 
-어피치는 여러 압축 알고리즘 중에서 성능이 좋고 구현이 간단한 LZW(Lempel–Ziv–Welch) 압축을 구현하기로 했다. LZW 압축은 1983년 발표된 알고리즘으로, 이미지 파일 포맷인 GIF 등 다양한 응용에서 사용되었다.
+어피치는 여러 압축 알고리즘 중에서 성능이 좋고 구현이 간단한 LZW(Lempel-Ziv-Welch) 압축을 구현하기로 했다. LZW 압축은 1983년 발표된 알고리즘으로, 이미지 파일 포맷인 GIF 등 다양한 응용에서 사용되었다.
 
 LZW 압축은 다음 과정을 거친다.
 
@@ -84,59 +84,86 @@ LZW 압축은 다음 과정을 거친다.
 | TOBEORNOTTOBEORTOBEORNOT | [20, 15, 2, 5, 15, 18, 14, 15, 20, 27, 29, 31, 36, 30, 32, 34] |
 | ABABABABABABABAB         | [1, 2, 27, 29, 28, 31, 30]                                     |
 
+# 문제 풀이
+
+먼저 Map 객체를 사용해 사전을 만들어준다. 사전을 만들 때는 `A`부터 `Z`까지의 알파벳을 key로, `1`부터 `26`까지의 숫자를 value로 넣어준다.
+
+```js
+const map = new Map();
+for (let i = 0; i < 26; i++) {
+  const char = String.fromCharCode(i + 65);
+  map.set(char, i + 1);
+}
+```
+
+`w`와 `c` 변수를 초기화한다. `w`는 현재 입력된 문자열의 시작 인덱스, `c`는 현재 입력된 문자열의 끝 인덱스를 의미한다. `w`와 `c`를 만들어준 후, `msg`의 길이만큼 반복문을 돌려준다.
+
+```js
+let w = 0;
+let c = 0;
+
+while (true) {
+  // ...
+}
+```
+
+반복문의 종료 조건은 `c`(마지막 글자의 index)가 `msg`의 길이와 같아질 때이다. 이때는 다음 문자를 붙여서 사전에서 찾는 과정이 없으므로, `w`부터 `c`까지의 문자열을 사전에서 찾아서 `answer`에 넣어준다.
+
+```js
+c++;
+
+if (c === msg.length) {
+  answer.push(map.get(msg.slice(w, c)));
+  break;
+}
+```
+
+문제에서 설명한 것처럼 `w`부터 `c`까지의 문자열이 사전에 없다면, `w`부터 `c - 1`까지의 문자열을 사전에서 찾아서 `answer`에 넣어준다. 그리고 `c`를 `w`로 바꿔주고, `c`를 1 증가시켜준다.
+
+> `slice` 메서드는 start 인덱스부터 **end 인덱스 전까지**의 문자열을 반환한다. 따라서 `msg.slice(w, c)`는 `w`부터 `c - 1`까지의 문자열을 반환한다. 설명이 조금 헷갈릴 수 있으니 주의하자.
+
+```js
+const word = msg.slice(w, c + 1);
+
+if (!map.has(word)) {
+  map.set(word, map.size + 1);
+  answer.push(map.get(msg.slice(w, c)));
+  w = c;
+}
+```
+
 # 코드
 
-```jsx
+```js
 function solution(msg) {
   const answer = [];
-  // 사전 초기화
-  const dict = new Map(
-    [...Array(26)].map((_, i) => {
-      return [String.fromCharCode(i + 65), i + 1];
-    }),
-  );
+  const map = new Map();
 
-  let w = (c = 0);
+  for (let i = 0; i < 26; i++) {
+    const char = String.fromCharCode(i + 65);
+    map.set(char, i + 1);
+  }
+
+  let w = 0;
+  let c = 0;
 
   while (true) {
-    c += 1;
+    c++;
 
     if (c === msg.length) {
-      answer.push(dict.get(msg.slice(w, c)));
+      answer.push(map.get(msg.slice(w, c)));
       break;
     }
 
-    if (!dict.has(msg.slice(w, c + 1))) {
-      dict.set(msg.slice(w, c + 1), dict.size + 1);
-      answer.push(dict.get(msg.slice(w, c)));
+    const word = msg.slice(w, c + 1);
+
+    if (!map.has(word)) {
+      map.set(word, map.size + 1);
+      answer.push(map.get(msg.slice(w, c)));
       w = c;
     }
   }
 
   return answer;
 }
-```
-
-# 문제 풀이 방법
-
-- 사전(dict)을 Map으로 정의하여 초기화하였다.
-- w와 c변수를 선언하여 투포인터로 문제를 해결하였다.
-
-`msg` 에서 순서대로 글자를 불러오는데,<br/>
-**현재 글자 + 다음 글자** 가 사전에 등록되어 있지 않다면 사전에 등록하고 `answer` 배열에 값을 `push` 한다. <br/>
-**현재 글자 + 다음 글자** 가 사전에 등록되어 있다면 `c` 를 증가시킨다.
-
-`c`가 `msg`의 길이와 같을 때(즉, 마지막일 때)는 `answer` 배열에 값을 `push`하고 `while` 문을 빠져나온다.
-
-# 새로 알게된 것
-
-- `Map()` 객체의 길이를 구하기 위해서는 `Map.prototype.size` 접근자 프로퍼티를 사용한다.
-
-```jsx
-const map = new Map();
-map.set('a', 1);
-map.set('b', 2);
-map.set('c', 3);
-
-console.log(map.size); // 3
 ```
