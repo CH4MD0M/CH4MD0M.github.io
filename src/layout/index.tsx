@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { PageProps } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
@@ -13,6 +13,8 @@ import ThemeToggleButton from '@components/ThemeToggleButton';
 import * as S from './style';
 import theme from '../style/variables';
 import GlobalStyle from '../style/globalStyle';
+import { useThemeEffect } from '@hooks/useThemeEffect';
+import { useAppSelector } from '@hooks/reduxHooks';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,8 +22,15 @@ interface LayoutProps {
 }
 
 const Layout = ({ children, location }: LayoutProps) => {
+  useThemeEffect();
+
+  const { themeMode } = useAppSelector(state => state.darkMode);
   const data = useSiteMetaData();
   const { title, author } = data.site.siteMetadata;
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', themeMode);
+  }, [themeMode]);
 
   return (
     <ThemeProvider theme={theme}>
