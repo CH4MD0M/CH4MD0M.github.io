@@ -161,8 +161,8 @@ module.exports = {
           'gatsby-remark-static-images',
         ],
 
-        remarkPlugins: [wrapESMPlugin('remark-slug'), require('remark-math')],
-        rehypePlugins: [require('rehype-katex')],
+        remarkPlugins: [require('remark-math')],
+        rehypePlugins: [require('rehype-katex'), wrapESMPlugin('rehype-slug')],
       },
     },
     {
