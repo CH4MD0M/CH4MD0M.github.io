@@ -1,14 +1,17 @@
 import React from 'react';
-
 import { AnimatePresence, motion } from 'framer-motion';
 
+import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
 import { setTheme } from '@store/modules/darkMode';
 
 // CSS
 import * as S from './style';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '@hooks/reduxHooks';
-import { StorageType, setValue } from '@utils/storage';
+
+const ThemeIcon = {
+  dark: <FaSun />,
+  light: <FaMoon />,
+};
 
 const ThemeToggleButton = () => {
   const { themeMode } = useAppSelector(state => state.darkMode);
@@ -16,8 +19,7 @@ const ThemeToggleButton = () => {
 
   const themeToggleHandler = () => {
     const nextTheme = themeMode === 'dark' ? 'light' : 'dark';
-    dispatch(nextTheme === 'light' ? setTheme('light') : setTheme('dark'));
-    setValue(StorageType.LOCAL, 'themeMode', nextTheme);
+    dispatch(setTheme({ themeMode: nextTheme, saveToLocalStorage: true }));
   };
 
   return (
@@ -30,7 +32,7 @@ const ThemeToggleButton = () => {
           exit={{ rotate: 180, opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {themeMode === 'dark' ? <FaSun /> : <FaMoon />}
+          {ThemeIcon[themeMode]}
         </motion.div>
       </AnimatePresence>
     </S.ToggleWrapper>
