@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import TagLabel from '../TagLabel';
-import Divider from '../Divider';
+import TagLabel from '@components/TagLabel';
+import Divider from '@components/Divider';
 
 // CSS
 import * as S from './style';
