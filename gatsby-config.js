@@ -29,15 +29,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-typegen',
-      options: {
-        outputPath: 'src/__generated__/gatsby-types.d.ts',
-        emitSchema: {
-          'src/__generated__/gatsby-schema.graphql': true,
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
         trackingIds: [
@@ -137,6 +128,7 @@ module.exports = {
       options: {
         extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
+          'gatsby-remark-copy-linked-files',
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -158,7 +150,6 @@ module.exports = {
               target: '_blank',
             },
           },
-          'gatsby-remark-static-images',
         ],
 
         remarkPlugins: [require('remark-math')],
