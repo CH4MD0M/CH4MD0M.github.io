@@ -45,6 +45,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-google-adsense',
+      options: {
+        publisherId: 'ca-pub-1186874032973944',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: blogConfig.title,
