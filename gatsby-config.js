@@ -33,8 +33,6 @@ module.exports = {
       options: {
         trackingIds: [
           blogConfig.ga, // Google Analytics / GA
-          // Google Ads / Adwords / AW
-          // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
 
         pluginConfig: {
@@ -42,12 +40,6 @@ module.exports = {
           respectDNT: true,
           exclude: ['/preview/**', '/do-not-track/me/too/'],
         },
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-adsense',
-      options: {
-        publisherId: 'ca-pub-1186874032973944',
       },
     },
     {
