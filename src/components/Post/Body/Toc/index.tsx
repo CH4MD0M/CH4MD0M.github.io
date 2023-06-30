@@ -19,25 +19,27 @@ const Toc = () => {
   }, []);
 
   return (
-    <S.TocWrapper>
-      {headings.map(item => (
-        <S.TocItem
-          key={item.id}
-          active={item.id === activeHeadingId}
-          ml={
-            item.tagName === 'H1'
-              ? '0.5rem'
-              : item.tagName === 'H2'
-              ? '1.2rem'
-              : '2.2rem'
-          }
-          onClick={() => handleClickHeading(item.id)}
-        >
-          {item.innerText}
-        </S.TocItem>
-      ))}
+    <S.StickyWrapper>
+      <S.TocWrapper>
+        {headings.map(item => (
+          <S.TocItem
+            key={item.id}
+            active={item.id === activeHeadingId}
+            ml={
+              item.tagName === 'H1'
+                ? '0.5rem'
+                : item.tagName === 'H2'
+                ? '1.2rem'
+                : '2.2rem'
+            }
+            onClick={() => handleClickHeading(item.id)}
+          >
+            {item.innerText}
+          </S.TocItem>
+        ))}
+      </S.TocWrapper>
       <GoogleAds client="ca-pub-1186874032973944" slot="7840960133" />
-    </S.TocWrapper>
+    </S.StickyWrapper>
   );
 };
 
