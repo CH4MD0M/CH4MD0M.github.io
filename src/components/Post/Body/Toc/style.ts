@@ -9,6 +9,7 @@ export const StickyWrapper = styled.div`
   position: sticky;
   top: 120px;
   margin-left: 13rem;
+  height: 100%;
   min-width: 25rem;
 `;
 
