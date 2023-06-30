@@ -4,6 +4,8 @@ import { animateScroll } from 'react-scroll';
 import { useHeadObserver } from '@hooks/useHeadObserver';
 import getElementOffsetY from '@utils/getOffset';
 
+import GoogleAds from '@components/GoogleAds';
+
 // CSS
 import * as S from './style';
 
@@ -34,6 +36,7 @@ const Toc = () => {
           {item.innerText}
         </S.TocItem>
       ))}
+      <GoogleAds client="ca-pub-1186874032973944" slot="7840960133" />
     </S.TocWrapper>
   );
 };

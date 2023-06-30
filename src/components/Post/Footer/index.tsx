@@ -13,10 +13,10 @@ interface FooterProps {
 const Footer = ({ pageContext }: FooterProps) => {
   return (
     <>
+      <GoogleAds client="ca-pub-1186874032973944" slot="2724364828" />
       <Bio />
       <Divider mt="0" />
       <PostNavigator pageContext={pageContext} />
-      <GoogleAds client="ca-pub-1186874032973944" slot="6532899272" />
       <Comments />
     </>
   );

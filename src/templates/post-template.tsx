@@ -7,6 +7,7 @@ import Post from '@components/Post';
 
 // CSS
 import 'katex/dist/katex.min.css';
+import GoogleAds from '@components/GoogleAds';
 
 interface PostTemplateProps {
   data: Queries.GetSinglePostQuery;
