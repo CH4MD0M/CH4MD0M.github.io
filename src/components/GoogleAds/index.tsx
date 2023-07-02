@@ -26,7 +26,9 @@ const GoogleAds = ({ client, slot }: GoogleAdsProps) => {
           fontSize: '18px',
           fontWeight: 'bold',
           textAlign: 'center',
+          height: '280px',
           padding: '16px',
+          marginBottom: '1rem',
         }}
       >
         광고 표시 영역
@@ -37,7 +39,7 @@ const GoogleAds = ({ client, slot }: GoogleAdsProps) => {
     <div className="google-ads">
       <ins
         className="adsbygoogle"
-        style={{ display: 'block' }}
+        style={{ display: 'block', marginBottom: '1rem' }}
         data-ad-client={client}
         data-ad-slot={slot}
         data-ad-format="auto"
