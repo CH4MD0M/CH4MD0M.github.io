@@ -5,17 +5,13 @@ interface TocItemProps {
   active: boolean;
 }
 
-export const StickyWrapper = styled.div`
+export const TocWrapper = styled.div`
   position: sticky;
   top: 120px;
   margin-left: 13rem;
-  height: 100%;
-  min-width: 25rem;
-`;
-
-export const TocWrapper = styled.div`
-  margin-bottom: 2rem;
   padding-right: 2rem;
+  min-width: 25rem;
+  height: fit-content;
   max-height: 70rem;
   font-size: 1.4rem;
   line-height: 1.5;
