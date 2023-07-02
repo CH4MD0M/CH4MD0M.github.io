@@ -85,6 +85,8 @@ var person = {
 
 // 참조 값을 복사
 var copy = person;
+
+console.log(person === copy); // true
 ```
 
 객체를 가리키는 원본 변수(person)를 다른 변수(copy)에 할당하면 원본의 **참조 값**이 복사되어 전달 된다. 이를 **참조에 의한 전달**이라 한다.
