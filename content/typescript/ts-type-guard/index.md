@@ -122,7 +122,7 @@ type PersonRecord = Record<PersonKeys, string>;
 
 위 코드에서 `PersonKeys` 타입은 `"name" | "age" | "location"` 타입을 나타내며, `PersonPartial`
 타입은 `Person` 인터페이스의 모든 속성을 선택적으로(optional) 만들어진 타입을 나타낸다. `PersonRecord`
-타입은 `PersonKeys` 타입을 키로 하고, `string` 타입을 값으로 갖는 객체를 나타냅니다.
+타입은 `PersonKeys` 타입을 키로 하고, `string` 타입을 값으로 갖는 객체를 나타낸다.
 
 아래 코드에서 keyof Info는 `"name" | "age" | "location"`과 같지만 작성하는 것이 훨씬 빠르고 Info 인터페이스가 변경되더라도 수동으로 업데이트할 필요가 없다.
 
