@@ -179,6 +179,12 @@ export const MDWrapper = styled.div`
     }
   }
 
+  del {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   /* italic */
   em {
     padding: 0.16rem 0.48rem;
