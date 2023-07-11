@@ -110,6 +110,9 @@ export const MDWrapper = styled.div`
     & li:last-child {
       margin-bottom: 0;
     }
+    code {
+      font-size: 1.4rem;
+    }
   }
 
   & ol {
