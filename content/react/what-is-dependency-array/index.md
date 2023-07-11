@@ -1,7 +1,7 @@
 ---
 title: 'React: 의존성 배열(Dependency Array)이란?'
 category: react
-date: 2023-03-15
+date: 2023-06-17
 tags:
   - 의존성배열
   - ShallowCopy

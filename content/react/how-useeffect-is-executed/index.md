@@ -1,7 +1,7 @@
 ---
 title: 'React: useEffect의 실행 과정 알아보기'
 category: react
-date: 2023-03-17
+date: 2023-06-20
 tags:
   - hooks
   - useEffect

@@ -1,7 +1,7 @@
 ---
 title: 'React: useEffect의 의존성 배열(dependency array)에서 객체 처리하기'
 category: react
-date: 2023-03-19
+date: 2023-06-21
 tags:
   - 의존성배열
   - useEffect

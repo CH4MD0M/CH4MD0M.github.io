@@ -24,7 +24,7 @@ const { data, loading, error } = useSelector(state => state.user);
 import { useSelector } from 'react-redux';
 
 function ExampleComponent() {
-  const count = useSelector(state => state.counter);
+  const { count } = useSelector(state => state.counter);
 
   return <div>Count: {count}</div>;
 }
@@ -33,13 +33,12 @@ function ExampleComponent() {
 위 예제 코드를 통해서 `useSelector`가 어떻게 동작하는지 간략하게 알아보자.
 
 **1. 렌더링 될 때 selector 함수를 실행** <br/>
-`useSelector`는 컴포넌트가 렌더링 되거나 action이 dispatch 될 때마다 selector 함수를 실행한다.
+`useSelector`는 컴포넌트가 렌더링 되거나 action이 dispatch 될 때마다 **selector 함수**를 실행한다.
 
-위 코드에서 selector 함수는 `state => state.counter`이다. 이 함수는 redux store의 state를 매개변수로 받아서 state를 가공한 후 반환한다. `useSelector`는 selector 함수의 반환값을 반환한다.
-
-> **Selector 함수란?**
->
+> **Selector 함수란?** <br/>
 > Selector 함수는 Redux 상태를 입력으로 받아 특정 데이터를 선택하여 반환하는 함수다.
+
+위 코드에서 **selector 함수**는 `state => state.counter`이다. 이 함수는 redux store의 state를 매개변수로 받아서 state를 가공한 후 반환한다. `useSelector`는 selector 함수의 반환값을 반환한다.
 
 **2. selector 함수의 반환값을 비교** <br/>
 action이 dispatch 되면 redux store의 state가 변경된다. 이때 `useSelector`는 이전 selector 함수의 반환값과 현재 selector 함수의 반환값을 비교한다.
@@ -49,25 +48,30 @@ action이 dispatch 되면 redux store의 state가 변경된다. 이때 `useSelec
 
 ## 참조 동등성 검사와 업데이트
 
-이 과정을 이해하기 위해 먼저 원시 타입과 참조 타입을 자바스크립트가 어떻게 비교하는지를 알아야 한다.
-
-> 원시 타입과 객체에 대한 비교는 [JavaScript: 원시 타입과 객체 타입](https://chamdom.blog/primitive-and-object/)에서 자세히 다루니 꼭 읽어보자!
+> 자바스크립트가 객체 타입(참조 값)을 어떻게 비교하는지 [JavaScript: 원시 타입과 객체 타입](https://chamdom.blog/primitive-and-object/)에서 자세히 다루니 참고하면 좋을 것 같다.
 
 위에서 `useSelector`는 이전 selector 함수의 반환값과 현재 selector 함수의 반환값을 비교한다고 했다. 그렇다면 Redux는 이를 어떻게 비교할까?
 
-이때, Redux는 **reference equality checks(참조 동등성 검사)**를 사용한다. 즉, `===` 연산자를 사용하여 두 값이 같은지 비교한다.
+Redux는 `===` 연산자를 사용하여 **reference equality checks(참조 동등성 검사)**를 한다. 얕은 비교(shallow comparison)를 하는것은 아니지만 자바스크립트의 특징으로 인해 문제가 발생할 수 있다.
 
-JavaScript는 **원시 타입**의 값은 값 자체를 비교하기 때문에 이전 값과 다른지 정확하게 비교할 수 있다. 하지만 객체는 비교 대상이 참조 값(메모리 주소)이기 때문에 **객체의 값이 변경되지 않더라도(객체가 새로 생성되기 때문에) 항상 다른 값으로 판단한다.**
+JavaScript는 **원시 타입**의 값은 값 자체를 비교하기 때문에 이전 값과 다른지 정확하게 비교할 수 있다. 하지만 객체는 비교 대상이 참조 값(메모리 주소)이기 때문에 **객체의 일부가 변경되더라도 객체가 새로 생성된다.** 따라서 객체의 일부가 변경되더라도 `===` 연산자로는 이전 값과 다른지 정확하게 비교할 수 없다.
 
 # 구조 분해 할당의 문제점
 
-위에서 설명한 동등성 검사 과정 때문에 `useSelector`의 구조 분해 할당이 문제가 된다. 다음 예제 코드를 보자.
+자, 이제 위에서 언급한 문제점으로 인해 `useSelector`가 잘못 동작할 수 있는 상황을 알아보자.
 
 ```js
+// userSlice.js
+const initialState = {
+  data: null,
+  loading: false,
+  error: null,
+};
+
 const { data, loading, error } = useSelector(state => state.user);
 ```
 
-위 예제에서 `state.user`는 **객체**다. 위에서 설명한대로 JavaScript의 객체는 참조 값(메모리 주소)을 비교하기 때문에 `state.user`가 변경되지 않더라도 항상 다른 값으로 판단한다. 이로 인해 컴포넌트가 불필요하게 리렌더링된다.
+위 예제에서 `state.user`는 **객체**다. 위에서 설명한대로 JavaScript의 객체는 참조 값(메모리 주소)을 비교하기 때문에 `state.user`의 일부가 변경되더라도 항상 다른 값으로 판단한다. 따라서 `useSelector`는 매번 새로운 객체를 반환하게 되고 이로 인해 컴포넌트가 불필요하게 리렌더링된다.
 
 # useSelector 구조 분해 할당 최적화 방법
 
