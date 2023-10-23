@@ -1,11 +1,11 @@
 ---
-title: 'React + TypeScript + Webpack 프로젝트 설정하기(1)'
+title: 'Webpack + React + TypeScript Boilerplate (1) - 프로젝트 초기화 및 eslint, prettier 설정하기'
 category: react
-date: 2023-04-15
+date: 2023-10-12 17:00:00
 tags:
   - webpack
-  - babel
-  - polyfill
+  - eslint
+  - prettier
 ---
 
 # 들어가기 전에
@@ -14,11 +14,11 @@ React 환경을 구축하기 위해 **CRA (Create-React-App)**를 사용한다�
 
 > Webpack과 관련된 내용은 [웹팩(webpack) 이란?](https://chamdom.blog/what-is-webpack/)에서 확인할 수 있다.
 
-# 프로젝트 초기화
+# 프로젝트 초기 설정
 
-**폴더 구조**
+### 폴더 구조
 
-폴더 구조는 다음과 같이 구성한다.
+폴더 구조는 다음과 같다.
 
 ```bash
 ├── node_modules
@@ -31,8 +31,9 @@ React 환경을 구축하기 위해 **CRA (Create-React-App)**를 사용한다�
 │   ├── types
 │   ├── App.tsx
 │   └── index.tsx
-├── .eslintrc
-├── .prettierrc
+├── .eslintrc.js
+├── .prettierignore
+├── .prettierrc.js
 ├── babel.config.json
 ├── package.json
 ├── tsconfig.json
@@ -43,7 +44,7 @@ React 환경을 구축하기 위해 **CRA (Create-React-App)**를 사용한다�
 └── yarn.lock
 ```
 
-**프로젝트 초기화**
+### 프로젝트 초기화
 
 ```bash
 $ mkdir webpack-react-ts
@@ -52,191 +53,159 @@ $ yarn init -y
 $ mkdir src public dist
 ```
 
-# TypeScript 설치 및 설정
+# eslint, prettier 관련 라이브러리 설치
+
+먼저 eslint와 prettier를 설치하자.
 
 ```bash
-$ yarn add -D tsconfig-paths-webpack-plugin typescript
-
+$ yarn add -D eslint eslint-plugin-react eslint-plugin-react-hooks
 ```
 
-### TypeScript 설정 파일 작성
+**eslint:** ESLint는 JavaScript 코드에서 문제점을 찾고 코드 스타일을 체크하는 린트 도구.
 
-`tsc 명령어`를 사용하여 `tsconfig.json` 파일을 생성할 수도 있고 직접 파일을 생성할 수도 있다.
+**eslint-plugin-react:** React 프로젝트에서 React 관련 규칙을 추가하여 React 코드를 검사하는 데 도움을 준다. React 컴포넌트 및 JSX 코드에 대한 린트 규칙을 제공한다.
+
+**eslint-plugin-react-hooks:** React Hook 사용에 관한 규칙을 제공하고 React Hook을 올바르게 사용하고 예기치 않은 오류를 방지하는 데 도움을 준다.
 
 ```bash
-$ yarn tsc --init
-# or
-$ touch tsconfig.json
+$ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 ```
 
-```json
-// tsconfig.json
-{
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["ES2020", "DOM"],
-    "jsx": "react-jsx",
-    "module": "esnext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "strictNullChecks": false,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "downlevelIteration": true,
-    "forceConsistentCasingInFileNames": false
-  },
-  "include": ["src"],
-  "extends": "./tsconfig.paths.json"
-}
-```
+**prettier:** 코드를 일관된 스타일로 자동으로 포맷팅하여 읽기 쉽고 일관된 코드 스타일을 유지하기 위한 코드 포맷팅 도구다.
 
-### TypeScript 경로 별칭(alias) 설정
+**eslint-config-prettier:** ESLint와 Prettier를 함께 사용할 때, ESLint와 Prettier 간의 충돌을 방지하기 위해 설치한다. ESLint에서 Prettier와 겹치는 포매팅룰을 삭제한다.
 
-경로 별칭(alias) 설정을 위해서 `tsconfig.paths.json` 파일을 생성하고 `tsconfig.json` 파일에서 `extends`를 통해 `tsconfig.paths.json` 파일을 상속받도록 설정한다.
+**eslint-plugin-prettier:** ESLint 규칙과 Prettier 규칙 간의 충돌을 자동으로 해결하도록 도와준다. 이 플러그인을 사용하면 코드 포맷팅에 관한 ESLint 규칙을 활성화하고, 이러한 규칙을 Prettier로 전달하여 일관된 코드 스타일을 유지할 수 있다.
 
 ```bash
-$ touch tsconfig.paths.json
+$ yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
-```json
-{
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  }
-}
+**@typescript-eslint/eslint-plugin:** TypeScript 파일에서 타입 및 정적 분석을 수행하고 TypeScript 관련 규칙을 제공한다.
+
+**@typescript-eslint/parser:** TypeScript 코드를 ESLint가 이해할 수 있도록 변환하는 역할을 한다.
+
+# eslint, prettier 설정 파일 작성
+
+## .eslintrc.js 파일 생성
+
+파일을 루트 디렉토리에 생성한다. 파일명은 `.eslintrc.js` 또는 `.eslintrc`로 작성하면 된다.
+
+```bash
+$ touch .eslintrc.js
+# 또는
+$ touch .eslintrc
 ```
 
-> ⚠️ webpack 설정 파일은 뒤에서 작성하겠지만 `webpack.common.js`의 `resolve`에 플러그인을 다음과 같이 추가해줘야 한다.
+## .eslintrc.js 파일 작성
 
 ```js
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
 module.exports = {
-  // ...
-  resolve: {
-    // ...
-    plugins: [new TsconfigPathsPlugin()],
+  // 이 ESLint 설정은 이 설정 파일이 있는 디렉토리를 기준으로 모든 하위 디렉토리와 파일에 적용된다.
+  root: true,
+
+  // 실행 환경을 정의. 여기서는 브라우저와 Node.js 환경에서 실행되는 코드를 대상으로 한다.
+  env: {
+    browser: true,
+    node: true,
   },
-};
-```
 
-# React 설치 및 설정
+  // TypeScript 코드를 분석하기 위한 파서
+  parser: '@typescript-eslint/parser',
 
-**패키지 설치**
+  // 파서에 전달되는 옵션들을 정의한다.
+  parserOptions: {
+    // ECMAScript 버전을 2020(ES11)으로 지정
+    ecmaVersion: 2020,
+    // 모듈 시스템을 사용하는 코드를 분석하도록 설정
+    sourceType: 'module',
+    // 타입 정보에 기반한 ESLint 규칙을 사용하기 위해 tsconfig.json 파일의 경로를 지정
+    project: './tsconfig.json',
+    // tsconfig.json 파일의 위치를 지정. __dirname은 현재 파일의 위치를 나타낸다.
+    tsconfigRootDir: __dirname,
+    // JSX 문법을 사용할 수 있도록 설정
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
 
-```bash
-$ yarn add react react-dom
-$ yarn add -D @types/react @types/react-dom
-```
+  // ESLint에 추가적인 기능을 제공하는 플러그인들을 명시
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
 
-**파일 생성**
-
-```bash
-$ touch public/index.html
-```
-
-**index.html 작성**
-
-```html
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Webpack React TypeScript Starter</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
-```
-
-**index.tsx 작성**
-
-```tsx
-// index.tsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-import App from '@/App';
-
-const root = ReactDOM.createRoot(document.getElementById('root') as Element);
-
-root.render(<App />);
-```
-
-**App.tsx 작성**
-
-```tsx
-// App.tsx
-import React from 'react';
-
-const App = () => {
-  return <div>Hello World!</div>;
-};
-
-export default App;
-```
-
-# Babel, Polyfill 설정
-
-`babel` 7버전부터 `ts-loader`를 사용하지 않고 `@babel/preset-typescript`를 사용하여 `ts`파일을 컴파일 할 수 있다. 자세한 내용은 [TypeScript With Babel: A Beautiful Marriage](https://iamturns.com/typescript-babel/)에서 확인할 수 있다.
-
-**패키지 설치**
-
-```bash
-$ yarn add @babel/runtime-corejs3
-$ yarn add -D @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader
-```
-
-**babel.config.json 설정**
-
-> 자세한 설명은 [이 포스팅](https://chamdom.blog/webpack-babel-setting)에서 다룬다.
-
-```json
-// babel.config.json
-{
-  "presets": [
-    [
-      "@babel/preset-env",
-      { "targets": { "browsers": ["last 2 versions", "safari >= 7"] } }
-    ],
-    "@babel/preset-react",
-    ["@babel/preset-typescript", { "isTSX": true, "allExtensions": true }]
+  extends: [
+    'eslint:recommended', // ESLint의 기본 권장 규칙
+    'plugin:react/recommended', // React를 위한 권장 규칙
+    'plugin:react-hooks/recommended', // React Hooks를 위한 권장 규칙
+    'plugin:@typescript-eslint/recommended', // TypeScript를 위한 권장 규칙
+    'plugin:prettier/recommended', // Prettier와 ESLint를 함께 사용하기 위한 설정
   ],
-  "plugins": [["@babel/plugin-transform-runtime", { "corejs": 3 }]]
-}
-```
 
-**webpack 설정 파일 작성**
-
-```js
-// webpack.common.js
-
-module.exports = {
-  // ...
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/i, // .tsx 또는 .ts 확장자를 가진 파일에 대해서
-        exclude: /node_modules/, // node_modules 폴더에서는 제외
-        use: 'babel-loader', // babel-loader를 사용하여 변환
-      },
-      // ...
-    ],
+  // 특정 규칙들을 오버라이드하거나 추가하는 섹션
+  rules: {
+    // React를 사용할 때 'React'를 import 하지 않아도 되게 설정
+    'react/jsx-uses-react': 0,
+    'react/react-in-jsx-scope': 0,
+    // React Hooks의 의존성 배열을 정확하게 명시하도록 경고
+    'react-hooks/exhaustive-deps': 1,
+    // TypeScript에서 'any' 타입의 명시적 사용을 허용
+    '@typescript-eslint/no-explicit-any': 0,
   },
+
+  // ESLint 규칙에서 사용할 추가적인 설정. 여기서는 React 버전을 자동으로 감지하도록 설정한다.
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+
+  // ESLint가 파일을 무시하도록 하는 패턴들이다.
+  ignorePatterns: ['node_modules/', 'build/', 'dist/', 'webpack.*.js'],
 };
 ```
+
+### parser는 왜 필요할까?
+
+TypeScript는 구문 분석기를 사용하여 TypeScript 소스 코드를 추상 구문 트리 (AST)로 변환한다. TypeScript AST는 ESLint에서 바로 사용될 수 없다. 따라서 `@typescript-eslint/parser`는 TypeScript AST를 ESLint가 이해할 수 있는 형식으로 변환한다. 이를 통해 일부 ESLint 규칙이 타입 정보를 기반으로 코드를 검사할 수 있다.
+
+### project 옵션
+
+ESLint의 parserOptions 섹션에서 project 옵션을 설정하면, `@typescript-eslint/parser`는 해당 `tsconfig.json` 파일을 사용하여 타입 정보를 가져온다. 이를 통해 타입 기반의 ESLint 규칙을 활용할 수 있게 된다.
+
+## .prettierrc.js 파일 생성
+
+이 파일 또한 루트 디렉토리에 생성한다. 파일명은 `.prettierrc.js` 또는 `.prettierrc`로 작성하면 된다.
+
+```bash
+$ touch .prettierrc.js
+# 또는
+$ touch .prettierrc
+```
+
+## .prettierrc.js 파일 작성
+
+본인의 취향에 맞게 작성하면 된다!
+
+```js
+module.exports = {
+  trailingComma: 'all',
+  printWidth: 100,
+  tabWidth: 2,
+  singleQuote: true,
+  arrowParens: 'avoid',
+};
+```
+
+<br /><br />
+
+> boilerPlate 코드는 [여기](https://github.com/CH4MD0M/webpack-react-ts-boilerplate)에서 확인할 수 있다.
+
+<br />
+
+---
 
 # 참고
 
 - [Webpack 공식 문서](https://webpack.js.org/)
+- [ESLint 공식 문서](https://eslint.org/)
 - [React + TypeScript + Webpack5 초기 설정](https://ryuhojin.tistory.com/19)
-- [Differences in output of Typescript compiler and Babel for classes](https://kevinwil.de/differences-in-output-of-typescript-compiler-and-babel-for-classes/)
 - [프론트엔드 개발환경의 이해: 웹팩(심화)](https://jeonghwan-kim.github.io/series/2020/01/02/frontend-dev-env-webpack-intermediate.html)
