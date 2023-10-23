@@ -107,7 +107,7 @@ class Queue {
     if (this.store[this.rear] === undefined) {
       return 0;
     } else {
-      return this.rear - this.rear + 1;
+      return this.rear - this.front + 1;
     }
   }
 
