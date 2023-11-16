@@ -142,15 +142,15 @@ dfs(graph, 0, visited);
 // 0 4 3 2 5 1
 ```
 
-출력된 결과를 보면 Recursive DFS는 `사전식 순서`로 방문한 데 반해 와 Iteractive DFS는 역순으로 방문한 것을 알 수 있다. 이는 Iteractive DFS가 스택으로 구현하다 보니 가장 마지막에 삽입된 노드부터 꺼내서 반복하게 되고 인접 노드를 한꺼번에 추가하기 때문에 가장 마지막에 스택에 담긴 노드부터 방문하기 때문이다. 두 경우 모두 DFS 알고리즘에 따라 정상적으로 모든 노드의 방문을 마쳤기 때문에 잘못된 결과가 아니다.
+출력된 결과를 보면 Recursive DFS는 `사전식 순서`로 방문한 데 반해 와 Iterative DFS는 역순으로 방문한 것을 알 수 있다. 이는 Iterative DFS가 스택으로 구현하다 보니 가장 마지막에 삽입된 노드부터 꺼내서 반복하게 되고 인접 노드를 한꺼번에 추가하기 때문에 가장 마지막에 스택에 담긴 노드부터 방문하기 때문이다. 두 경우 모두 DFS 알고리즘에 따라 정상적으로 모든 노드의 방문을 마쳤기 때문에 잘못된 결과가 아니다.
 
 > DFS의 기능을 생각하면 순서와 상관없이 처리해도 되지만, 코딩 테스트에서는 번호가 낮은 순서부터 처리하도록 명시하는 경우가 종종 있다. 따라서 관행적으로 번호가 낮은 순서부터 처리하도록 구현하는 편이다.
 
 ## 스택을 사용한 DFS의 문제점
 
-파이썬은 `sys.setrecursionlimit`을 사용하여 재귀의 최대 깊이를 설정할 수 있어서 재귀를 사용한 DFS(이하 Recursive DFS)로 문제를 풀더라도 대부분 해결된다. 하지만 자바스크립트는 그런거 없다.🥲 문제를 해결하기 위해서는 스택을 이용한 DFS(이하 Iteractive DFS)를 이용해야 한다.
+파이썬은 `sys.setrecursionlimit`을 사용하여 재귀의 최대 깊이를 설정할 수 있어서 재귀를 사용한 DFS(이하 Recursive DFS)로 문제를 풀더라도 대부분 해결된다. 하지만 자바스크립트는 그런거 없다.🥲 문제를 해결하기 위해서는 스택을 이용한 DFS(이하 Iterative DFS)를 이용해야 한다.
 
-그런데 Iteractive DFS를 사용할 때 Recursive DFS와 같이 동작하지 않는 부분이 있다. 그것은 바로 `부모 노드로 되돌아가는 로직`이다.
+그런데 Iterative DFS를 사용할 때 Recursive DFS와 같이 동작하지 않는 부분이 있다. 그것은 바로 `부모 노드로 되돌아가는 로직`이다.
 
 <br/>
 
@@ -176,11 +176,11 @@ function dfs(graph, v, visited) {
 
 따라서, `for` 문 이후의 코드는 리프 노드부터 시작하여 해당 부모 노드까지의 연산을 수행하는 부분이다.
 
-이 부분(부모 노드로 돌아가는 로직)이 Iteractive DFS에는 존재하지 않는다. **스택의 상단에 있는 노드(즉, 가장 최근에 추가된 노드)를 계속 탐색하기 때문에** 현재 노드의 부모 노드로 돌아가는 로직이 없다. 따라서 Iteractive DFS가 Recursive DFS와 같이 동작하도록 하려면 부모 노드로 돌아가는 로직을 추가해줘야 한다.
+이 부분(부모 노드로 돌아가는 로직)이 Iterative DFS에는 존재하지 않는다. **스택의 상단에 있는 노드(즉, 가장 최근에 추가된 노드)를 계속 탐색하기 때문에** 현재 노드의 부모 노드로 돌아가는 로직이 없다. 따라서 Iterative DFS가 Recursive DFS와 같이 동작하도록 하려면 부모 노드로 돌아가는 로직을 추가해줘야 한다.
 
 # 개선된 Iterative DFS
 
-Recursive DFS와 같이 동작하도록 Iteractive DFS 코드를 개선해보자. 직관적으로 부모 노드를 추적할 수 있도록 부모 노드를 stack에 함께 넣어주면 된다. 첫 번째 원소는 현재 노드, 두 번째 원소는 부모 노드를 넣어주면 된다. 루트 노드의 경우 부모 노드가 없으므로 `-1`, `null`, `undefined` 등 존재할 수 없는 수를 넣어주자.
+Recursive DFS와 같이 동작하도록 Iterative DFS 코드를 개선해보자. 직관적으로 부모 노드를 추적할 수 있도록 부모 노드를 stack에 함께 넣어주면 된다. 첫 번째 원소는 현재 노드, 두 번째 원소는 부모 노드를 넣어주면 된다. 루트 노드의 경우 부모 노드가 없으므로 `-1`, `null`, `undefined` 등 존재할 수 없는 수를 넣어주자.
 
 ```js
 function dfs(graph, visited) {
@@ -202,7 +202,7 @@ function dfs(graph, visited) {
 }
 ```
 
-부모 노드를 추적하고 부모 노드로 되돌아가는 로직을 수행하기 위해 스택에서 pop하고 다시 push를 해주는 작업을 하게 된다. 이때 유의할 점이 pop 이후에 이미 방문한 노드를 바로 push 하면 무한루프에 빠질 수 있다. 따라서 pop과 push 사이에 조건을 넣어줘야 한다. 이 부분이 **기존의 Iteractive DFS에서 빠져 있던 부분이고 Recursive DFS와 같게 만들어 주는데 필요한 로직**이다.
+부모 노드를 추적하고 부모 노드로 되돌아가는 로직을 수행하기 위해 스택에서 pop하고 다시 push를 해주는 작업을 하게 된다. 이때 유의할 점이 pop 이후에 이미 방문한 노드를 바로 push 하면 무한루프에 빠질 수 있다. 따라서 pop과 push 사이에 조건을 넣어줘야 한다. 이 부분이 **기존의 Iterative DFS에서 빠져 있던 부분이고 Recursive DFS와 같게 만들어 주는데 필요한 로직**이다.
 
 이미 방문한 노드라는 것은 리프 노드이거나 더 이상 탐색할 노드가 없는 노드라는 것을 의미한다. 따라서 아래 코드의 `if (visited[cur])` 코드 블록은 Recursive DFS의 `for`문이 종료된 후에 수행되는 부분과 같다.
 
@@ -214,7 +214,7 @@ function dfs(graph, visited) {
     let [cur, parent] = stack.pop();
 
     if (visited[cur]) {
-      // 이 부분이 기존의 Iteractive DFS에서 빠져 있던 부분이고
+      // 이 부분이 기존의 Iterative DFS에서 빠져 있던 부분이고
       // Recursive DFS와 같게 만들어 주는데 필요한 로직이다.
       continue;
     }
@@ -234,7 +234,7 @@ function dfs(graph, visited) {
 
 <br/><br/>
 
-**개선된 Iteractive DFS**의 동작 과정 그림으로 통해 알아보자.
+**개선된 Iterative DFS**의 동작 과정 그림으로 통해 알아보자.
 
 1. 시작 노드인 `0`을 스택에 삽입한다. 이때 0은 루트 노드(부모가 없는 노드)이므로 부모노드는 `-1`,`undefined`,`null`과 같은 존재하지 않는 수를 넣어준다. 이 예제에서는 `-1`을 부모 노드로 삽입한다.
 
@@ -309,4 +309,4 @@ function dfs(graph, visited) {
 - [자료구조-Stack을-이용한-Iterative-DFS-구현](https://velog.io/@longroadhome/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Stack%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-Iterative-DFS-%EA%B5%AC%ED%98%84#iterative-dfs-%EB%B0%A9%EB%AC%B8-%EA%B5%AC%ED%98%84)
 - [이것이 취업을 위한 코딩테스트다](http://www.yes24.com/Product/Goods/91433923)
 - [C언어로 쉽게 풀어쓴 자료구조](http://www.yes24.com/Product/Goods/69750539)
-- [Depth First Search (DFS) – Iterative and Recursive Implementation](techiedelight.com/depth-first-search/)
+- [Depth First Search (DFS) – Iterative and Recursive Implementation](https://techiedelight.com/depth-first-search/)
