@@ -374,8 +374,3 @@ interface Merged {
 
 - https://typescript-kr.github.io/
 - 러닝 타입스크립트
-
-```ts
-function 뭐시깽1(input?: string) {}
-function 뭐시깽2(input: string | undefined) {}
-```
