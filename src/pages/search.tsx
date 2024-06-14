@@ -1,5 +1,7 @@
-import React, { useState, useCallback, ChangeEvent } from 'react';
+import React, { ChangeEvent, useMemo } from 'react';
 import { graphql, PageProps } from 'gatsby';
+
+import { useSearchInput } from '@hooks/useSearchInput';
 
 import Layout from '@layout/index';
 import Seo from '@components/Seo';
@@ -10,14 +12,15 @@ import PostList from '@components/PostList';
 
 const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
   const posts = data.allMdx.nodes;
-  const [query, setQuery] = useState('');
+  const [searchKeyword, debouncedSearchKeyword, setSearchKeyword] =
+    useSearchInput('search-keyword', '');
 
-  const filteredPosts = useCallback(
+  const filteredPosts = useMemo(
     () =>
       posts.filter(post => {
         const { excerpt, frontmatter } = post;
         const { title, tags } = frontmatter;
-        const lowerQuery = query.toLocaleLowerCase();
+        const lowerQuery = debouncedSearchKeyword.toLocaleLowerCase();
 
         return (
           excerpt?.toLocaleLowerCase().includes(lowerQuery) ||
@@ -25,20 +28,24 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
           tags?.some(tag => tag.toLocaleLowerCase().includes(lowerQuery))
         );
       }),
-    [query, posts],
+
+    [debouncedSearchKeyword, posts],
   );
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    setSearchKeyword(e.target.value);
   };
 
   return (
     <Layout>
       <Seo title="Search" />
       <PageTitle>Search.</PageTitle>
-      <SearchBar onChangeHandler={handleInputChange} />
+      <SearchBar
+        onChangeHandler={handleInputChange}
+        searchKeyword={searchKeyword}
+      />
       <Divider mt="6rem" mb="3rem" />
-      <PostList postList={filteredPosts()} />
+      <PostList postList={filteredPosts} />
     </Layout>
   );
 };
