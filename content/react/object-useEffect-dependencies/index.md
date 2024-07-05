@@ -67,7 +67,7 @@ export default ExampleComponent;
 ### 해결 방법
 
 ```tsx
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 function useCustomHook({ obj }: { obj: Object }) {
   const prevObjRef = useRef();
