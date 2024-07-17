@@ -45,15 +45,80 @@ function solution(topping) {
   }
 
   for (let i = 0; i < N; i++) {
-    const currentTopping = topping[i];
-
-    if (toppingMap.get(currentTopping) === 1) toppingMap.delete(currentTopping);
-    else toppingMap.set(currentTopping, toppingMap.get(currentTopping) - 1);
-    brotherMap.set(currentTopping, (brotherMap.get(currentTopping) || 0) + 1);
+    toppingMap.set(topping[i], toppingMap.get(topping[i]) - 1);
+    if (toppingMap.get(topping[i]) === 0) toppingMap.delete(topping[i]);
+    brotherMap.set(topping[i], (brotherMap.get(topping[i]) || 0) + 1);
 
     if (toppingMap.size === brotherMap.size) answer++;
   }
 
   return answer;
+}
+```
+
+# 문제 풀이
+
+`'뭐여 그냥 Set으로 감싸고 slice해서 비교하면 되겠네ㅋ'` 라고 생각한 멍청이.🤪
+
+```js
+function solution(topping) {
+  let answer = 0;
+  for (let i = 1; i < topping.length; i++) {
+    const set1 = new Set(topping.slice(0, i));
+    const set2 = new Set(topping.slice(i));
+    if (set1.size === set2.size) answer++;
+  }
+  return answer;
+}
+```
+
+<br/>
+
+![test-error](./image/132265-error.png)
+
+첫 번째 테스트케이스부터 실행시간이 심상치 않음을 느끼고 바로 실행 중단을 눌렀다.🫢
+
+<br/>
+
+### 시간복잡도 분석
+
+위 코드를 보면 `for` 루프 내에서 `slice`와 `Set`을 사용했다. 따라서 시간복잡도는 다음과 같을 것이다.
+
+$O(n)×O(n)×2=O(n^2)$
+
+주어진 문제의 제한사항에서도 볼 수 있듯이 `topping` 배열의 길이가 최대 1,000,000일 수 있다. 이 경우, 시간복잡도가 $O(n^2)$인 **훌륭한** 위에 코드를 사용하면 다음과 같은 연산 횟수를 가지게 된다.🙃
+
+$1,000,000×1,000,000=1,000,000,000,000$
+
+이를 해결하기 위해 효율적인 시간복잡도를 가지는 접근법이 필요하다. 먼저 `Map`을 사용하여 토핑의 모든 갯수를 기록한다.
+
+```js
+function solution(topping) {
+  const toppingMap = new Map();
+
+  for (let i = 0; i < N; i++) {
+    toppingMap.set(topping[i], (toppingMap.get(topping[i]) || 0) + 1);
+  }
+}
+```
+
+그리고 `topping` 배열을 순회하면서 형제 간의 분배를 확인한다. 자세한 설명은 주석으로 작성했다!
+
+```js
+for (let i = 0; i < N; i++) {
+  // 현재 토핑
+  const currentTopping = topping[i];
+
+  // 현재 토핑을 toppingMap에서 하나 제거
+  toppingMap.set(currentTopping, toppingMap.get(currentTopping) - 1);
+
+  // 값이 0이어도 존재하는 것이기 때문에 값이 -1이 되는 것을 막기위해 삭제
+  if (toppingMap.get(currentTopping) === 0) toppingMap.delete(currentTopping);
+
+  // 현재 토핑을 brotherMap에 추가
+  brotherMap.set(currentTopping, (brotherMap.get(currentTopping) || 0) + 1);
+
+  // 두 Map의 크기가 같으면 answer 증가
+  if (toppingMap.size === brotherMap.size) answer++;
 }
 ```
