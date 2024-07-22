@@ -3,7 +3,7 @@ title: '[BOJ] 1946번: 신입 사원 (JavaScript)'
 category: ps
 date: 2024-07-19 10:00:00
 tags:
-  - 프로그래머스
+  - 백준
   - silver1
   - 그리디
   - 정렬

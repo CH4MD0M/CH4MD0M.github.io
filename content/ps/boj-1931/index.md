@@ -3,7 +3,7 @@ title: '[BOJ] 1931번: 회의실 배정 (JavaScript)'
 category: ps
 date: 2024-07-19 12:00:00
 tags:
-  - 프로그래머스
+  - 백준
   - silver1
   - 그리디
   - 정렬
@@ -11,10 +11,7 @@ tags:
 
 # 문제
 
-[--small-card--](https://www.acmicpc.net/problem/1931)
-
-[--small-card--](https://www.npmjs.com/package/gatsby-remark-link-summary)
-[--large-card--](https://github.com/blyoa/gatsby-remark-link-summary)
+[1931번: 회의실 배정](https://www.acmicpc.net/problem/1931)
 
 ### 문제 설명
 
