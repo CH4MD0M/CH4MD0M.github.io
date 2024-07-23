@@ -3,11 +3,13 @@ import { lightTheme } from '@assets/prism-light-theme';
 import { darkTheme } from '@assets/prism-dark-theme';
 
 export default createGlobalStyle`${css`
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
   *,
   ::after,
   ::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
 
   html {
@@ -19,7 +21,7 @@ export default createGlobalStyle`${css`
     --divider: ${({ theme }) => theme.colors.primary3};
     --headerBgColor: hsla(0, 0%, 100%, 0.8);
     --headerShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
-    --toggleBdColor: ${({ theme }) => theme.colors.blue0};
+    --activeMenuTextColor: ${({ theme }) => theme.colors.blue0};
     --iconBgColor: ${({ theme }) => theme.colors.primary3};
     --iconColor: ${({ theme }) => theme.colors.primary4};
     --hoveredIconColor: ${({ theme }) => theme.colors.primary9};
@@ -44,8 +46,8 @@ export default createGlobalStyle`${css`
     --inlineCodeBgColor: ${({ theme }) => theme.colors.primary3};
     --hrColor: ${({ theme }) => theme.colors.primary5};
     --imgBgColor: transparent;
-    --tagBgColor: ${({ theme }) => theme.colors.primary2};
-    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary4};
+    --tagBgColor: ${({ theme }) => theme.colors.primary1};
+    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary2};
     --activeTagBgColor: ${({ theme }) => theme.colors.blue0};
     --hoveredActiveTagBgColor: hsl(187, 92%, 30%);
     --themeToggleIconColor: hsl(51, 89%, 66%);
@@ -61,9 +63,9 @@ export default createGlobalStyle`${css`
     --bgColor: ${({ theme }) => theme.colors.primary9};
     --textColor: ${({ theme }) => theme.colors.primary0};
     --divider: ${({ theme }) => theme.colors.primary8};
-    --headerBgColor: hsla(210, 20%, 15%, 0.8);
+    --headerBgColor: ${({ theme }) => theme.colors.primary9};
     --headerShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
-    --toggleBdColor: ${({ theme }) => theme.colors.blue1};
+    --activeMenuTextColor: ${({ theme }) => theme.colors.blue1};
     --iconBgColor: ${({ theme }) => theme.colors.primary7};
     --iconColor: ${({ theme }) => theme.colors.primary5};
     --hoveredIconColor: ${({ theme }) => theme.colors.primary0};
@@ -104,7 +106,10 @@ export default createGlobalStyle`${css`
   body {
     background: var(--bgColor) !important;
     color: var(--textColor);
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+      BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   }
 
   a {
