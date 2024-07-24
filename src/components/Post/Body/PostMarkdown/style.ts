@@ -123,7 +123,7 @@ export const MDWrapper = styled.div`
 
   /* paragraph */
   p {
-    font-weight: lighter;
+    font-weight: light;
     overflow-x: scroll;
     word-break: break-all;
     ::-webkit-scrollbar {

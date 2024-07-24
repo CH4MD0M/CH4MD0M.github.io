@@ -61,7 +61,7 @@ export default createGlobalStyle`${css`
 
   [data-theme='dark'] {
     --bgColor: ${({ theme }) => theme.colors.primary9};
-    --textColor: ${({ theme }) => theme.colors.primary0};
+    --textColor: hsl(217, 7%, 79%);
     --divider: ${({ theme }) => theme.colors.primary8};
     --headerBgColor: ${({ theme }) => theme.colors.primary9};
     --headerShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
