@@ -89,3 +89,35 @@ for (const [start, end] of testCase) {
 
 console.log(answer.join('\n'));
 ```
+
+# reduce 메서드 활용 풀이
+
+```js
+const input = require('fs')
+  .readFileSync(process.platform === 'linux' ? '/dev/stdin' : './input.txt')
+  .toString()
+  .trim()
+  .split('\n');
+
+const list = input[1].split(' ').map(Number);
+const testCase = input.slice(2).map(val => val.split(' ').map(Number));
+
+const totalSum = list.reduce(
+  (acc, cur) => {
+    acc.push(acc[acc.length - 1] + cur);
+    return acc;
+  },
+  [0],
+);
+
+const answer = testCase.reduce((acc, [start, end]) => {
+  acc.push(totalSum[end] - totalSum[start - 1]);
+  return acc;
+}, []);
+
+console.log(answer.join('\n'));
+```
+
+![11659-result](./image/11659-result.png)
+
+시간과 메모리가 약간 감소했다.
