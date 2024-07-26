@@ -36,9 +36,8 @@ tags:
 
 ### 입출력
 
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
-
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 1
 
@@ -52,8 +51,7 @@ Z321
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 1
 
@@ -66,11 +64,10 @@ A910
 ```
 
 </div>
-
 </div>
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
 
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 2
 
@@ -81,8 +78,7 @@ Z20
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 2
 
@@ -92,11 +88,10 @@ Z19
 ```
 
 </div>
-
 </div>
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
 
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 3
 
@@ -109,8 +104,7 @@ FIPJOTEA5
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 3
 
@@ -124,9 +118,9 @@ PIM12MD7RCOLWW09
 </div>
 
 </div>
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
 
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 4
 
@@ -140,8 +134,7 @@ ACAAA
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 4
 
@@ -154,7 +147,6 @@ BCDEF
 ```
 
 </div>
-
 </div>
 
 # 코드

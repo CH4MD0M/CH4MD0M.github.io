@@ -66,6 +66,20 @@ export const MDWrapper = styled.div`
   }
 
   /* table */
+  .no-header {
+    th {
+      display: none;
+    }
+    th:first-child,
+    td:first-child {
+      border-left: 0.5px solid var(--tableBdColor);
+    }
+    th:last-child,
+    td:last-child {
+      border-right: 0.5px solid var(--tableBdColor);
+    }
+  }
+
   table {
     max-width: ${({ theme }) => theme.maxWidth};
     border-collapse: collapse;
@@ -138,6 +152,25 @@ export const MDWrapper = styled.div`
   }
 
   /* code */
+  .flex-wrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--tableBdColor);
+    border-radius: 6px;
+    padding: 2rem;
+    padding-bottom: 0;
+
+    & > div {
+      width: 100%;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
   code,
   pre {
     font-family: 'Fira Code', monospace;
@@ -250,6 +283,11 @@ export const MDWrapper = styled.div`
     /* blockquote */
     blockquote {
       margin: 3rem 0;
+    }
+
+    .flex-wrapper {
+      flex-direction: column;
+      gap: 2rem;
     }
   }
 `;
