@@ -6,7 +6,7 @@ tags:
   - 백준
   - silver2
   - 그래프
-  - BFS
+  - bfs
 ---
 
 # 문제
