@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const MDWrapper = styled.div`
   min-width: 100%;
-  font-weight: 400;
-  font-size: 1.65rem;
-  line-height: 1.7;
+
   color: var(--textColor);
 
   h1,
@@ -16,27 +14,34 @@ export const MDWrapper = styled.div`
   table,
   blockquote,
   pre {
-    margin-top: 0;
-    margin-bottom: 2.5rem;
+    padding: 0.2rem 0;
   }
 
   /* headings */
   h1 {
-    margin-top: 8rem;
+    margin: 8rem 0 2rem;
     font-size: 3.2rem;
+    border-bottom: 1px solid var(--divider);
+  }
+  h2 {
+    margin-top: 6rem;
+    font-size: 2.7rem;
     &::before {
       content: '';
       border-left: 4px solid var(--headingBdColor);
       margin-right: 1rem;
     }
   }
-  h2 {
-    margin-top: 6rem;
-    font-size: 2.7rem;
+  h2 + h3 {
+    margin-top: 1.5rem;
   }
   h3 {
     margin-top: 4rem;
     font-size: 2.2rem;
+  }
+  h4 {
+    margin-top: 2.3rem;
+    font-size: 2rem;
   }
 
   /* link */
@@ -50,7 +55,7 @@ export const MDWrapper = styled.div`
   b,
   strong {
     font-weight: 400;
-
+    color: var(--linkColor);
     .katex {
       font-weight: 900;
     }
@@ -81,30 +86,30 @@ export const MDWrapper = styled.div`
   }
 
   table {
-    max-width: ${({ theme }) => theme.maxWidth};
+    width: 100%;
+    margin: 2.5rem 0;
     border-collapse: collapse;
-    text-align: left;
-    table-layout: fixed;
     word-break: break-all;
-    height: auto;
+    b,
+    strong {
+      color: inherit;
+      font-weight: 500;
+    }
   }
   th {
     padding: 1rem 2rem;
     background-color: var(--tableBgColor);
-    border: 0.5px solid var(--tableBdColor);
     word-break: keep-all;
   }
   td {
     padding: 1rem 2rem;
-    border: 0.5px solid var(--tableBdColor);
+    border-bottom: 1px solid var(--tableBdColor);
   }
-  th:first-child,
-  td:first-child {
-    border-left: none;
+  th:first-child {
+    border-radius: 10px 0 0 10px;
   }
-  th:last-child,
-  td:last-child {
-    border-right: none;
+  th:last-child {
+    border-radius: 0 10px 10px 0;
   }
 
   /* list */
@@ -137,7 +142,9 @@ export const MDWrapper = styled.div`
 
   /* paragraph */
   p {
-    font-weight: light;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1.8;
     overflow-x: scroll;
     word-break: break-all;
     ::-webkit-scrollbar {
@@ -202,9 +209,15 @@ export const MDWrapper = styled.div`
     padding: 1.2rem 2rem;
     color: var(--textColor);
     background: var(--blockQuoteBgColor);
-    border-left: 4px solid var(--blockQuoteBorder);
-    p {
-      margin-bottom: 2rem;
+    border-left: 4px solid hsl(29, 90%, 62%);
+
+    p:first-child {
+      b,
+      strong {
+        font-weight: 700;
+        color: hsl(29, 90%, 62%);
+      }
+      margin-bottom: 1.4rem;
     }
     p:last-child {
       margin-bottom: 0;
