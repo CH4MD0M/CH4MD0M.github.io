@@ -19,7 +19,6 @@ export default createGlobalStyle`${css`
     --bgColor: ${({ theme }) => theme.colors.primary0};
     --textColor: ${({ theme }) => theme.colors.primary9};
     --divider: ${({ theme }) => theme.colors.primary3};
-    --headerBgColor: hsla(0, 0%, 100%, 0.8);
     --headerShadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.05);
     --activeMenuTextColor: ${({ theme }) => theme.colors.blue0};
     --iconBgColor: ${({ theme }) => theme.colors.primary3};
@@ -63,7 +62,6 @@ export default createGlobalStyle`${css`
     --bgColor: ${({ theme }) => theme.colors.primary9};
     --textColor: hsl(217, 7%, 79%);
     --divider: ${({ theme }) => theme.colors.primary8};
-    --headerBgColor: ${({ theme }) => theme.colors.primary9};
     --headerShadow: 0px 5px 5px 0px rgba(100, 100, 100, 0.15);
     --activeMenuTextColor: ${({ theme }) => theme.colors.blue1};
     --iconBgColor: ${({ theme }) => theme.colors.primary7};
