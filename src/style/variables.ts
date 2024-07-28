@@ -11,8 +11,8 @@ const variables = {
     primary8: 'hsl(210, 19%, 20%)',
     primary9: 'hsl(210, 25%, 10%)',
     gray: 'hsl(210, 9%, 31%)',
-    blue0: 'hsl(187, 92%, 34%)',
-    blue1: 'hsl(187, 56%, 72%)',
+    blue0: 'hsl(187, 66%, 42%)',
+    blue1: 'hsl(187, 92%, 34%)',
     blue2: 'hsl(207, 90%, 54%)',
   },
   responsive: {
