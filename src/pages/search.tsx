@@ -7,7 +7,6 @@ import Layout from '@layout/index';
 import Seo from '@components/Seo';
 import PageTitle from '@components/PageTitle';
 import SearchBar from '@components/SearchBar';
-import Divider from '@components/Divider';
 import PostList from '@components/PostList';
 
 const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
@@ -15,22 +14,21 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
   const [searchKeyword, debouncedSearchKeyword, setSearchKeyword] =
     useSearchInput('search-keyword', '');
 
-  const filteredPosts = useMemo(
-    () =>
-      posts.filter(post => {
-        const { excerpt, frontmatter } = post;
-        const { title, tags } = frontmatter;
-        const lowerQuery = debouncedSearchKeyword.toLocaleLowerCase();
+  const filteredPosts = useMemo(() => {
+    const lowerQuery = debouncedSearchKeyword.toLocaleLowerCase();
+    if (!lowerQuery) return [];
 
-        return (
-          excerpt?.toLocaleLowerCase().includes(lowerQuery) ||
-          title?.toLocaleLowerCase().includes(lowerQuery) ||
-          tags?.some(tag => tag.toLocaleLowerCase().includes(lowerQuery))
-        );
-      }),
+    return posts.filter(post => {
+      const { excerpt, frontmatter } = post;
+      const { title, tags } = frontmatter;
 
-    [debouncedSearchKeyword, posts],
-  );
+      return (
+        excerpt?.toLocaleLowerCase().includes(lowerQuery) ||
+        title?.toLocaleLowerCase().includes(lowerQuery) ||
+        tags?.some(tag => tag.toLocaleLowerCase().includes(lowerQuery))
+      );
+    });
+  }, [debouncedSearchKeyword, posts]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -44,7 +42,7 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
         onChangeHandler={handleInputChange}
         searchKeyword={searchKeyword}
       />
-      <Divider mt="6rem" mb="3rem" />
+
       <PostList postList={filteredPosts} />
     </Layout>
   );
