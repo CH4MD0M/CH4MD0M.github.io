@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const MDWrapper = styled.div`
   min-width: 100%;
-
   color: var(--textColor);
 
   h1,
@@ -23,8 +22,11 @@ export const MDWrapper = styled.div`
     font-size: 3.2rem;
     border-bottom: 1px solid var(--divider);
   }
+  h1 + h2 {
+    margin-top: 1.5rem;
+  }
   h2 {
-    margin-top: 6rem;
+    margin: 6rem 0 1rem;
     font-size: 2.7rem;
     &::before {
       content: '';
@@ -71,20 +73,6 @@ export const MDWrapper = styled.div`
   }
 
   /* table */
-  .no-header {
-    th {
-      display: none;
-    }
-    th:first-child,
-    td:first-child {
-      border-left: 0.5px solid var(--tableBdColor);
-    }
-    th:last-child,
-    td:last-child {
-      border-right: 0.5px solid var(--tableBdColor);
-    }
-  }
-
   table {
     width: 100%;
     margin: 2.5rem 0;
@@ -112,6 +100,27 @@ export const MDWrapper = styled.div`
     border-radius: 0 10px 10px 0;
   }
 
+  .no-header {
+    table {
+      max-width: ${({ theme }) => theme.maxWidth};
+      width: auto;
+    }
+    th {
+      display: none;
+    }
+    td {
+      border: 1px solid var(--tableBdColor);
+    }
+    th:first-child,
+    td:first-child {
+      border-left: 1px solid var(--tableBdColor);
+    }
+    th:last-child,
+    td:last-child {
+      border-right: 1px solid var(--tableBdColor);
+    }
+  }
+
   /* list */
   & ul,
   & ol {
@@ -130,7 +139,8 @@ export const MDWrapper = styled.div`
       margin-bottom: 0;
     }
     code {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
+      line-height: 1.8;
     }
   }
 
@@ -196,10 +206,10 @@ export const MDWrapper = styled.div`
   }
 
   code {
-    margin: 0 0.1rem;
+    margin: 0 0.2rem;
     padding: 0.2rem 0.5rem;
     background-color: var(--inlineCodeBgColor);
-    line-height: 2;
+    line-height: 1.8;
     border-radius: 4px;
   }
 
@@ -244,11 +254,11 @@ export const MDWrapper = styled.div`
 
   /* image */
   img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
+    padding: 1rem 1.7rem;
   }
   .gatsby-resp-image-wrapper {
+    margin: 2rem 0 !important;
+    max-width: 100% !important;
     background: var(--imgBgColor);
     border-radius: 6px;
     overflow: hidden;
@@ -260,16 +270,16 @@ export const MDWrapper = styled.div`
   }
 
   @media screen and (max-width: ${props => props.theme.responsive.sm}) {
-    font-size: 1.4rem;
-
     /* headings */
     h1,
     h2,
-    h3 {
+    h3,
+    h4 {
       margin-bottom: 1rem;
     }
     h1 {
       margin-top: 6rem;
+      margin-bottom: 3rem;
       font-size: 2.8rem;
     }
     h2 {
@@ -280,11 +290,15 @@ export const MDWrapper = styled.div`
       margin-top: 2.5rem;
       font-size: 2rem;
     }
+    h4 {
+      margin-top: 2rem;
+      font-size: 1.8rem;
+    }
 
     /* table */
     table {
       width: 100%;
-      margin: 0 auto 2rem;
+      margin: 2rem auto;
     }
     th {
       padding: 0.4rem 1.2rem;
@@ -293,9 +307,19 @@ export const MDWrapper = styled.div`
       padding: 0.4rem 1.2rem;
     }
 
+    /* code */
+    code {
+      padding: 0 0.4rem;
+    }
+
     /* blockquote */
     blockquote {
-      margin: 3rem 0;
+      margin: 2rem 0;
+    }
+
+    /* paragrpah */
+    p {
+      font-size: 1.6rem;
     }
 
     .flex-wrapper {
