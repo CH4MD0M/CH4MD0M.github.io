@@ -45,8 +45,8 @@ export default createGlobalStyle`${css`
     --inlineCodeBgColor: ${({ theme }) => theme.colors.primary3};
     --hrColor: ${({ theme }) => theme.colors.primary5};
     --imgBgColor: transparent;
-    --tagBgColor: ${({ theme }) => theme.colors.primary1};
-    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary2};
+    --tagBgColor: ${({ theme }) => theme.colors.primary2};
+    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary3};
     --activeTagBgColor: ${({ theme }) => theme.colors.blue0};
     --hoveredActiveTagBgColor: hsl(187, 92%, 30%);
     --themeToggleIconColor: hsl(51, 89%, 66%);
@@ -89,7 +89,7 @@ export default createGlobalStyle`${css`
     --hrColor: ${({ theme }) => theme.colors.primary6};
     --imgBgColor: ${({ theme }) => theme.colors.primary1};
     --tagBgColor: ${({ theme }) => theme.colors.primary8};
-    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary7};
+    --hoveredTagBgColor: ${({ theme }) => theme.colors.primary6};
     --activeTagBgColor: ${({ theme }) => theme.colors.blue1};
     --hoveredActiveTagBgColor: hsl(187, 56%, 77%);
     --themeToggleIconColor: hsl(0, 95%, 74%);
