@@ -43,7 +43,7 @@ tags:
 
 이렇게 간선에 비용이나 가중치가 할당된 그래프를 **가중 그래프(weighted graph)** 또는 **가중 네트워크(weighted network)**라고 한다.
 
-<div style={{maxWidth: '400px'}}>
+<div class='resize-wrapper'>
 
 ![weighted-graph](./image/weighted-graph.png)
 
@@ -59,7 +59,7 @@ tags:
 
 그래프에 속해 있는 모든 정점이 서로 연결된 그래프를 **완전 그래프(complete graph)**라고 한다. 무방향 완전 그래프의 정점 수를 $n$이라고 한다면 간선의 수는 $n * (n - 1) / 2$이다.
 
-<div style={{maxWidth: '400px'}}>
+<div class='resize-wrapper'>
 
 ![complete-graph](./image/complete-graph.png)
 

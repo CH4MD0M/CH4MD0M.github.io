@@ -122,16 +122,14 @@ export const MDWrapper = styled.div`
   }
 
   /* list */
-  & ul,
-  & ol {
+  ul,
+  ol {
     padding-left: 3rem;
     & ul {
-      margin: 0.4rem 0 1rem;
-
-      padding-left: 2rem;
+      margin-bottom: 0.5rem;
       list-style: circle;
 
-      ul {
+      & ul {
         list-style: square;
       }
     }
@@ -143,11 +141,9 @@ export const MDWrapper = styled.div`
       line-height: 1.8;
     }
   }
-
-  & ol {
-    & ul {
-      margin-top: -2rem;
-    }
+  li {
+    padding-left: 0.8rem;
+    margin: 0.5rem 0;
   }
 
   /* paragraph */
@@ -174,7 +170,7 @@ export const MDWrapper = styled.div`
     justify-content: space-around;
     gap: 5rem;
     margin-bottom: 2rem;
-    border: 1px solid var(--tableBdColor);
+    border: 1px solid var(--divider);
     border-radius: 6px;
     padding: 2rem;
     padding-bottom: 0;
@@ -253,6 +249,11 @@ export const MDWrapper = styled.div`
   }
 
   /* image */
+  .resize-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
   img {
     padding: 1rem 1.7rem;
   }

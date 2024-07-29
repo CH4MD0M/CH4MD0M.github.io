@@ -42,7 +42,7 @@ tags:
 
 # 이진 탐색 트리
 
-<div style={{maxWidth: '400px'}}>
+<div class='resize-wrapper'>
 
 ![binary-search-tree](./image/binary-search-tree.png)
 
