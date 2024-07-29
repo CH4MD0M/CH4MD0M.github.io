@@ -1,6 +1,6 @@
 const variables = {
   colors: {
-    primary0: 'hsl(210, 1%, 98%)',
+    primary0: 'hsl(210, 1%, 100%)',
     primary1: 'hsl(210, 2%, 95%)',
     primary2: 'hsl(210, 3%, 93%)',
     primary3: 'hsl(210, 3%, 89%)',
