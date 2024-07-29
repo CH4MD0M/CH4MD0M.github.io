@@ -24,6 +24,8 @@ tags:
 
 `react-helmet`은 서버 사이드 렌더링과 클라이언트 사이드 렌더링 모두에서 작동한다. 이는 SEO를 향상시키는 데 중요한데, 그 이유는 많은 검색 엔진이 페이지를 크롤링할 때 클라이언트 사이드 자바스크립트를 실행하지 않기 때문이다.
 
+<br/>
+
 웹 페이지의 메타데이터에는 페이지 제목, 설명, 키워드, OG(Open Graph) 태그, 트위터 카드 등이 포함될 수 있다. 이들 메타데이터는 사용자가 특정 검색어를 입력했을 때 검색 결과 페이지에 어떻게 웹사이트가 표시될지 결정하는데 큰 역할을 한다.
 
 `react-helmet`은 이러한 메타데이터를 페이지별로 독립적으로 관리할 수 있어, 각 페이지가 검색 결과에서 다르게 표시되게 할 수 있다.
@@ -32,13 +34,19 @@ tags:
 
 `gatsby-plugin-react-helmet`은 `react-helmet` 라이브러리와 `Gatsby` 프레임워크를 연동하기 위한 플러그인이다. 이 플러그인은 Gatsby의 서버 사이드 렌더링(SSR) 과정에서 HTML 헤드 태그에 메타데이터를 삽입할 수 있게 해준다.
 
-### 왜 gatsby-plugin-react-helmet을 추가로 설치하는가?
+## 왜 gatsby-plugin-react-helmet을 추가로 설치하는가?
 
 `Gatsby`는 사이트를 미리 생성하는 정적 사이트 제너레이터이며, `react-helmet`은 각 페이지의 메타데이터를 관리하는 데 사용되는 라이브러리다. 이 두 기술을 연결해주는 것이 바로 `gatsby-plugin-react-helmet`의 역할이다.
 
+<br/>
+
 이 플러그인은 Gatsby의 빌드 시스템과 `react-helmet`을 연동하여, **서버 사이드 렌더링 과정에서 각 페이지의 HTML 헤드에 메타데이터를 적절하게 삽입해준다.** 이로 인해, Gatsby로 개발된 사이트도 각 페이지마다 고유한 title, description 등을 가질 수 있게 된다.
 
+<br/>
+
 이 플러그인이 없다면, `Gatsby`는 `react-helmet`이 관리하는 메타 태그를 인식하지 못하게 된다. 따라서 `Gatsby`와 `react-helmet`을 함께 사용하려는 경우 이 플러그인의 설치는 필수적이다.
+
+<br/>
 
 간단하게 정리하자면 다음과 같다.
 
@@ -144,8 +152,6 @@ const PostTemplate = ({ data, pageContext }: PostTemplateProps) => {
 이번에는 react-helmet을 이용하여 SEO를 설정해보았다. 이제 블로그에 필요한 SEO 설정은 모두 끝났다. 다음에는 블로그에 Google Search Console에 등록해보도록 하자.
 
 <br />
-
----
 
 # 참고
 

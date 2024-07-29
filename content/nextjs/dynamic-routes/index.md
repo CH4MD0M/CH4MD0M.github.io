@@ -12,9 +12,7 @@ tags:
 
 # Convention
 
-동적 세그먼트(Dynamic Segments)는 폴더 이름을 대괄호로 묶어 만들 수 있습니다: `[folderName]`.
-
-ex) `[id]` 또는 `[slug]`
+동적 세그먼트(Dynamic Segments)는 폴더 이름을 대괄호로 묶어 만들 수 있습니다: `[folderName]`. ex) `[id]` 또는 `[slug]`
 
 동적 세그먼트는 params 속성으로 `layout`, `page`, `route`, 그리고 `generateMetadata` 함수에 전달됩니다.
 
@@ -28,11 +26,11 @@ export default function Page({ params }: { params: { slug: string } }) {
 }
 ```
 
-| Route                   | Example URL | params        |
-| ----------------------- | ----------- | ------------- |
-| app/blog/[slug]/page.js | /blog/a     | { slug: 'a' } |
-| app/blog/[slug]/page.js | /blog/b     | { slug: 'b' } |
-| app/blog/[slug]/page.js | /blog/c     | { slug: 'c' } |
+|          Route          | Example URL |    params     |
+| :---------------------: | :---------: | :-----------: |
+| app/blog/[slug]/page.js |   /blog/a   | { slug: 'a' } |
+| app/blog/[slug]/page.js |   /blog/b   | { slug: 'b' } |
+| app/blog/[slug]/page.js |   /blog/c   | { slug: 'c' } |
 
 # Generating Static Params
 
@@ -52,6 +50,8 @@ export async function generateStaticParams() {
 
 fetch 요청을 사용하여 generateStaticParams 함수 내에서 콘텐츠를 가져오면 요청이 자동으로 메모이제이션됩니다. 즉, 여러 generateStaticParams , Layouts 및 Pages에서 동일한 인수를 사용하는 fetch 요청은 한 번만 수행되게 하여 빌드 시간이 단축됩니다.
 
+<br/>
+
 자세한 정보와 고급 사용 사례에 대해서는 [`generateStaticParams` server function documentation](https://nextjs.org/docs/app/api-reference/functions/generate-static-params)를 참조하세요.
 
 <br/>
@@ -64,10 +64,10 @@ fetch 요청을 사용하여 generateStaticParams 함수 내에서 콘텐츠를 
 
 예를 들어, `app/shop/[...slug]/page.js` 는 `/shop/clothes`, `/shop/clothes/tops`, `/shop/clothes/tops/t-shirts` 와 일치합니다.
 
-| Route                      | Example URL | params                    |
-| -------------------------- | ----------- | ------------------------- |
-| app/shop/[...slug]/page.js | /shop/a     | { slug: ['a'] }           |
-| app/shop/[...slug]/page.js | /shop/a/b   | { slug: ['a', 'b'] }      |
+|           Route            | Example URL |          params           |
+| :------------------------: | :---------: | :-----------------------: |
+| app/shop/[...slug]/page.js |   /shop/a   |      { slug: ['a'] }      |
+| app/shop/[...slug]/page.js |  /shop/a/b  |   { slug: ['a', 'b'] }    |
 | app/shop/[...slug]/page.js | /shop/a/b/c | { slug: ['a', 'b', 'c'] } |
 
 <br/>
@@ -80,13 +80,15 @@ Catch-all 세그먼트는 이중 괄호로 묶어 선택적(optional)으로 만�
 
 예를 들어, `app/shop/[[...slug]]/page.js` 은 `/shop/clothes`, `/shop/clothes/tops`, `/shop/clothes/tops/t-shirts` 외에도 `/shop`과도 일치합니다.
 
+<br/>
+
 catch-all 세그먼트와 optional catch-all 세그먼트의 차이점은 optional의 경우, 매개변수가 없는 라우트도 일치한다는 점입니다(위의 예에서는 `/shop`).
 
-| Route                        | Example URL | params                    |
-| ---------------------------- | ----------- | ------------------------- |
-| app/shop/[[...slug]]/page.js | /shop       | {}                        |
-| app/shop/[[...slug]]/page.js | /shop/a     | { slug: ['a'] }           |
-| app/shop/[[...slug]]/page.js | /shop/a/b   | { slug: ['a', 'b'] }      |
+|            Route             | Example URL |          params           |
+| :--------------------------: | :---------: | :-----------------------: |
+| app/shop/[[...slug]]/page.js |    /shop    |            {}             |
+| app/shop/[[...slug]]/page.js |   /shop/a   |      { slug: ['a'] }      |
+| app/shop/[[...slug]]/page.js |  /shop/a/b  |   { slug: ['a', 'b'] }    |
 | app/shop/[[...slug]]/page.js | /shop/a/b/c | { slug: ['a', 'b', 'c'] } |
 
 <br/>
@@ -103,9 +105,9 @@ export default function Page({ params }: { params: { slug: string } }) {
 }
 ```
 
-| Route                             | params Type Definition                 |
-| --------------------------------- | -------------------------------------- |
-| app/blog/[slug]/page.js           | { slug: string }                       |
-| app/shop/[...slug]/page.js        | { slug: string[] }                     |
-| app/shop/[[...slug]]/page.js      | { slug?: string[] }                    |
+|               Route               |         params Type Definition         |
+| :-------------------------------: | :------------------------------------: |
+|      app/blog/[slug]/page.js      |            { slug: string }            |
+|    app/shop/[...slug]/page.js     |           { slug: string[] }           |
+|   app/shop/[[...slug]]/page.js    |          { slug?: string[] }           |
 | app/[categoryId]/[itemId]/page.js | { categoryId: string, itemId: string } |
