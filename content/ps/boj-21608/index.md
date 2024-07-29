@@ -39,9 +39,8 @@ tags:
 
 ### 입출력
 
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
-
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 1
 
@@ -59,8 +58,7 @@ tags:
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 1
 
@@ -69,11 +67,10 @@ tags:
 ```
 
 </div>
-
 </div>
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
 
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 예제 입력 2
 
@@ -91,8 +88,7 @@ tags:
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 예제 출력 2
 
@@ -101,7 +97,6 @@ tags:
 ```
 
 </div>
-
 </div>
 
 # 코드

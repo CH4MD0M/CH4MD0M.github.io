@@ -31,9 +31,8 @@ N×M 크기의 공간에 아기 상어 여러 마리가 있다. 공간은 1×1 �
 
 ### 입출력
 
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
-
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 입력
 
@@ -47,8 +46,7 @@ N×M 크기의 공간에 아기 상어 여러 마리가 있다. 공간은 1×1 �
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 출력
 
@@ -57,7 +55,6 @@ N×M 크기의 공간에 아기 상어 여러 마리가 있다. 공간은 1×1 �
 ```
 
 </div>
-
 </div>
 
 # 코드

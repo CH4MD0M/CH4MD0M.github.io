@@ -27,9 +27,8 @@ tags:
 
 ### 입출력
 
-<div style={{display:'flex', justifyContent:'space-around', gap:'50px'}}>
-
-<div style={{width:'100%'}}>
+<div class='flex-wrapper'>
+<div>
 
 #### 입력
 
@@ -49,8 +48,7 @@ tags:
 ```
 
 </div>
-
-<div style={{width:'100%'}}>
+<div>
 
 #### 출력
 
@@ -59,7 +57,6 @@ tags:
 ```
 
 </div>
-
 </div>
 
 # 코드
