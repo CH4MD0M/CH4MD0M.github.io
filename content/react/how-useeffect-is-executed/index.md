@@ -84,8 +84,6 @@ useEffect는 이 렌더링 단계에서는 동작하지 않는다. 대신 React�
 
 <br/>
 
----
-
 # 참고
 
 - [How does React implement hooks so that they rely on call order](https://stackoverflow.com/questions/54673188/how-does-react-implement-hooks-so-that-they-rely-on-call-order)

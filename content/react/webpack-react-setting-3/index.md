@@ -20,13 +20,16 @@ $ yarn add @babel/runtime-corejs3
 $ yarn add -D @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript babel-loader
 ```
 
-**@babel/preset-env** <br/>
+### @babel/preset-env
+
 `@babel/preset-env`는 babel이 지원하는 최신 자바스크립트 문법을 사용할 수 있도록 해주는 preset이다. 이 preset은 브라우저 지원 범위를 설정할 수 있기 때문에 브라우저에 맞게 코드를 변환해준다. 또한 `@babel/preset-env`는 `@babel/plugin-transform-runtime`과 함께 사용하면 `core-js`를 사용하여 폴리필을 적용할 수 있다.
 
-**@babel/preset-react** <br/>
+### @babel/preset-react
+
 `@babel/preset-react`는 React를 사용할 수 있도록 해주는 preset이다.
 
-**@babel/preset-typescript** <br/>
+### @babel/preset-typescript
+
 babel은 기본적으로 타입스크립트의 문법을 해석할 수 없기 때문에 `@babel/preset-typescript`를 사용하여 babel이 타입스크립트의 문법을 해석할 수 있도록 해준다.
 
 # babel.config.json 설정
@@ -45,16 +48,19 @@ babel은 기본적으로 타입스크립트의 문법을 해석할 수 없기 �
 }
 ```
 
-**["@babel/preset-env", { "modules": false }]** <br/>
+### ["@babel/preset-env", { "modules": false }]
+
 모듈 변환을 하지 않고 ES6 모듈을 그대로 사용한도록 하는 설정이다. commonJS 모듈은 런타임에 동적으로 모듈을 로드하기 때문에 빌드 도구(webpack)가 어떤 코드가 실제로 사용되는지 사전에 정확하게 알 수 없게 된다. 또한 ES6 모듈처럼 명시적으로 어떤 변수나 함수가 외부로 보내지는지 알 수 없고 객체로 내보내기 때문에 이 설정은 `import/export` 문을 그대로 사용하기 위함이다.
 
-**["@babel/preset-react", { "runtime": "automatic" }]** <br/>
+### ["@babel/preset-react", { "runtime": "automatic" }]
+
 이 설정은 React 17부터 도입된 새로운 JSX Transform을 지원하기 위한 설정이다. 이 설정을 사용하면 React.createElement 호출 대신 Babel에 의해 자동으로 처리된다. 따라서 별도로 `import React from 'react';`를 추가할 필요가 없어진다. 자세한 내용은 [React 공식문서](https://ko.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html)에서 확인할 수 있다.
 
-**["@babel/preset-typescript", { "isTSX": true, "allExtensions": true }]** <br/>
+### ["@babel/preset-typescript", { "isTSX": true, "allExtensions": true }]
+
 이 설정은 다음 게시글에서 좀 더 자세하게 설명하겠지만, babel이 `.tsx`파일 내부의 JSX 코드를 해석할 수 있도록 해주는 설정이다. babel이 트랜스파일링 하도록, tsc가 타입 체크의 역할을 하도록 설정했기 때문에 이렇게 설정한다는 것만 알고 넘어가자.
 
-### browserlists 설정
+## browserlists 설정
 
 `@babel/preset-env`는 `browserlists` 설정에 따라 브라우저를 지원한다. `browserlists` 설정은 `package.json` 파일에 다음과 같이 작성할 수 있다.
 
@@ -65,7 +71,7 @@ babel은 기본적으로 타입스크립트의 문법을 해석할 수 없기 �
 }
 ```
 
-# webpack 설정 파일 작성
+# webpack 설정 파일 수정
 
 webpack 설정 파일에 `babel-loader`를 추가한다.
 
@@ -87,13 +93,11 @@ module.exports = {
 };
 ```
 
-<br /><br />
+<br />
 
 > boilerPlate 코드는 [여기](https://github.com/CH4MD0M/webpack-react-ts-boilerplate)에서 확인할 수 있다.
 
 <br />
-
----
 
 # 참고
 

@@ -17,10 +17,12 @@ tags:
 $ yarn add -D typescript tsconfig-paths-webpack-plugin fork-ts-checker-webpack-plugin
 ```
 
-**tsconfig-paths-webpack-plugin** <br/>
+### tsconfig-paths-webpack-plugin
+
 `tsconfig.json` 파일에 설정된 경로 별칭(path aliases)을 webpack에게 알려주고, 이러한 별칭을 해석하여 모듈을 로드할 때 실제 경로를 찾도록 도와주는 플러그인이다. 이 플러그인을 설치하지 않는다면 경로 별칭을 tsconfig 파일과 webpack 설정 파일에 중복해서 설정하기 때문에 이 플러그인을 사용했다.
 
-**fork-ts-checker-webpack-plugin** <br/>
+### fork-ts-checker-webpack-plugin
+
 이 플러그인은 타입스크립트 타입 체크를 별도의 프로세스로 실행하여 webpack 빌드 시간을 줄여주는 역할을 한다. 그리고 `babel-loader`는 타입체크를 수행하지 않기 때문에 이 플러그인을 사용하면 개발 중에 실시간으로 타입 오류를 감지하고 알림을 받을 수 있다.
 
 ## TypeScript 설정 파일 작성
@@ -167,7 +169,7 @@ export default App;
 
 # 프로젝트 실행
 
-### package.json 스크립트 추가
+## package.json 스크립트 추가
 
 아래와 같이 `package.json`에 스크립트를 추가한다.
 

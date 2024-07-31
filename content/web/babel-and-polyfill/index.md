@@ -140,17 +140,15 @@ babel에 의해 컴파일될 수 없고, polyfill이 필요한 것은 다음과 
 
 > [여기](https://github.com/zloirock/core-js#features)에 polyfill이 필요한 기능들이 정리되어 있다. 이를 제외한 나머지 기능들은 Babel로 컴파일이 가능하다.
 
-<br /><br />
+<br />
 
-> webpack 설정 과정은 [Webpack + React + TypeScript Boilerplate](https://chamdom.blog/webpack-react-setting/)에서 확인할 수 있다.
+> webpack으로 React 개발 환경 설정에 대한 내용은 [Webpack + React + TypeScript Boilerplate](https://chamdom.blog/webpack-react-setting/)에서 확인할 수 있다.
 
 > Babel의 적용 방법과 원리에 대한 내용은 [Babel 적용하며 이해하기(with. React, TS)](https://chamdom.blog/webpack-babel-setting/)에서 확인할 수 있다.
 
 > Polyfill의 적용 방법은 [Polyfill 적용하며 이해하기(with. React, TS)](https://chamdom.blog/webpack-polyfill-setting/)에서 확인할 수 있다.
 
 <br />
-
----
 
 # 참고
 

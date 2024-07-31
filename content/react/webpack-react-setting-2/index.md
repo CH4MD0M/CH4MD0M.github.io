@@ -7,15 +7,15 @@ tags:
   - webpackDevServer
 ---
 
-이번 포스팅에서는 webpack을 설정해보자.
+이제 webpack을 설정해보자.
+
+# webpack.common.js
 
 먼저 `webpack.common.js`를 생성할 것이다. 이 파일은 개발 환경과 배포 환경에서 공통적으로 사용되는 설정들을 담고 있다. 추가적인 설정에 관한 설명은 이 게시글이 너무 길어질 수 있기 때문에 자세하게 다루지 못하지만, 간단하게 주석으로 설명을 달아두었다.
 
 개발 환경은 `webpack.dev.js`에 배포 환경은 `webpack.prod.js`에 설정을 할 것이다.
 
-# webpack.common.js
-
-### 패키지 설치
+## 패키지 설치
 
 ```bash
 $ yarn add -D webpack webpack-cli webpack-merge
@@ -23,7 +23,7 @@ $ yarn add -D css-loader sass sass-loader style-loader @svgr/webpack
 $ yarn add -D copy-webpack-plugin dotenv-webpack html-webpack-plugin
 ```
 
-### 설정 파일 작성
+## 설정 파일 작성
 
 ```js
 const path = require('path');
@@ -99,7 +99,7 @@ module.exports = {
 
 `webpack.dev.js`는 개발 환경에서 사용할 설정 파일이다.
 
-### 패키지 설치
+## 패키지 설치
 
 ```bash
 $ yarn add -D webpack-dev-server
@@ -107,7 +107,7 @@ $ yarn add -D webpack-dev-server
 
 `webpack-dev-server`는 API proxy, 모듈 핫 로딩(MHR) 등을 지원해서 개발 프로세스를 단순화하고 향상시키는 데 도움을 주는 유용한 라이브러리다.
 
-### 설정 파일 작성
+## 설정 파일 작성
 
 ```js
 const { merge } = require('webpack-merge');
@@ -137,7 +137,6 @@ module.exports = merge(common, {
     historyApiFallback: true, // HTML5 History API를 사용하는 SPA(Single Page Application)에서의 페이지 전환 설정
     compress: true, // gzip 압축 사용 여부 설정
     port: 3000, // 개발 서버 포트 설정
-    liveReload: true, // 변경된 내용 자동 새로고침 여부 설정
   },
 });
 ```
@@ -180,8 +179,8 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.s?css$/i, // .sass, .scss, .css 확장자에 대해서
+        // 오른쪽에서 왼쪽 순으로 적용.
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-        // MiniCssExtractPlugin.loader, css-loader, sass-loader를 차례로 사용하여 변환
       },
     ],
   },
@@ -234,13 +233,11 @@ module.exports = merge(common, {
 });
 ```
 
-<br /><br />
+<br />
 
 > boilerPlate 코드는 [여기](https://github.com/CH4MD0M/webpack-react-ts-boilerplate)에서 확인할 수 있다.
 
 <br />
-
----
 
 # 참고
 
