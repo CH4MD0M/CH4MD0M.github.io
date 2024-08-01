@@ -158,3 +158,39 @@ while (true) {
 
 console.log(answer);
 ```
+
+# 순환배열
+
+순환 배열은 배열의 끝과 시작이 연결된 구조로, 마지막 요소 다음에는 첫 번째 요소가 오며, 첫 번째 요소 이전에는 마지막 요소가 위치한다. 이는 배열을 원형으로 생각하면 이해하기 쉽다.
+
+#### 다음 요소
+
+`(index + 1) % len`
+
+- `index + 1`은 다음 인덱스를 나타낸다.
+- `%len`은 배열의 끝에 도달하면 처음으로 돌아가게 한다.
+- ex) 배열 길이가 5일 때, 인덱스 4의 다음 요소는 `(4 + 1) % 5 = 0`이다.
+
+#### 이전 요소
+
+`(index - 1 + len) % len`
+
+- `index - 1`은 이전 인덱스를 나타낸다.
+- `+len`은 음수 결과를 방지한다(JavaScript에서 `음수 % 양수`의 결과가 음수일 수 있음).
+- `%len`은 배열의 시작 이전으로 갔을 때 끝으로 돌아가게 한다.
+
+## 예제 코드
+
+```js
+function getAdjacentElements(arr, index) {
+  const len = arr.length;
+  const prevIndex = (index - 1 + len) % len;
+  const nextIndex = (index + 1) % len;
+  return [arr[prevIndex], arr[nextIndex]];
+}
+
+const myArray = [1, 2, 3, 4, 5];
+console.log(getAdjacentElements(myArray, 0)); // [5, 2]
+console.log(getAdjacentElements(myArray, 2)); // [2, 4]
+console.log(getAdjacentElements(myArray, 4)); // [4, 1]
+```
