@@ -3,6 +3,7 @@ import { animateScroll } from 'react-scroll';
 
 import { useHeadObserver } from '@hooks/useHeadObserver';
 import getElementOffsetY from '@utils/getOffset';
+import TocItem from './TocItem';
 
 // CSS
 import * as S from './style';
@@ -18,21 +19,16 @@ const Toc = () => {
 
   return (
     <S.TocWrapper>
-      {headings.map(item => (
-        <S.TocItem
-          key={item.id}
-          active={item.id === activeHeadingId}
-          ml={
-            item.tagName === 'H1'
-              ? '0.5rem'
-              : item.tagName === 'H2'
-              ? '1.2rem'
-              : '2.2rem'
-          }
-          onClick={() => handleClickHeading(item.id)}
+      {headings.map(({ element, id }) => (
+        <TocItem
+          key={id}
+          id={id}
+          tagName={element?.tagName}
+          isActive={id === activeHeadingId}
+          onClick={handleClickHeading}
         >
-          {item.innerText}
-        </S.TocItem>
+          {element?.innerText}
+        </TocItem>
       ))}
     </S.TocWrapper>
   );

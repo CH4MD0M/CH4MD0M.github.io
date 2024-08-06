@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-import useInfiniteScroll from '@hooks/useInfiniteScroll';
-import Divider from '@components/Divider';
+import { useInfiniteScroll } from '@hooks/useInfiniteScroll';
 import PostPreview from '@components/PostPreview';
 
 type PostListProps = {
@@ -13,14 +12,12 @@ type PostListProps = {
 
 const PostList = ({ postList }: PostListProps) => {
   const [count, setCount] = useState(10);
-  const [setTarget] = useInfiniteScroll(loadPosts);
 
-  function loadPosts() {
-    setCount(prev => {
-      if (prev + 4 <= postList.length) return prev + 4;
-      else return postList.length;
-    });
-  }
+  const loadMorePosts = useCallback(() => {
+    setCount(prev => Math.min(prev + 4, postList.length));
+  }, [postList.length]);
+
+  const targetRef = useInfiniteScroll(loadMorePosts);
 
   useEffect(() => {
     setCount(10);
@@ -28,11 +25,10 @@ const PostList = ({ postList }: PostListProps) => {
 
   return (
     <>
-      {/* {postList.length ? <Divider mt="6rem" mb="3rem" /> : <></>} */}
       {postList.slice(0, count).map(post => {
         return <PostPreview key={post.id} post={post} />;
       })}
-      <div ref={setTarget} />
+      <div ref={targetRef} />
     </>
   );
 };
