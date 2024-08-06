@@ -5,7 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
 import { IoIosArrowDown } from 'react-icons/io';
 
-import useQuery from '@hooks/useQuery';
+import { useQuery } from '@hooks/useQuery';
 import Layout from '@layout/index';
 import Seo from '@components/Seo';
 import PageTitle from '@components/PageTitle';
