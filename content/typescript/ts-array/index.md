@@ -8,107 +8,159 @@ tags:
   - const어서션
 ---
 
-타입스크립트는 초기 배열에 어떤 데이터 타입이 있는지 기억하고, 배열이 해당 데이터 타입에서만 동작하도록 제한한다. 이런 방식으로 **배열의 데이터 타입을 하나로 유지시킨다.**
+# 배열
+
+타입스크립트는 배열의 타입 안정성을 보장하기 위해 초기 배열에 포함된 데이터 타입을 기억하고, 이후 해당 배열이 동일한 데이터 타입으로만 작업할 수 있도록 제한한다. 이를 통해 <u>배열의 일관성과 타입 안전성을 유지시킨다.</u>
 
 ```ts
-const numbers = [1, 2, 3, 4];
+const fruits = ['apple', 'banana', 'cherry'];
 
-numbers.push(5); // Ok
+fruits.push('date'); // OK: 'date'는 문자열이므로 허용된다.
 
-numbers.push('a');
-// Error: Argument of type 'string' is not assignable to parameter of type 'number'.
+fruits.push(5);
+// Error: Argument of type 'number' is not assignable to parameter of type 'string'.
+// 'number' 타입의 인수는 'string' 타입의 매개변수에 할당할 수 없다.
+
+console.log(fruits); // ['apple', 'banana', 'cherry', 'date']
 ```
 
-위 코드에서 numbers 배열이 초기에 `number` 타입의 값을 포함한다는 것을 알고 있으므로 이후 `number` 타입의 값을 추가하는 것은 허용하지만 다른 타입의 값을 추가하는 것을 제한한다.
+위 예제에서 `fruits` 배열은 초기에 문자열 값들로 초기화되었다. 타입스크립트는 이를 기억하고 있어, 이후 문자열을 추가하는 것은 허용하지만 숫자와 같은 다른 타입의 값을 추가하려고 하면 오류를 발생시킨다.
 
-타입스크립트가 초기 배열에 담긴 요소를 통해 배열의 타입을 유추하는 방법은 변수의 초깃값에서 타입을 유추하는 것과 유사하다.
+타입스크립트가 초기 배열의 요소를 통해 배열의 타입을 유추하는 방식은 변수의 초깃값에서 타입을 유추하는 것과 유사하다. 이를 **타입 추론**이라고 하며, 개발자가 명시적으로 타입을 지정하지 않아도 타입스크립트가 자동으로 타입을 파악할 수 있게 해준다.
 
-# 배열 타입
+## 배열 타입 명시
 
-타입스크립트는 변수에 배열 타입 애너테이션을 제공해 배열이 포함해야 하는 값의 타입을 알려준다. 배열에 대한 타입 애너테이션은 배열의 요소 타입 다음에 `[]`가 와야 한다.
+때로는 배열의 타입을 명시적으로 지정하고 싶을 수 있다. 타입스크립트에서는 변수에 배열 타입 애너테이션을 제공하여 배열이 포함해야 하는 값의 타입을 명확히 할 수 있다.
+
+배열에 대한 타입 애너테이션은 배열의 요소 타입 뒤에 `[]`를 붙여 표현한다.
 
 ```ts
-let array: number[];
-array = [1, 2, 3, 4];
+const numbers: number[] = [1, 2, 3, 4];
+
+const names: string[] = ['Alice', 'Bob', 'Charlie'];
 ```
 
-배열 타입은 `Array<number>` 같은 구문으로도 작성할 수 있다. 하지만 개발자 대부분은 더 간단한 `number[]`를 선호한다.
+배열 타입은 `Array<number>`와 같은 제네릭 구문으로도 작성할 수 있다. 이는 다음과 같이 사용된다.
+
+```ts
+const scores: Array<number> = [85, 92, 78, 90];
+
+const fruits: Array<string> = ['apple', 'banana', 'cherry'];
+```
 
 ### 배열과 함수 타입
 
-배열 타입은 함수 타입에 무엇이 있는지를 구별하는 괄호가 필요하다. 괄호는 애너테이션의 어느 부분이 함수 반환 부분이고 어느 부분이 배열 타입 묶음인지를 나타낸다.
+배열 타입과 함수 타입을 함께 사용할 때는 **괄호**를 사용하여 타입의 경계를 명확히 해야 한다. 이는 애너테이션의 어느 부분이 함수 반환 부분이고 어느 부분이 배열 타입 묶음인지를 나타낸다.
 
 ```ts
 // string 배열을 반환하는 함수 타입
-let foo: () => string[];
+let stringArrayReturner: () => string[];
 
-// string 값을 반환하는 함수의 배열 타입
-let bar: (() => string)[];
+// string을 반환하는 함수들의 배열 타입
+let arrayOfStringReturners: (() => string)[];
 ```
 
-foo는 함수를 호출하면 string 배열을 반환하는 함수 타입이다. 따라서, foo를 호출하면 배열이 반환된다. 반면에 bar는 함수를 호출하면 string 값을 반환하는 함수의 배열 타입이다. 따라서, bar를 호출하면 함수가 있는 배열이 반환된다.
+```ts
+// 사용 예시
+stringArrayReturner = () => ['hello', 'world'];
+console.log(stringArrayReturner()); // ["hello", "world"]
+
+arrayOfStringReturners = [() => 'hello', () => 'world'];
+console.log(arrayOfStringReturners.map(fn => fn())); // ["hello", "world"]
+```
+
+이 예제에서 `stringArrayReturner`는 호출되면 문자열 배열을 반환하는 단일 함수다. 반면 `arrayOfStringReturners`는 각각 문자열을 반환하는 여러 함수들의 배열이다.
 
 ### 유니언 타입 배열
 
-```ts
-// string 또는 number 배열 타입
-let arr1: string | number[];
+유니언 타입과 배열을 함께 사용할 때도 괄호의 위치가 중요하다.
 
-// 각 요소가 string 또는 number인 배열 타입
-let arr2: (string | number)[];
+```ts
+// string 또는 number의 배열 타입
+let stringOrNumberArray: (string | number)[];
+
+// string 배열 또는 number 타입
+let stringArrayOrNumber: string[] | number;
 ```
 
-arr1은 string 또는 number 배열을 나타내는 유니온 타입이다. 따라서 arr1은 `string` 또는 `number array` 중 하나일 수 있다. arr1의 요소가 배열인 경우, 해당 배열은 숫자 배열이어야 한다. 반면에 arr2는 string 또는 number 타입을 가진 요소들의 배열을 나타내는 배열 타입이다. 따라서 arr2는 문자열과 숫자를 모두 요소로 가질 수 있다.
+```ts
+// 사용 예시
+stringOrNumberArray = [1, 'two', 3, 'four']; // 유효
+stringOrNumberArray = [1, 2, 3, 4]; // 유효
+stringOrNumberArray = ['one', 'two', 'three']; // 유효
+
+stringArrayOrNumber = ['one', 'two', 'three']; // 유효
+stringArrayOrNumber = 42; // 유효
+// stringArrayOrNumber = [1, 2, 3];  // 오류: number[]는 허용되지 않음
+```
+
+`stringOrNumberArray`는 문자열과 숫자를 모두 포함할 수 있는 배열이다. 반면 `stringArrayOrNumber`는 문자열 배열이거나 단일 숫자일 수 있다.
 
 ### 배열의 any타입
 
-초기에 빈 배열로 설정된 변수에 타입 애너테이션을 포함하지 않으면 타입스크립트는 배열을 `any[]`로 취급한다. any 타입의 배열은 잠재적으로 잘못된 값 추가를 허용해 타입스크립트의 이점을 무력화시키게 된다.
+초기에 빈 배열로 설정된 변수에 타입 애너테이션을 포함하지 않으면 타입스크립트는 배열을 `any[]`로 취급한다. 이는 타입 안정성을 해칠 수 있으므로 주의해야 한다.
+
+```ts
+let dangerousArray = []; // any[] 타입으로 추론됨
+
+dangerousArray.push(1);
+dangerousArray.push('two');
+dangerousArray.push(false);
+// 타입 검사가 무력화되어 모든 타입의 요소 추가 가능
+```
 
 ### 다차원 배열
 
-2차원 배열의 타입은 두개의 `[]`를 갖는다. 3차원 배열은 []를 3개, 4차원 배열은 4개를 갖는다. 그럼 그 이상의 배열에는 몇 개의 []가 필요한지 예측할 수 있다.
+다차원 배열은 중첩된 대괄호(`[]`)를 사용하여 표현한다. 차원의 수만큼 대괄호를 추가한다.
 
 ```ts
-let arr: number[][];
+// 2차원 숫자 배열
+let matrix: number[][];
 
-arr = [
+// 3차원 문자열 배열
+let cube: string[][][];
+
+// 사용 예시
+matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
 ];
 ```
 
-# 배열 멤버
+## 배열 멤버
 
-타입스크립트는 인덱스 기반으로 배열의 멤버를 접근하여 해당 배열의 요소 타입을 반환하는 언어이다. 이는 배열의 멤버를 안전하게 접근하고, 배열 내부의 요소에 대한 타입 정보를 추론할 수 있도록 지원한다. 즉, 타입스크립트는 배열의 요소 타입을 추론하기 위해 인덱스 기반 접근 방식을 활용한다.
+타입스크립트는 **인덱스 기반**으로 배열의 멤버를 접근하여 해당 배열의 요소 타입을 반환하는 언어이다. 이 특성은 배열의 멤버를 안전하게 접근하고, 배열 내부의 요소에 대한 타입 정보를 추론할 수 있도록 지원한다. 즉, <u>타입스크립트는 배열의 요소 타입을 추론하기 위해 인덱스 기반 접근 방식을 활용한다.</u>
 
 다음 str 배열은 `string[]` 타입이므로 s는 `string` 타입이다.
 
 ```ts
-// str의 타입: string[]
-const str = ['one', 'two', 'three'];
+// fruits의 타입: string[]
+const fruits = ['apple', 'banana', 'cherry'];
 
-// s의 타입: string
-const s = str[0];
+// firstFruit의 타입: string
+const firstFruit = fruits[0];
 ```
+
+이 예제에서 `fruits`는 `string[]` 타입으로 추론되며, 배열의 각 요소에 접근하면 `string` 타입이 반환된다. 따라서 `firstFruit`에는 문자열 메서드인 `toUpperCase()`를 사용할 수 있다.
 
 ### 주의 사항: 불안정한 멤버
 
-기본적으로 TypeScript는 모든 배열 요소에 대한 접근이 해당 배열의 멤버를 반환한다고 가정한다. 그러나 실제 JavaScript에서도 배열의 길이를 초과하는 인덱스로 배열 요소에 접근하면, 해당 요소는 존재하지 않는 것으로 처리되어 undefined를 반환한다.
+기본적으로 타입스크립트는 모든 배열 요소에 대한 접근이 해당 배열의 멤버를 반환한다고 가정한다. 그러나 실제 자바스크립트에서는 배열의 길이를 초과하는 인덱스로 배열 요소에 접근하면, 해당 요소는 존재하지 않는 것으로 처리되어 `undefined`를 반환한다.
 
 ```ts
-function foo(elements: string[]) {
-  console.log(elements[9001].length); // 타입 오류 없음.
+function printElementLength(elements: string[]) {
+  console.log(elements[9001].length); // 타입 오류 없음, 하지만 런타임 에러 발생 가능
 }
 
-foo(['one', 'two']);
+printElementLength(['one', 'two']);
 ```
 
 타입스크립트는 검색된 배열의 멤버가 존재하는지 의도적으로 확인하지 않는다. 따라서 elements[9001]은 undefined가 아니라 string 타입으로 간주된다.
 
 # Spread 연산자와 Rest parameter
 
-### Spread 연산자
+## Spread 연산자
 
 타입스크립트는 스프레드 연산자를 사용해 배열을 하나로 결합할 때, 두 배열의 타입이 같으면 같은 타입을 반환한다. 만약 서로 다른 타입의 배열을 결합하면 유니언 타입을 반환한다.
 
@@ -123,7 +175,7 @@ const nums = [1, 2, 3];
 const combined = [...strs, ...nums];
 ```
 
-### Rest parameter
+## Rest parameter
 
 나머지 매개변수의 타입은 지정한 타입 애너테이션과 같아야 한다.
 
@@ -146,68 +198,111 @@ logUsers('Born in', ...birthYear);
 
 # 튜플
 
-튜플 배열은 각 인덱스에 알려진 특정 타입을 가지며 배열의 모든 가능한 멤버를 갖는 유니언 타입보다 더 구체적이다. 튜플 타입을 선언하는 구문은 배열 리터럴처럼 보이지만 요소의 값 대신 타입을 적는다.
+튜플은 고정된 수의 요소를 가지며, 각 요소의 타입이 미리 선언된 배열과 유사한 타입이다. 튜플을 사용하면 각 요소의 타입을 개별적으로 지정할 수 있어 더 정확한 타입 검사가 가능하다.
+
+튜플 타입을 선언하는 구문은 배열 리터럴처럼 보이지만 요소의 값 대신 타입을 적는다.
 
 ```ts
-let yearAndName: [number, string];
+// 튜플 선언
+let person: [string, number, boolean];
 
-yearAndName = [1990, 'Tom']; // Ok
+// 올바른 할당
+person = ['Alice', 30, true];
 
-yearAndName = [false, 'Tom'];
-// Error: Type 'boolean' is not assignable to type 'number'.
+// 잘못된 할당 (타입 오류)
+person = [30, 'Alice', true];
+// Type 'number' is not assignable to type 'string'.
+// Type 'string' is not assignable to type 'number'.
 
-yearAndName = [1990];
-// Type '[number]' is not assignable to type '[number, string]'.
-//   Source has 1 element(s) but target requires 2.
+person = ['Alice', 30];
+// Type '[string, number]' is not assignable to type '[string, number, boolean]'.
+// Source has 2 element(s) but target requires 3.
 ```
 
-### 튜플 할당 가능성
+## 선택적 튜플 요소
 
-타입스크립트에서 튜플 타입은 가변 길이의 배열 타입보다 더 구체적으로 처리된다. 즉, 배열 타입은 튜플타입에 할당할 수 없다.
+TypeScript 3.0부터는 튜플의 옵셔널 요소를 지원한다. 이를 통해 일부 요소가 생략될 수 있는 튜플을 정의할 수 있다.
 
 ```ts
-const array = [false, 123];
+// 선택적 요소를 가진 튜플
+let optionalTuple: [string, number, boolean?];
 
-const tuple: [boolean, number] = array;
-// Error: Type '(number | boolean)[]' is not assignable to type '[boolean, number]'.
-//   Target requires 2 element(s) but source may have fewer.
+optionalTuple = ['hello', 42, true]; // 모든 요소 포함
+optionalTuple = ['world', 10]; // 마지막 요소 생략
+
+console.log(optionalTuple[2]); // true 또는 undefined
 ```
 
-타입스크립트는 배열 array의 타입을 `(number | boolean)[]`로 유추한다. 따라서 배열 array를 tuple에 할당하면 배열의 타입과 튜플의 타입이 서로 다르기 때문에 TypeScript 컴파일러가 오류를 발생시킨다.
+## 나머지 매개변수로서의 튜플
 
-### 나머지 매개변수로서의 튜플
-
-튜플은 구체적인 길이와 요소 타입 정보를 가지는 배열로 간주된다. 따라서 함수에 전달할 인수를 저장하는 데 유용한다.
-
-다음 코드의 `foo`함수 호출에서 `...`연산자를 사용하여 `myArray`을 인수로 전달하려고 시도한다. 이때 타입스크립트 컴파일러는 `myArray`가 `(string | number)[]`타입을 가진 배열임을 인식한다. 그러나 `foo`함수는 `string`과 `number`타입의 두 개의 인수를 필요로 하므로, 배열 전체를 전달하는 것은 타입이 일치하지 않는다.
+튜플은 고정된 길이와 특정 요소 타입을 가지는 배열로 간주된다. 이러한 특성 때문에 <u>튜플은 함수에 전달할 인수를 저장하는 데 매우 유용하다.</u>
 
 ```ts
 const myArray = ['hello', 123];
 
-function foo(str: string, num: number) {
-  console.log(str, num);
+function greet(str: string, num: number) {
+  console.log(`${str} ${num} times`);
 }
 
-foo(...myArray);
+greet(...myArray);
 // Error: A spread argument must either have a tuple type or be passed
 // to a rest parameter.
 ```
 
-따라서 myArray의 요소를 개별적으로 전달하거나 튜플 타입에 맞춰서 전달해줘야 한다.
+이 코드에서 `myArray`는 `(string | number)[]` 타입으로 추론된다. 그러나 `greet` 함수는 `string`과 `number` 타입의 두 개의 개별 인수를 기대한다. 따라서 배열 전체를 스프레드 연산자(...)로 전달하면 타입 불일치 오류가 발생한다.
+
+<br/>
+
+#### 배열 요소 개별 전달
 
 ```ts
 // 배열의 요소를 개별적으로 전달
 const myArray = ['hello', 123];
-foo(myArray[0], myArray[1]);
+greet(myArray[0], myArray[1]);
 ```
+
+이 방법은 잘 동작하지만, 코드가 지저분해지고 배열의 길이가 변경될 수 있기 때문에 유연하지 않다.
+
+#### 튜플 타입 사용
 
 ```ts
 // 튜플 타입에 맞춰서 전달
 const myTuple: [string, number] = ['hello', 123];
-foo(...myTuple);
+greet(...myTuple);
 ```
 
-### 튜플 추론
+이 방법을 사용하면 타입스크립트는 `myTuple`이 정확히 `string`과 `number` 타입의 두 요소를 가진다는 것을 알게 되어, 스프레드 연산자를 안전하게 사용할 수 있다.
+
+<br/>
+
+#### 실용적인 예제(튜플을 이용한 함수 호출)
+
+```ts
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+function makeRequest(method: HttpMethod, url: string, body?: object): void {
+  // 실제 요청 로직
+  console.log(`Making ${method} request to ${url}`);
+  if (body) console.log('with body:', body);
+}
+
+// 튜플을 사용하여 요청 정보 저장
+const getRequest: [HttpMethod, string] = [
+  'GET',
+  'https://api.example.com/users',
+];
+const postRequest: [HttpMethod, string, object] = [
+  'POST',
+  'https://api.example.com/users',
+  { name: 'Kihoon' },
+];
+
+// 튜플을 사용하여 함수 호출
+makeRequest(...getRequest);
+makeRequest(...postRequest);
+```
+
+## 튜플 추론
 
 타입스크립트는 생성된 배열을 튜플이 아닌 가변 길이의 배열로 취급한다.
 
@@ -259,9 +354,8 @@ myTuple.push(456);
 
 <br />
 
----
-
 # 참고
 
 - https://typescript-kr.github.io/
 - 러닝 타입스크립트
+- 타입스크립트 교과서
