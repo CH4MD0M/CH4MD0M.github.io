@@ -18,9 +18,9 @@ const TocItem = React.memo(
         case 'H1':
           return '0.5rem';
         case 'H2':
-          return '1.2rem';
+          return '1.7rem';
         case 'H3':
-          return '2.2rem';
+          return '3rem';
         default:
           return '0.5rem';
       }
