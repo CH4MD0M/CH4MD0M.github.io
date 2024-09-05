@@ -27,7 +27,11 @@ DFS를 구현하는 데는 2가지의 방법이 있다. 첫 번째는 재귀를 
 
 ## 코드 구현
 
+<div class='resize-wrapper'>
+
 ![dfs그래프](./image/dfs_bfs.png)
+
+</div>
 
 ```js
 function dfs(graph, v, visited) {
@@ -61,53 +65,87 @@ dfs(graph, 0, visited);
 
 그림을 통해 먼저 구현과정을 보자. 아래 그래프를 DFS로 탐색할 것이다. 인접한 노드 중에서 방문하지 않은 노드가 여러 개 있으면 숫자가 큰 노드부터 탐색(스택으로 구현하기 때문에)한다고 가정한다.
 
+<div class='resize-wrapper'>
+
 ![dfs그래프](./image/dfs_bfs.png)
 
+</div>
+
 1. 시작 노드인 `0`을 스택에 삽입한다.
+
+<div class='resize-wrapper'></div>
 
 ![dfs-step1](./image/dfs-step1.png)
 
 <br />
 
-2. 스택에서 `0`을 제거하고 방문 처리를 한다. `0` 노드의 방문하지 않은 인접 노드 `1`, `2`, `4`를 스택에 삽입한다.
+1. 스택에서 `0`을 제거하고 방문 처리를 한다. `0` 노드의 방문하지 않은 인접 노드 `1`, `2`, `4`를 스택에 삽입한다.
+
+<div class='resize-wrapper'>
 
 ![dfs-step2](./image/dfs-step2.png)
+
+</div>
 
 <br />
 
 3. 스택의 제일 상위에 있는 `4`를 제거하고 방문 처리를 한다. `4` 노드의 방문하지 않은 인접 노드 `3`을 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step3](./image/dfs-step3.png)
+
+</div>
 
 <br />
 
 4. 스택에서 `3`을 제거하고 방문 처리를 한다. 노드 `3`의 방문하지 않은 인접 노드는 없으므로 무시된다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step4](./image/dfs-step4.png)
+
+</div>
 
 <br />
 
 5. 스택에서 `2`를 제거하고 방문 처리를 한다. 노드 `2`의 방문하지 않은 인접 노드 `5`를 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step5](./image/dfs-step5.png)
+
+</div>
 
 <br />
 
 6. 스택에서 `5`를 제거하고 방문 처리를 한다. 노드 `5`의 방문하지 않은 인접 노드 `1`을 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step6](./image/dfs-step6.png)
+
+</div>
 
 <br />
 
 7. 스택에서 `1`을 제거하고 방문 처리를 한다. 노드 `1`의 방문하지 않은 인접 노드는 없으므로 무시된다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step7](./image/dfs-step7.png)
+
+</div>
 
 <br />
 
 8. 스택에서 `1`을 제거한다. 노드 `1`은 이미 방문한 노드이므로 무시된다.
 
+<div class='resize-wrapper'>
+
 ![dfs-step8](./image/dfs-step8.png)
+
+</div>
 
 <br />
 
@@ -238,61 +276,101 @@ function dfs(graph, visited) {
 
 1. 시작 노드인 `0`을 스택에 삽입한다. 이때 0은 루트 노드(부모가 없는 노드)이므로 부모노드는 `-1`,`undefined`,`null`과 같은 존재하지 않는 수를 넣어준다. 이 예제에서는 `-1`을 부모 노드로 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step1](./image/dfs2-step1.png)
+
+</div>
 
 <br />
 
 2. 스택에서 `[0, -1]`을 제거하고 방문한 노드인지 체크한다. 노드 `0`은 방문하지 않은 노드이므로 다시 스택에 삽입하고 방문처리를 한다. `0` 노드의 방문하지 않은 인접 노드 `1`, `2`, `4`를 부모 노드인 `0`과 함께 `[1, 0]`, `[2, 0]`, `[4, 0]` 형태로 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step2](./image/dfs2-step2.png)
+
+</div>
 
 <br />
 
 3. 스택의 제일 상위에 있는 `[4, 0]`을 제거하고 방문한 노드인지 체크한다. 노드 `4`는 방문하지 않은 노드이므로 다시 스택 삽입하고 방문처리를 한다. `4` 노드의 방문하지 않은 인접 노드 `3`을 부모 노드인 `4`와 함께 `[3, 4]` 형태로 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step3](./image/dfs2-step3.png)
+
+</div>
 
 <br />
 
 4. 스택에서 `[3, 4]`를 제거하고 방문한 노드인지 체크한다. 노드 `3`은 방문하지 않은 노드이므로 다시 스택에 삽입하고 방문처리를 한다. 노드 `3`의 인접 노드 중에 방문하지 않은 노드가 없으므로 다음 과정은 무시된다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step4](./image/dfs2-step4.png)
+
+</div>
 
 <br />
 
 5. 스택에서 `[3, 4]`를 제거한다. 노드 `3`은 방문한 노드이므로 다음 과정은 무시하고 다음 반복으로 넘어간다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step5](./image/dfs2-step5.png)
+
+</div>
 
 <br />
 
 6. 스택에서 `[4, 0]`를 제거한다. 노드 `4`는 방문한 노드이므로 다음 과정은 무시하고 다음 반복으로 넘어간다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step6](./image/dfs2-step6.png)
+
+</div>
 
 <br />
 
 7. 스택에서 `[2, 0]`를 제거한고 방문한 노드인지 체크한다. 노드 `2`는 방문하지 않은 노드이므로 다시 스택 삽입하고 방문처리를 한다. `2` 노드의 방문하지 않은 인접 노드 `5`를 부모 노드인 `2`와 함께 `[5, 2]` 형태로 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step7](./image/dfs2-step7.png)
+
+</div>
 
 <br />
 
 8. 스택에서 `[5, 2]`를 제거하고 방문한 노드인지 체크한다. 노드 `5`는 방문하지 않은 노드이므로 다시 스택에 삽입하고 방문처리를 한다. 노드 `5`의 방문하지 않은 인접 노드 `1`을 부모 노드인 `5`와 함께 `[1, 5]` 형태로 스택에 삽입한다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step8](./image/dfs2-step8.png)
+
+</div>
 
 <br />
 
 9. 스택에서 `[1, 5]`를 제거하고 방문한 노드인지 체크한다. 노드 `1`은 방문하지 않은 노드이므로 다시 스택에 삽입하고 방문처리를 한다. 노드 `1`의 인접 노드 중에 방문하지 않은 노드가 없으므로 다음 과정은 무시된다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step9](./image/dfs2-step9.png)
+
+</div>
 
 <br />
 
 10. 나머지 노드들은 모두 방문한 노드이므로 스택에서 하나씩 제거하고 반복이 종료된다.
 
+<div class='resize-wrapper'>
+
 ![dfs2-step10](./image/dfs2-step10.png)
+
+</div>
 
 <br />
 
