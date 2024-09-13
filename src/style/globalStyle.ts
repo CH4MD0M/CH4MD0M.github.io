@@ -39,8 +39,7 @@ export default createGlobalStyle`${css`
     --headingBdColor: ${({ theme }) => theme.colors.primary6};
     --tableBgColor: ${({ theme }) => theme.colors.primary2};
     --tableBdColor: ${({ theme }) => theme.colors.primary4};
-    --blockQuoteBorder: ${({ theme }) => theme.colors.primary5};
-    --blockQuoteBgColor: ${({ theme }) => theme.colors.primary2};
+    --blockQuoteBgColor: hsl(0, 0%, 98%);
     --italicBgColor: hsl(187, 40%, 88%);
     --inlineCodeBgColor: ${({ theme }) => theme.colors.primary3};
     --hrColor: ${({ theme }) => theme.colors.primary5};
@@ -82,8 +81,7 @@ export default createGlobalStyle`${css`
     --headingBdColor: ${({ theme }) => theme.colors.primary6};
     --tableBgColor: ${({ theme }) => theme.colors.primary7};
     --tableBdColor: ${({ theme }) => theme.colors.primary6};
-    --blockQuoteBorder: ${({ theme }) => theme.colors.primary6};
-    --blockQuoteBgColor: ${({ theme }) => theme.colors.primary8};
+    --blockQuoteBgColor: hsl(220, 13%, 18%);
     --italicBgColor: hsl(187, 45%, 25%);
     --inlineCodeBgColor: ${({ theme }) => theme.colors.gray};
     --hrColor: ${({ theme }) => theme.colors.primary6};

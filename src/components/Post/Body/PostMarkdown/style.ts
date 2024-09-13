@@ -210,30 +210,6 @@ export const MDWrapper = styled.div`
   }
 
   /* blockquote */
-  blockquote {
-    margin: 2rem 0 4rem;
-    padding: 1.2rem 2rem;
-    color: var(--textColor);
-    background: var(--blockQuoteBgColor);
-    border-left: 4px solid hsl(29, 90%, 62%);
-
-    p:first-child {
-      b,
-      strong {
-        font-weight: 700;
-        color: hsl(29, 90%, 62%);
-      }
-      margin-bottom: 1.4rem;
-    }
-    p:last-child {
-      margin-bottom: 0;
-    }
-
-    ul:only-of-type,
-    ol:only-of-type {
-      margin: 0;
-    }
-  }
 
   del {
     &:hover {

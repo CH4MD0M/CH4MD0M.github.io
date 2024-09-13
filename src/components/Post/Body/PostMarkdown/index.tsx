@@ -2,7 +2,9 @@ import React from 'react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 
+// Components
 import PrismSetup from '@components/Element/PrismSetup';
+import Blockquote from '@components/Element/Blockquote';
 
 // CSS
 import * as S from './style';
@@ -13,6 +15,7 @@ interface PostMarkdownProps {
 
 const components = {
   code: PrismSetup,
+  blockquote: Blockquote,
 };
 
 const PostMarkdown = ({ body }: PostMarkdownProps) => {
