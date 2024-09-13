@@ -42,6 +42,7 @@ export default createGlobalStyle`${css`
     --blockQuoteBgColor: hsl(0, 0%, 98%);
     --italicBgColor: hsl(187, 40%, 88%);
     --inlineCodeBgColor: ${({ theme }) => theme.colors.primary3};
+    --codeBlockBgColor: hsl(0, 0%, 98%);
     --hrColor: ${({ theme }) => theme.colors.primary5};
     --imgBgColor: transparent;
     --tagBgColor: ${({ theme }) => theme.colors.primary2};
@@ -84,6 +85,7 @@ export default createGlobalStyle`${css`
     --blockQuoteBgColor: hsl(220, 13%, 18%);
     --italicBgColor: hsl(187, 45%, 25%);
     --inlineCodeBgColor: ${({ theme }) => theme.colors.gray};
+    --codeBlockBgColor: hsl(220, 13%, 18%);
     --hrColor: ${({ theme }) => theme.colors.primary6};
     --imgBgColor: ${({ theme }) => theme.colors.primary1};
     --tagBgColor: ${({ theme }) => theme.colors.primary8};
