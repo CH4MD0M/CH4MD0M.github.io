@@ -44,7 +44,7 @@ export const darkTheme = css`
   pre[class*='language-'] {
     padding: 1em;
     overflow: auto;
-    border-radius: 0.3em;
+    border-radius: 0 0 0.3em 0.3em;
   }
 
   /* Inline code */

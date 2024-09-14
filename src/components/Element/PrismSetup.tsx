@@ -45,7 +45,6 @@ const Container = styled.article`
   position: relative;
   margin: 3rem 0;
   box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.37);
-  border-radius: 0.3em;
 
   pre {
     padding: 1rem 1.5rem;
