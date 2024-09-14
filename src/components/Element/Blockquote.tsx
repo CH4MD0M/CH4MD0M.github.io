@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 // Icons
 import { IconType } from 'react-icons';
+import { FaPencilAlt } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
 import { TiWarningOutline } from 'react-icons/ti';
 import { GoQuote } from 'react-icons/go';
 
-type BlockquoteVariant = 'info' | 'warning' | 'quote';
+type BlockquoteVariant = 'word' | 'info' | 'warn' | 'quote';
 
 interface BlockquoteProps {
   children: React.ReactNode;
@@ -22,13 +23,19 @@ interface BlockquoteStyle {
 }
 
 const blockquoteStyles: Record<BlockquoteVariant, BlockquoteStyle> = {
+  word: {
+    defaultTitle: 'Word',
+    backgroundColor: 'hsla(174, 60%, 50%, 0.1)',
+    borderColor: 'hsl(174, 60%, 35%)',
+    icon: FaPencilAlt,
+  },
   info: {
     defaultTitle: 'Info',
     backgroundColor: 'hsla(188, 100%, 42%, 0.1)',
     borderColor: 'hsl(208, 77%, 47%)',
     icon: FiInfo,
   },
-  warning: {
+  warn: {
     defaultTitle: 'Warning',
     backgroundColor: 'hsla(24, 100%, 50%, 0.1)',
     borderColor: 'hsl(35, 100%, 59%)',
@@ -84,6 +91,7 @@ const Header = styled.div<{ variant: BlockquoteVariant }>`
   color: ${({ variant }) => blockquoteStyles[variant].borderColor};
 
   span {
+    font-size: 2rem;
     font-weight: 600;
   }
 `;
