@@ -13,7 +13,7 @@ tags:
 
 ### 트리와 그래프의 차이점
 
-❗️**트리는 DAG(Directed Acyclic Graphs, 방향성이 있는 비순환 그래프)의 한 종류이다.**
+> 트리는 DAG(Directed Acyclic Graphs, 방향성이 있는 비순환 그래프)의 한 종류이다.
 
 트리는 두 개의 노드 사이에 반드시 1개의 경로만 가지지만, 그래프는 단방향, 양방향을 모두 가리킬 수 있다. 또한 트리는 하나의 부모 노드를 가지며 루트 또한 하나여야 한다.
 
@@ -74,9 +74,11 @@ tags:
 
 **트리의 높이(height)**는 트리가 가지고 있는 최대 레벨을 말한다. 위 그림에서 트리의 높이는 3이다.
 
-<br />
+<blockquote variant="info">
 
-> 이진 트리와 이진 탐색트리에 대한 내용은 [이진 트리(binary tree)와 이진 탐색 트리(binary search tree)](https://chamdom.blog/binary-tree/)에서 확인할 수 있다.
+이진 트리와 이진 탐색트리에 대한 내용은 [이진 트리(binary tree)와 이진 탐색 트리(binary search tree)](https://chamdom.blog/binary-tree/)에서 확인할 수 있다.
+
+</blockquote>
 
 <br />
 

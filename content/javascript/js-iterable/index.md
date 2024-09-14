@@ -18,9 +18,11 @@ ES6 이전에는 배열, 문자열, 유사 배열 객체, DOM 컬렉션 등 다�
 
 # 이터러블
 
-> **✍🏻 이터러블 프로토콜(iterable protocol)**
->
-> Symbol.iterator를 프로퍼티 키로 사용한 메서드를 직접 구현하거나 프로토타입 체인을 통해 상속 받은 Symbol.iterator 메서드를 호출하면 이터레이터 프로토콜을 준수한 이터레이터를 반환한다. 이러한 규약을 이터러블 프로토콜이라 한다.
+<blockquote variant="word" title="이터러블 프로토콜(iterable protocol)">
+
+`Symbol.iterator`를 프로퍼티 키로 사용한 메서드를 직접 구현하거나 프로토타입 체인을 통해 상속 받은 `Symbol.iterator` 메서드를 호출하면 이터레이터 프로토콜을 준수한 이터레이터를 반환한다. 이러한 규약을 이터러블 프로토콜이라 한다.
+
+</blockquote>
 
 이터러블 프로토콜을 준수한 객체를 **이터러블(iterable)**이라 한다. 즉, 이터러블은 `Symbol.iterator`를 프로퍼티 키로 사용한 메서드를 직접 구현하거나 프로토타입 체인을 통해 상속받은 객체를 말한다.
 
@@ -85,15 +87,19 @@ const obj2 = { ...obj1, c: 3 };
 console.log(obj2); // { a: 1, b: 2, c: 3 }
 ```
 
-> 💡 TC39 프로세스
->
-> TC39 프로세스는 ECMAScript(자바스크립트) 표준에 새로운 기능을 추가하기 위해 제안을 검토하고 승인하는 프로세스다. 이 프로세스는 0단계부터 4단계까지로 나누어져 있으며, 4단계(Finished)는 해당 제안이 최종적으로 승인을 받아 표준에 포함된다는 것을 의미한다.
+<blockquote variant="word" title="TC39 프로세스">
+
+TC39 프로세스는 ECMAScript(자바스크립트) 표준에 새로운 기능을 추가하기 위해 제안을 검토하고 승인하는 프로세스다. 이 프로세스는 0단계부터 4단계까지로 나누어져 있으며, 4단계(Finished)는 해당 제안이 최종적으로 승인을 받아 표준에 포함된다는 것을 의미한다.
+
+</blockquote>
 
 # 이터레이터
 
-> **✍🏻 이터레이터 프로토콜(iterator protocol)**
->
-> 이터레이터는 next 메서드를 소유하며 next메서드를 호출하면 이터러블을 순회하며 value, done 프로퍼티를 갖는 이터레이터 리절트 객체를 반환한다. 이러한 규약을 이터레이터 프로토콜이라 한다.
+<blockquote variant="word" title="이터레이터 프로토콜(iterator protocol)">
+
+이터레이터는 `next`메서드를 소유하며 `next`메서드를 호출하면 이터러블을 순회하며 `value`, `done`프로퍼티를 갖는 이터레이터 리절트 객체를 반환한다. 이러한 규약을 이터레이터 프로토콜이라 한다.
+
+</blockquote>
 
 이터레이터 프로토콜을 준수한 객체를 **이터레이터(iterator)**라 한다. 이터러블의 `Symbol.iterator` 메서드를 호출하면 이터레이터 프로토콜을 준수한 이터레이터를 반환한다. 이터레이터는 이터러블의 요소를 탐색하기 위한 포인터 역할을 한다.
 
@@ -186,9 +192,13 @@ for (const item of arr) {
 
 # 이터러블이면서 이터레이터인 객체
 
-> 이터러블이면서 이터레이터인 객체는 대표적으로 제너레이터 객체가 있다.
->
-> 제너레이터 객체에 대해서는 [JavaScript: 제너레이터(generator)와 async/await](https://chamdom.blog/js-generator/)에서 더 자세히 다룬다.
+<blockquote variant="info">
+
+이터러블이면서 이터레이터인 객체는 대표적으로 제너레이터 객체가 있다.
+
+제너레이터 객체에 대해서는 [JavaScript: 제너레이터(generator)와 async/await](https://chamdom.blog/js-generator/)에서 더 자세히 다룬다.
+
+</blockquote>
 
 ## 이터러블을 생성하는 함수
 

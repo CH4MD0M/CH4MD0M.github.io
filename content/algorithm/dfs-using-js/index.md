@@ -73,9 +73,11 @@ dfs(graph, 0, visited);
 
 1. 시작 노드인 `0`을 스택에 삽입한다.
 
-<div class='resize-wrapper'></div>
+<div class='resize-wrapper'>
 
 ![dfs-step1](./image/dfs-step1.png)
+
+</div>
 
 <br />
 
@@ -379,8 +381,6 @@ function dfs(graph, visited) {
 노드의 수가 **$N$**이고 간선의 수가 **$E$**인 그래프에서 그래프가 **인접 리스트**로 표현되어 있다면 **$O(N+E)$**이고, **인접 행렬**로 표시되어 있다면 **$O(N^2)$**이다. 이는 희소 그래프인 경우 DFS는 인접 리스트의 사용이 인접 행렬보다 시간적으로 유리함을 의미한다.
 
 <br />
-
----
 
 # 참고
 

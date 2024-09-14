@@ -24,7 +24,11 @@ tags:
 
 여기서 구현할 다익스트라 알고리즘은 최소힙(우선순위 큐)를 사용하여 구현할 것이다.**우선순위 큐(Priority queue)**를 사용하면 구현이 더욱 빠르고 간단해진다. 큐에서 뽑힌 정점은 해당 정점에서부터 가장 짧은 거리로 도달할 수 있는 정점 중 가장 가까운 정점이기 때문에 이후의 경로는 해당 정점을 거쳐갈 필요가 없다.
 
-> 우선순위 큐(최소 힙)의 구현 코드는 [[자료구조] JavaScript로 힙(Heap) 구현하기](https://chamdom.blog/heap-using-js/)에서 확인할 수 있다.
+<blockquote variant="info">
+
+우선순위 큐(최소 힙)의 구현 코드는 [[자료구조] JavaScript로 힙(Heap) 구현하기](https://chamdom.blog/heap-using-js/)에서 확인할 수 있다.
+
+</blockquote>
 
 ```js
 function dijkstra(n, start, paths) {

@@ -240,8 +240,6 @@ console.log(person.name); // "Roh"
 
 <br />
 
----
-
 # 참고
 
 - https://poiemaweb.com/

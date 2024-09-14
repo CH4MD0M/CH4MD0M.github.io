@@ -188,7 +188,11 @@ console.log(child.askAge()); // Hi! Roh. how old are you?
 
 # 화살표 함수
 
-> 화살표 함수에 관한 내용은 [JavaScript: 화살표 함수(Arrow Function)](https://chamdom.blog/arrow-function) 에서 자세히 다루고 있다.
+<blockquote variant="info">
+
+화살표 함수에 관한 내용은 [JavaScript: 화살표 함수(Arrow Function)](https://chamdom.blog/arrow-function) 에서 자세히 다루고 있다.
+
+</blockquote>
 
 # 정리
 
@@ -207,8 +211,6 @@ ES6에서는 함수를 사용 목적에 따라 세 가지 종류로 구분했다
 일반 함수는 함수 선언문이나 함수 표현식으로 정의한 함수를 말하며 ES6 이전의 함수와 차이가 없다. ES6의 메서드와 화살표 함수는 ES6 이전의 함수는 명확한 차이가 있는데 일반 함수는 `constructor`이지만 ES6의 메서드와 화살표 함수는 `non-constructor`다.
 
 <br />
-
----
 
 # 참고
 

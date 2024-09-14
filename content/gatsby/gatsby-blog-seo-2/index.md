@@ -8,11 +8,15 @@ tags:
   - reactHelmet
 ---
 
-> (추가) Gatsby [4.19](https://www.gatsbyjs.com/docs/reference/release-notes/v4.19/) 버전부터는 [Gatsby Head API](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/)가 추가되었다.
->
-> 2020년 이후로 `react-helmet`이 업데이트가 되지 않고 있는 상황이니 이를 참고하여 작업하면 좋을 것 같다.
->
-> 필자는 Gatsby `4.17` 버전이라서 아직 사용해보지는 못했지만😢, 이를 사용하면 `gatsby-plugin-react-helmet`을 사용하지 않고도 SEO를 설정할 수 있을 것이다.
+<blockquote variant="warn">
+
+Gatsby [4.19](https://www.gatsbyjs.com/docs/reference/release-notes/v4.19/) 버전부터는 [Gatsby Head API](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/)가 추가되었다.
+
+2020년 이후로 `react-helmet`이 업데이트가 되지 않고 있는 상황이니 이를 참고하여 작업하면 좋을 것 같다.
+
+필자는 Gatsby `4.17` 버전이라서 아직 사용해보지는 못했지만😢, 이를 사용하면 `gatsby-plugin-react-helmet`을 사용하지 않고도 SEO를 설정할 수 있을 것이다.
+
+</blockquote>
 
 이전 게시글에서는 sitemap을 생성하고 robots.txt를 설정했다. 이번에는 react helmet을 이용하여 SEO를 설정해보자. SEO 작업 중에 메타데이터를 설정하는 부분이 있다. 이 부분을 `react helmet`과 `gatsby-plugin-react-helmet`을 이용하여 설정해볼 것이다.
 

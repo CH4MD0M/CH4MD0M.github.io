@@ -24,44 +24,61 @@ BFS에 대해 알아보기 전에 우선 그래프(graph), 큐(queue)에 대한 
 
 # BFS 구현
 
+<div class='resize-wrapper'>
+
 ![bfs그래프](./image/dfs_bfs.png)
+
+</div>
+
 위 그래프를 BFS로 탐색해보자. 인접한 노드가 여러 개 있을 때는 가장 숫자가 작은 노드부터 먼저 큐에 삽입한다고 가정한다.
 
 1. 시작 노드인 `0`을 큐에 삽입하고 방문 처리를 한다.
 
+<div class='resize-wrapper'>
+
 ![bfs-step1](./image/bfs-step1.png)
 
-<br />
+</div>
 
-2. 큐에서 `0`을 꺼내고 방문하지 않은 인접 노드 `1`,`2`,`4`를 큐에 삽입하고 모두 방문 처리를 한다.
+1. 큐에서 `0`을 꺼내고 방문하지 않은 인접 노드 `1`,`2`,`4`를 큐에 삽입하고 모두 방문 처리를 한다.
+
+<div class='resize-wrapper'>
 
 ![bfs-step2](./image/bfs-step2.png)
 
-<br />
+</div>
 
-3. 큐에서 `1`을 꺼내고 방문하지 않은 인접 노드 `5`를 큐에 삽입하고 방문 처리를 한다.
+1. 큐에서 `1`을 꺼내고 방문하지 않은 인접 노드 `5`를 큐에 삽입하고 방문 처리를 한다.
+
+<div class='resize-wrapper'>
 
 ![bfs-step3](./image/bfs-step3.png)
 
-<br />
+</div>
 
 4. 큐에서 `2`를 꺼내고 방문하지 않은 인접 노드가 없으므로 무시한다.
 
+<div class='resize-wrapper'>
+
 ![bfs-step4](./image/bfs-step4.png)
 
-<br />
+</div>
 
 5. 큐에서 `4`를 꺼내고 방문하지 않은 인접 노드 `3`을 큐에 삽입하고 방문 처리를 한다.
 
+<div class='resize-wrapper'>
+
 ![bfs-step5](./image/bfs-step5.png)
 
-<br />
+</div>
 
 6. 남아 있는 노드에 방문하지 않은 인접 노드가 없다. 따라서 모든 노드를 큐에서 차례대로 꺼낸다.
 
+<div class='resize-wrapper'>
+
 ![bfs-step6](./image/bfs-step6.png)
 
-<br />
+</div>
 
 결과적으로 그래프의 탐색 순서는 다음과 같다. <br/>
 `0` → `1` → `2` → `4` → `5` → `3`
@@ -143,8 +160,6 @@ class Queue {
 BFS는 그래프가 인접 리스트로 표현되어 있으면 전체 수행시간이 $O(n+e)$이며, 인접 행렬로 표현된 경우는 $O(n^2)$ 시간이 걸린다. BFS도 DFS와 같이 `희소 그래프`를 사용할 때 인접 리스트를 사용하는 것이 효율적이다.
 
 <br />
-
----
 
 # 참고
 

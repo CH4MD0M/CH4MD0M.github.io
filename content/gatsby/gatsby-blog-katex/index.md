@@ -7,13 +7,15 @@ tags:
   - katex
 ---
 
+<blockquote variant="info">
+
+이 글은 `gatsby-plugin-mdx` 플러그인 사용을 기준으로 작성되었다.
+
+</blockquote>
+
 # 들어가며
 
 대부분의 Gatsby 블로그에서는 마크다운 파일을 파싱하기 위해 `gatsby-transformer-remark`를 사용한다. 하지만 필자는 리액트 컴포넌트를 `Mdx` 내부에서도 사용할 수 있다고 생각해서 `gatsby-plugin-mdx`를 사용 중이다! 이를 언급한 이유는 `gatsby-transformer-remark`과 설정 방법이 다르기 때문이다.
-
-<br/>
-
-> 이 글은 `gatsby-plugin-mdx` 플러그인 사용을 기준으로 작성되었다.
 
 # KaTeX란?
 
@@ -37,7 +39,13 @@ ${\KaTeX}$는 수식을 렌더링 해주는 라이브러리로, ${\KaTeX}$는 `M
 
 # KaTeX 설치
 
-> **remark-math version 3을 설치해야 한다.** `gatsby-plugin-mdx`는 내부적으로 `remark version 10`을 사용하고 있는데 remark-math version 4부터는 `remark version 13`을 필요로 하기 때문이다.
+<blockquote variant="warn">
+
+<u>remark-math version 3을 설치해야 한다.</u>
+
+`gatsby-plugin-mdx`는 내부적으로 `remark version 10`을 사용하고 있는데, remark-math version 4부터는 `remark version 13`을 필요로 하기 때문이다.
+
+</blockquote>
 
 ```bash
 npm install remark-math@3.0.1 rehype-katex@5.0.0 katex

@@ -43,14 +43,14 @@ tags:
 
 단축 평가는 다음 규칙을 따른다.
 
-| 단축 평가 표현식    | 평가 결과 |
-| ------------------- | --------- |
-| true \|\| anything  | true      |
+|  단축 평가 표현식   | 평가 결과 |
+| :-----------------: | :-------: |
+| true \|\| anything  |   true    |
 | false \|\| anything | anything  |
-| true && anything    | anything  |
-| false && anything   | false     |
+|  true && anything   | anything  |
+|  false && anything  |   false   |
 
-## 옵셔널 체이닝 연산자
+# 옵셔널 체이닝 연산자
 
 ES11(ECMAScript 2020)에서 도입된 **옵셔널 체이닝(optional chaning) 연산자** `?.`는 좌항의 피연산자가 `null` 또는 `undefined`일 때 `undefined`를 반환하고, 그렇지 않으면 우항의 프로퍼티 참조를 이어간다.
 
@@ -61,7 +61,7 @@ var value = foo?.value;
 console.log(value); // undefined
 ```
 
-## null 병합 연산자
+# null 병합 연산자
 
 ES11(ECMAScript 2020)에서 도입된 **null 병합(nullish coalescing) 연산자** `??`는 좌항의 피연산자가 `null` 또는 `undefined`인 경우 우항의 피연산자를 반환하고, 그렇지 않으면 좌항의 피연산자를 반환한다.
 
@@ -73,8 +73,6 @@ console.log(foo); // "default value"
 ```
 
 <br />
-
----
 
 # 참고
 

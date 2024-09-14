@@ -157,11 +157,15 @@ const weighted_graph = [
 
 **깊이 우선 탐색(DFS)**은 주로 스택으로 구현하거나 재귀로 구현하고, **너비 우선 탐색(BFS)**는 주로 큐로 구현하며 그래프의 최단 경로를 구하는 문제 등에 사용된다.
 
-> DFS와 BFS에 대한 자세한 설명은 아래 게시글에서 다루고 있으니 참고하면 좋을 것 같다.
->
-> [[알고리즘] JavaScript로 구현하는 DFS](https://chamdom.blog/dfs-using-js/)
->
-> [[알고리즘] JavaScript로 구현하는 BFS](https://chamdom.blog/bfs-using-js/)
+<blockquote variant="info">
+
+DFS와 BFS에 대한 자세한 설명은 아래 게시글에서 다루고 있으니 참고하면 좋을 것 같다.
+
+[[알고리즘] JavaScript로 구현하는 DFS](https://chamdom.blog/dfs-using-js/)
+
+[[알고리즘] JavaScript로 구현하는 BFS](https://chamdom.blog/bfs-using-js/)
+
+</blockquote>
 
 <br />
 

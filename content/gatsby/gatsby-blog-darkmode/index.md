@@ -56,17 +56,19 @@ export const darkTheme = {
 
 컴포넌트 기반의 디자인 시스템을 일관되게 유지하기 위해 Styled Components의 `createGlobalStyle`를 사용했다.
 
-> **💡 Tip!**
->
-> `createGlobalStyle`를 사용할 때 prettier가 적용되지 않는 오류가 발생할 수 있는데 코드를 다음과 같이 수정하면 해결할 수 있다.
->
-> ```js
-> import { createGlobalStyle, css } from 'styled-components';
->
-> export default createGlobalStyle`${css`
->   // style code
-> `}`;
-> ```
+<blockquote title="Tip">
+
+`createGlobalStyle`를 사용할 때 prettier가 적용되지 않는 오류가 발생할 수 있는데 코드를 다음과 같이 수정하면 해결할 수 있다.
+
+```js
+import { createGlobalStyle, css } from 'styled-components';
+
+export default createGlobalStyle`${css`
+  // style code
+`}`;
+```
+
+</blockquote>
 
 아래 코드처럼 CSS 변수를 정의하고, `data-theme='dark'` 속성을 가진 요소에 다크 모드에서 사용할 CSS 값을 설정한다. <u>꼭 lightTheme의 CSS 변수와 darkTheme의 CSS 변수 이름이 1:1 매핑되도록 작성해주어야 한다.</u> 이 부분이 가장 노가다가 심한 부분이었다.
 
@@ -343,15 +345,17 @@ export default ThemeToggleButton;
 
 # FOUC 문제 해결하기
 
+<p align="center">
+
 ![fouc-error](./image/fouc-error.gif)
 
-여기서 문제가 발생했다! 😱😱
+</p>
 
-다크 모드를 적용하고 브라우저를 새로고침 하면 위와 같이 화면이 깜빡이는 문제가 생겼다.
+여기서 문제가 발생했다 😱 다크 모드를 적용하고 브라우저를 새로고침 하면 위와 같이 화면이 깜빡이는 문제가 생겼다.
 
 <br/>
 
-찾아보니 이러한 현상을 `FOUC (Flash of unstyled content)`라고 부른다. 스타일시트가 완전히 로드되기 전에 HTML 콘텐츠가 먼저 렌더링되면 스타일이 적용되지 않은 상태로 페이지가 표시되거나 기본 값(라이트 모드)로 표시되었다가 클라이언트 측에서 저장된 설정을 불러와 다크모드를 적용하는 과정에서 발생하는 것이다.
+찾아보니 이러한 현상을 **FOUC(Flash of unstyled content)**라고 부른다. 스타일시트가 완전히 로드되기 전에 HTML 콘텐츠가 먼저 렌더링되면 스타일이 적용되지 않은 상태로 페이지가 표시되거나 기본 값(라이트 모드)로 표시되었다가 클라이언트 측에서 저장된 설정을 불러와 다크모드를 적용하는 과정에서 발생하는 것이다.
 
 따라서 클라이언트 사이드에서는 처리할 수 없고, 서버 사이드에서 처리해야 한다. 이를 해결하기 위해 `gatsby-ssr.js`에 다음과 같은 코드를 추가했다.
 
@@ -408,7 +412,11 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 
 평소에 당연하다고 느끼던 기능들이 얼마나 많은 고민과 시간이 필요한지 알게 되었다. 사용자 경험이 매우 중요하다고 느꼈고 이를 고려해서 개발하면서 서버 사이드에 대한 공부도 하게 되고 정말 좋은 경험이었다. 지금은 서버 사이드에 대한 이해도가 충분하지 않기 때문에 꼭 이 부분을 공부해야겠다.
 
-위 과정에 대한 자세한 코드는 [깃허브](https://github.com/CH4MD0M/gatsby-starter-dom)를 참고하면 된다.
+<blockquote variant='info'>
+
+위 과정에 대한 전체 코드는 [깃허브](https://github.com/CH4MD0M/gatsby-starter-dom)에서 확인할 수 있다.
+
+</blockquote>
 
 <br />
 

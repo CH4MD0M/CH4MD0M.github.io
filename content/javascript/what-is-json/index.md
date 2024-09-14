@@ -26,7 +26,7 @@ JSON의 **Key**는 반드시 `큰따옴표`로 묶어야 한다. 값은 객체 �
 
 # JSON 사용 방법
 
-### JSON.stringfy
+## JSON.stringfy
 
 `JSON.stringify` 메서드는 객체를 JSON 포맷의 문자열로 변환한다. 클라이언트가 서버로 객체를 전송하려면 객체를 문자열화해야 하는데 이를 **직렬화(serializing)**라 한다.
 
@@ -42,7 +42,7 @@ JSON.stringfy(value[, replacer[, space]])
 
 <br />
 
-**stringfy 예제**
+#### stringfy 예제
 
 ```js
 const obj = {
@@ -58,7 +58,7 @@ console.log(typeof json); // string
 console.log(json); // {"name":"Roh","age":20,"address":"incheon","hobby":["cycling","basketball"]}
 ```
 
-**replacer, space 사용 예제**
+#### replacer, space 사용 예제
 
 ```js
 const obj = {
@@ -87,7 +87,7 @@ console.log(strFilteredObject);
 */
 ```
 
-### JSON.parse
+## JSON.parse
 
 `JSON.parse` 메서드는 JSON 포맷의 문자열을 객체로 변환한다. 서버로부터 클라이언트에게 전송된 JSON 데이터는 문자열을 객체로서 사용하려면 이 문자열을 객체화해야 하는데 이를 **역직렬화(deserializing)**라고 한다.
 
@@ -109,8 +109,6 @@ console.log(parsed);
 ```
 
 <br />
-
----
 
 # 참고
 

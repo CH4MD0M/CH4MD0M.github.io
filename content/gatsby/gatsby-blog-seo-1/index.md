@@ -7,7 +7,17 @@ tags:
   - SEO
 ---
 
-> SEO에 대한 포스팅은 [여기](https://chamdom.blog/what-is-seo)에서 확인할 수 있다.
+<blockquote variant="info">
+
+SEO에 대한 포스팅은 [여기](https://chamdom.blog/what-is-seo)에서 확인할 수 있다.
+
+</blockquote>
+
+<blockquote variant="info">
+
+Gatsby react helmet 설정하는 방법은 [Gatsby 블로그 SEO 설정하기 2 - react helmet](https://chamdom.blog/gatsby-blog-seo-2)에서 확인할 수 있다.
+
+</blockquote>
 
 블로그를 운영하면서 웹사이트가 상단에 노출시키고 싶다는 욕심이 생겼다. 그래서 SEO를 설정해보기로 했다.
 
@@ -85,6 +95,3 @@ Host: https://chamdom.blog
 ```
 
 <br />
-
-> Gatsby react helmet 설정하는 방법은 [해당 게시글](https://chamdom.blog/gatsby-blog-seo-2)에서 확인할 수 있다.
-> Gatsby 블로그를 google search console 등록하는 방법은 [해당 게시글](https://chamdom.blog/gatsby-blog-seo-3)에서 확인할 수 있다.

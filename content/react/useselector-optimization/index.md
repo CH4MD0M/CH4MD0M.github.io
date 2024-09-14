@@ -39,22 +39,13 @@ function ExampleComponent() {
 
 위 코드에서 **selector 함수**는 `state => state.counter`다. 이 함수는 redux store의 state를 매개변수로 받아서 state를 가공한 후 반환한다. `useSelector`는 selector 함수의 반환값을 반환한다.
 
-<blockquote type="quote">
-<i>
-  "useSelector accepts a single function, which we call a selector function. A
-  selector is a function that takes the entire Redux store state as its
-  argument, reads some value from the state, and returns that result."
-</i>
-&nbsp; - &nbsp;
-<a href="https://redux.js.org/tutorials/fundamentals/part-5-ui-react">
-   Redux 공식문서
-</a>
-<br />
+<blockquote>
+
+_"useSelector accepts a single function, which we call a selector function. A selector is a function that takes the entire Redux store state as its argument, reads some value from the state, and returns that result."_ - <a href="https://redux.js.org/tutorials/fundamentals/part-5-ui-react">Redux 공식문서</a>
+
 <br />
 
-useSelector는 선택자 함수라고 부르는 단일 함수를 인자로 받는다. 선택자는 전체
-Redux 스토어 상태를 인자로 받아, 특정 값을 상태(state)에서 읽어 그 결과를
-반환하는 함수다.
+useSelector는 선택자 함수라고 부르는 단일 함수를 인자로 받는다. 선택자는 전체 Redux 스토어 상태를 인자로 받아, 특정 값을 상태(state)에서 읽어 그 결과를 반환하는 함수다.
 
 </blockquote>
 
@@ -70,9 +61,11 @@ action이 dispatch 되면 redux store의 state가 변경된다. 이때 <u>`useSe
 
 위에서 설명한 바와 같이, Redux는 selector 함수의 반환값을 비교한다. 이 비교는 어떻게 이루어질까?
 
-<blockquote title="주의사항" variant="warning">
+<blockquote>
 
-_"useSelector compares its results using strict `===` reference comparisons, so the component will re-render any time the selector result is a new reference! This means that if you create a new reference in your selector and return it, your component could re-render every time an action has been dispatched, even if the data really isn't different."_
+_"useSelector compares its results using strict `===` reference comparisons, so the component will re-render any time the selector result is a new reference! This means that if you create a new reference in your selector and return it, your component could re-render every time an action has been dispatched, even if the data really isn't different."_ - <a href="https://redux.js.org/tutorials/fundamentals/part-5-ui-react">Redux 공식문서</a>
+
+<br />
 
 useSelector는 참조 비교(`===`)를 사용하여 결과를 비교한다. 따라서 선택자의 결과가 새로운 참조일 때마다 컴포넌트가 다시 렌러딩된다! 이는 선택자에게 새로운 참조를 생성하여 반환할 경우, 실제 데이터에 변화가 없더라도 액션이 디스패치될 때마다 컴포넌트가 다시 렌더링될 수 있음을 의미한다.
 
@@ -163,7 +156,7 @@ const obj = {
 
 `shallowEqual`은 `obj.a`, `obj.b`, `obj.c`만 비교하고, `obj.a.x`, `obj.a.y`와 같은 객체 내부의 값들은 비교 대상이 아니다. 따라서, 전역 상태가 복잡한 구조의 객체로 관리된다면 최대한 상태를 작은 조각(원시 타입)으로 나누어 관리하거나, 직접 비교 함수를 만들어 사용하는 것이 좋다.
 
-<blockquote variant="warning">
+<blockquote variant="warn">
 
 현재 글을 쓰는 시점으로 `shallowEqual`을 사용해서 최적화를 시킬 수 있는 상황이 딱히 떠오르지 않는다..🥲<br/>
 `shallowEqual`을 사용하기 위해서 최적화하는 코드를 보여주기 위해 약간 억지스러운(실제로
@@ -321,13 +314,6 @@ const cartSubtotal = useSelector(storedCartSubtotal);
 `selectCartItems`는 기본 선택자로 Redux 상태에서 `cartItems`만을 선택한다. `selectCartItemsCount`와 `selectCartSubtotal`은 `createSelector`를 사용하여 메모이즈되기 때문에, `cartItems`가 변경될 때만 새로운 값을 계산한다. 만약 cartItems가 변경되지 않았다면, 이전에 계산된 결과를 그대로 반환하게 된다.
 
 이러한 방식으로 `createSelector`를 활용하면 복잡한 계산을 효율적으로 관리하고 애플리케이션의 전반적인 성능을 향상시킬 수 있다. 특히 대규모 애플리케이션이나 복잡한 상태 구조를 가진 프로젝트에서 그 효과가 더욱 두드러지며, 리액트 컴포넌트의 불필요한 리렌더링을 줄이는 데 큰 도움이 될 것이다.
-
-<br />
-<br />
-
----
-
-<br />
 
 # 마치며
 
