@@ -69,7 +69,7 @@ export const MDWrapper = styled.div`
     background: var(--hrColor);
     height: 1px;
     width: 50%;
-    margin: 2rem auto;
+    margin: 4rem auto 2rem;
   }
 
   /* table */
